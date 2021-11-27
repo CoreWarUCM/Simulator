@@ -8,6 +8,6 @@ Puedes encontrar más información en la [wiki](https://github.com/CoreWarUCM/Si
 
 |Autores|Correos|
 |-|-|
-|Ricardo Sulbarán Socas |
-|Carlos Romero García|
+|Ricardo Sulbarán Socas| rsulbara@ucm.es|
+|Carlos Romero García| carome06@ucm.es|
 |Stiven Arias Giraldo| starias@ucm.es|
