@@ -1,0 +1,15 @@
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\main.exe
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\main.deps.json
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\main.runtimeconfig.json
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\main.runtimeconfig.dev.json
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\main.dll
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\main.pdb
+C:\UCM\Simulator\PruebasEnConsola\main\bin\Debug\netcoreapp3.1\CliWrap.dll
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.csproj.AssemblyReference.cache
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.AssemblyInfoInputs.cache
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.AssemblyInfo.cs
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.csproj.CoreCompileInputs.cache
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.csproj.CopyComplete
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.dll
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.pdb
+C:\UCM\Simulator\PruebasEnConsola\main\obj\Debug\netcoreapp3.1\main.genruntimeconfig.cache

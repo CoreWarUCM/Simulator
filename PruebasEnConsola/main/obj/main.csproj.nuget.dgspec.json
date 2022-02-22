@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Drathi\\DEV\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj": {}
+    "C:\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Drathi\\DEV\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj": {
+    "C:\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Drathi\\DEV\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj",
+        "projectUniqueName": "C:\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj",
         "projectName": "main",
-        "projectPath": "C:\\Users\\Drathi\\DEV\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj",
-        "packagesPath": "C:\\Users\\Drathi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Drathi\\DEV\\UCM\\Simulator\\PruebasEnConsola\\main\\obj\\",
+        "projectPath": "C:\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj",
+        "packagesPath": "C:\\Users\\Ricar\\.nuget\\packages\\",
+        "outputPath": "C:\\UCM\\Simulator\\PruebasEnConsola\\main\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Drathi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "CliWrap": {
               "target": "Package",
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

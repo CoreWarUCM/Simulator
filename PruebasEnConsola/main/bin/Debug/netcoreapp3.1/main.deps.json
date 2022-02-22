@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "main/1.0.0": {
+        "dependencies": {
+          "CliWrap": "3.4.1"
+        },
+        "runtime": {
+          "main.dll": {}
+        }
+      },
+      "CliWrap/3.4.1": {
+        "runtime": {
+          "lib/netcoreapp3.0/CliWrap.dll": {
+            "assemblyVersion": "3.4.1.0",
+            "fileVersion": "3.4.1.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "main/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CliWrap/3.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dXgBVHXxErwlSOHullgPYWeiFFs12QBSs87xGBDc/QUfunWYDL/vv7IH7Accp/qfcwSNMyDIbfeD1PPecdKRCQ==",
+      "path": "cliwrap/3.4.1",
+      "hashPath": "cliwrap.3.4.1.nupkg.sha512"
+    }
+  }
+}
