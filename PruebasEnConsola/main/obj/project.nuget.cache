@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZBmoRvnKodknWhodjPziClmBPWszYf/mBa35wiCECMZ0lBbognQXRww6NkX55c3LXQ92C/ms9mamB7BHxBDShA==",
+  "dgSpecHash": "2cEsRkdfdMYN+jmWRdL420Unwa9FgV1MdjjXw4+fVsfCmMrpNGQ+FGzs4jTmy+6OejYC2k1OqVhk9iqbM4957A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Drathi\\DEV\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj",
+  "projectFilePath": "C:\\UCM\\Simulator\\PruebasEnConsola\\main\\main.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Drathi\\.nuget\\packages\\cliwrap\\3.4.1\\cliwrap.3.4.1.nupkg.sha512"
+    "C:\\Users\\Ricar\\.nuget\\packages\\cliwrap\\3.4.1\\cliwrap.3.4.1.nupkg.sha512"
   ],
   "logs": []
 }

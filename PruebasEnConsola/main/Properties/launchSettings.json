@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "main": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\UCM\\Simulator\\PruebasEnConsola"
+    }
+  }
+}
