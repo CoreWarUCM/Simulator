@@ -10,12 +10,10 @@ public class TitleAnimation : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] private float colorRate = 0.1f;
     
-    private bool reverse = false;
-
     void Start()
     {
         text.color = initColor;
-        InvokeRepeating(nameof(ColorAnimation), 1.0f, colorRate);
+        InvokeRepeating(nameof(ColorAnimation), 0.0f, colorRate);
     }
 
     private void ColorAnimation()
