@@ -6,89 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="02e9234e-792c-47ac-95ee-0f512eba268b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/fondomenu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/fondomenu.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/fondomenu2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/fondomenu2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/fondomenu3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/fondomenu3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/ucm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/ucm.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/ProtMainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ProtMainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow1_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow1_left.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow1_right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow1_right.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow_left.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow_right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/arrow_right.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/back_arrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/back_arrow.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/long_arrow_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/long_arrow_left.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/long_arrow_right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/long_arrow_right.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/arrows/plus.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/background_bar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/background_bar.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/background_bar1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/background_bar1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_purple.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_purple.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_purple1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_purple1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_red.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_red1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/bar_red1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/progress_bar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/progress_bar.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/progress_bar1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Bonus_Assets/bars/progress_bar1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_blue.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_blue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_blue1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_green.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_green1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/bar_green1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/progress_bar_background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/progress_bar_background.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/progress_bar_background1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/bars/progress_bar_background1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/button1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/button1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/button_active.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/button_active.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/button_pushed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/button_pushed.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/pause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/pause.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/rocket.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/buttons/rocket.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/font.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/font/zekton free.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/font/zekton free.ttf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/window.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/window/window_transparent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/window/window_transparent.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/window/window_transparent1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/window/window_transparent1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/atlas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sci-Fi UI/_SciFi_GUISkin_/atlas.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/menuPrototipo/TitleAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/menuPrototipo/TitleAnimation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ideas/bibliografía.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ideas/bibliografía.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +30,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Simulator/MemorySetup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24599fe2776145d58ab771516c063d5613b000/ce/9f468e34/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.5.7/Editor/Collaborate/UserInterface/CollaborateWindow.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -131,6 +52,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="rider.run.widget.enabled.cache" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -144,10 +66,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17636">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="17636" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -168,6 +90,7 @@
       <workItem from="1644148006277" duration="1555000" />
       <workItem from="1645595252352" duration="1961000" />
       <workItem from="1646047877360" duration="2056000" />
+      <workItem from="1646560561816" duration="7151000" />
     </task>
     <servers />
   </component>
