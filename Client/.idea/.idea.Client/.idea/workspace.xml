@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="02e9234e-792c-47ac-95ee-0f512eba268b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ProtMainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ProtMainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/menuPrototipo/EstelaMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/menuPrototipo/EstelaMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-    </list>
+    <list default="true" id="02e9234e-792c-47ac-95ee-0f512eba268b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +87,7 @@
       <workItem from="1645595252352" duration="1961000" />
       <workItem from="1646047877360" duration="2056000" />
       <workItem from="1646560561816" duration="7151000" />
-      <workItem from="1646907697186" duration="4289000" />
+      <workItem from="1646907697186" duration="4349000" />
     </task>
     <servers />
   </component>
