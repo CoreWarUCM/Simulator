@@ -1,0 +1,2 @@
+BUSCA=echo start~search dat~@(x=.)~!!~search dat~if(.!=x)~!~echo end
+GAME=!!~step~macro busca~!~progress~echo super fin
