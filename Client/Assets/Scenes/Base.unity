@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 1604358323}
   - component: {fileID: 1604358322}
   m_Layer: 0
-  m_Name: pMarsParserTest
+  m_Name: Parser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

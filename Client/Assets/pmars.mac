@@ -1,2 +1,4 @@
-BUSCA=echo start~search dat~@(x=.)~!!~search dat~if(.!=x)~!~echo end
+BUSCA=search dat~@(x=.)~!!~search dat~if(.!=x)~!
+print=if(PC==PC1)~echo first~if(PC==PC2)~echo second
+PASO=macro print~step~macro busca
 GAME=!!~step~macro busca~!~progress~echo super fin

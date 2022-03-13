@@ -1,8 +1,6 @@
-;Name:           Imp Gate
-;Speed:          None
-;Size:           1
-;Durability:     Strong
-;Effectiveness:  Excellent against imps, Extremely Poor against others
+;redcode
+;name Imp Gate
+;author Someone
 
 gate equ wait-10
 wait JMP wait,<gate

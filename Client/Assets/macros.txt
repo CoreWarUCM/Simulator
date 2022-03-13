@@ -1,6 +1,0 @@
-BUSCA=search dat~@(x=.)~!!~search dat~if(.!=x)~!~echo end
-print=if(PC==PC1)~echo first~if(PC==PC2)~echo second
-PASO=step~macro busca~macro ciclo
-ciclo=calc x=80000-(CYCLE)
-GAME=!!~macro paso~!
-

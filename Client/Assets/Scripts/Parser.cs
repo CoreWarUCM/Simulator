@@ -21,22 +21,23 @@ public class Parser : MonoBehaviour
         public int player;
     }
     private static string PATH;
+    private static bool exit = false;
     
     private static List<StepData> RoundData;
     
     
     private static int Round;
     private static int ReadRound;
-    
+
+    private Thread backgroundThread;
     // Start is called before the first frame update
     void Start()
     {
         Round = 0;
         RoundData = new List<StepData>();
-        DataToProcess = new List<string>();
         
         PATH = Application.dataPath;
-        Thread backgroundThread = new Thread(new ThreadStart(Parser.Work));  
+        backgroundThread = new Thread(new ThreadStart(Parser.Work));  
         backgroundThread.Start();
 
     }
@@ -50,105 +51,82 @@ public class Parser : MonoBehaviour
             Round++;
         }
     }
-    static List<string> DataToProcess;
-    static private bool processing = false;
+
+    private void OnDestroy()
+    {
+        Debug.Log("Finish");
+        exit = true;
+        backgroundThread.Abort();
+        pmarsDebugger.Kill();
+    }
+    private static int player = 1;
+    private static bool begin = false;
+    private static bool search = false;
+    private static Process pmarsDebugger;
     private static void handler(object sendingProcess,
         DataReceivedEventArgs args)
     {
-        DataToProcess.Clear();
-        var split = args.Data.Split('\n');
-        foreach (string s in split)
+        if(exit || args.Data == null || args.Data.Trim() == "")
+            return;
+        foreach (string s in args.Data.Split('\n'))
         {
-            DataToProcess.Add(s);   
-        }
-        
-        if (!processing)
-        {
-            while (DataToProcess.Count > 0 && DataToProcess.First().Trim() != "start")
+            if (!begin)
             {
-                Debug.LogError($"Removing {DataToProcess.First()}");
-                var data = new StepData();
-                data.data = DataToProcess.First();
-                if (int.TryParse(data.data.Split(' ')[0], out int pos))
-                {
-                    if(RoundData.Find( stepData => stepData.position == pos) != null )
-                        continue;
-                    data.player = ReadRound % 2;
-                    data.position = pos;
-                }
-                RoundData.Add(data);
-                DataToProcess.RemoveAt(0);
-            } 
-            
-            if(DataToProcess.Count <= 0)
-                return;
-            
-            if(DataToProcess.First().Trim() != "start")
-                Debug.LogError("WTF is up with that");
+                begin = s.Trim() == "(cdb) begin";
+                search = begin;
+                continue;
+            }
+            if(int.TryParse(s.Split(' ')[0], out int pos))
+            {
+                if (RoundData.Find(data => data.position == pos) != null)
+                    continue;
+                StepData d = new StepData();
+                d.position = pos;
+                d.player = s.Contains("DAT") ? (player+1)%2 : player;
+                d.data = "";
+                RoundData.Add(d);
+            }
             else
             {
-                DataToProcess.RemoveAt(0);
-                Debug.Log("START!");
-                processing = true;
-            }
-        }
-        if(DataToProcess.Count > 0 && processing)
-        {
-            foreach (string s in DataToProcess)
-            {
-                var data = new StepData();
-                data.data = s;
-                if (int.TryParse(data.data.Split(' ')[0], out int pos))
-                {
-                    if(RoundData.Find( stepData => stepData.position == pos) != null )
-                        continue;
-                    data.player = ReadRound % 2;
-                    data.position = pos;
-                }
+                if (s.Trim() == "first")
+                    player = 0;
+                else if (s.Trim() == "second")
+                    player = 1;
                 else
-                {
-                    if (s == "end")
-                    {
-                        processing = false;
-                        Debug.Log("END");
-                        continue;
-                    }
-                    Debug.LogError($"Cannot parse index on {s}" );
-                }
-                RoundData.Add(data);
-                Debug.Log("Added "+s);
-                ReadRound++;
+                    Debug.LogError(s.Trim());
             }
         }
         
     }
     static void Work()
     {
-        using (Process pmarsDebugger = new Process())
-        {
-            string error = "";
-            pmarsDebugger.StartInfo.FileName = PATH + "/pMars.exe";
-            pmarsDebugger.StartInfo.Arguments = "-e " + PATH + "/SampleWarriors/impgate.redcode " +
-                                           PATH + "/SampleWarriors/imp.redcode";
-            pmarsDebugger.StartInfo.UseShellExecute = false;
-            // pmarsDebugger.StartInfo.CreateNoWindow = true;
-            pmarsDebugger.StartInfo.RedirectStandardOutput = true;
-            pmarsDebugger.StartInfo.RedirectStandardError = true;
-            pmarsDebugger.StartInfo.RedirectStandardInput = true;
-            pmarsDebugger.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            pmarsDebugger.Start();
+        pmarsDebugger = new Process();
+        pmarsDebugger.StartInfo.FileName = PATH + "/pMars.exe";
+        pmarsDebugger.StartInfo.Arguments = "-e " + PATH + "/SampleWarriors/imp.redcode " +
+                                       PATH + "/SampleWarriors/dwarf.redcode";
+        pmarsDebugger.StartInfo.UseShellExecute = false;
+        // pmarsDebugger.StartInfo.CreateNoWindow = true;
+        pmarsDebugger.StartInfo.RedirectStandardOutput = true;
+        pmarsDebugger.StartInfo.RedirectStandardError = true;
+        pmarsDebugger.StartInfo.RedirectStandardInput = true;
+        pmarsDebugger.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+        pmarsDebugger.Start();
 
-            pmarsDebugger.ErrorDataReceived += (sender, args) =>
-            {
-                if (args.Data != null) Debug.LogError(args.Data);
-            };
-            pmarsDebugger.OutputDataReceived += handler;
-            
-            pmarsDebugger.BeginErrorReadLine();
-            pmarsDebugger.BeginOutputReadLine();
-            pmarsDebugger.StandardInput.AutoFlush = true;
-            pmarsDebugger.StandardInput.Write($"!!~step~macro busca, {PATH}/pmars.mac~!\n");
-            pmarsDebugger.WaitForExit();
-        }
+        pmarsDebugger.ErrorDataReceived += (sender, args) =>
+        {
+            if (args.Data != null) Debug.LogError(args.Data);
+        };
+        pmarsDebugger.OutputDataReceived += handler;
+        
+        pmarsDebugger.BeginErrorReadLine();
+        pmarsDebugger.BeginOutputReadLine();
+        pmarsDebugger.StandardInput.AutoFlush = true;
+        Thread.Sleep(100);
+        pmarsDebugger.StandardInput.Write($"echo begin~.~macro busca, {PATH}/pmars.mac~!!~macro paso~!\n");
+        pmarsDebugger.WaitForExit();
+        if(!pmarsDebugger.HasExited)
+            pmarsDebugger.Kill();
+        else
+            exit = true;
     }
 }
