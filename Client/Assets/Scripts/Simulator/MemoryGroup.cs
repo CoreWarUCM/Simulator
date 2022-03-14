@@ -8,7 +8,6 @@ public class MemoryGroup : MonoBehaviour
     [SerializeField] private MemoryCell memoryCell;
     private List<MemoryCell> _cells;
     private Vector3 _groupCenter;
-    
     // private void Update()
     // {
     //     GetCell(UnityEngine.Random.Range(0,_cells.Count)).SetColor(Color.red);
@@ -16,7 +15,7 @@ public class MemoryGroup : MonoBehaviour
 
     public void SetupMemory(int size, int columns = 5)
     {
-        if (columns <= 0 || !memoryCell || size < 100) 
+        if (columns <= 0 || !memoryCell || size < 100)
         {
             Debug.LogWarning("Bad Layout Setup, check for null cell || length <= 0 || size <= 100");
             Destroy(gameObject);
@@ -65,7 +64,7 @@ public class MemoryGroup : MonoBehaviour
 
         _groupCenter /= _cells.Count;
     }
-    
+
     public MemoryCell GetCell(int index)
     {
         return _cells[index];
@@ -82,7 +81,7 @@ public class MemoryGroup : MonoBehaviour
         MemoryCell last = _cells[_cells.Count - 1];
 
         float offset = first.GetComponent<Renderer>().bounds.size.y;
-        
+
         return first.transform.position.y - last.transform.position.y + offset;
     }
 }
