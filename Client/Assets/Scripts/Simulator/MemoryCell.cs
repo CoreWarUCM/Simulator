@@ -24,5 +24,4 @@ public class MemoryCell : MonoBehaviour
     {
         _renderer.material.color = col;
     }
-        
 }

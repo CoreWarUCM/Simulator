@@ -495,7 +495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1175ef0f0f2feaf4f8eebd231066376b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memory: {fileID: 1799577042}
+  memoryGroup: {fileID: 1799577042}
+  warrior1: dwarf.redcode
+  warrior2: imp.redcode
 --- !u!4 &1604358323
 Transform:
   m_ObjectHideFlags: 0
