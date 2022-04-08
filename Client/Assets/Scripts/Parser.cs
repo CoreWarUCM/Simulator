@@ -90,7 +90,7 @@ public class Parser : MonoBehaviour
         pmarsDebugger.StartInfo.RedirectStandardInput = true;
         pmarsDebugger.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
         
-        pmarsDebugger.Start();
+        pmarsDebugger.Start(); 
         
         //Error callback
         pmarsDebugger.ErrorDataReceived += (sender, args) => {
