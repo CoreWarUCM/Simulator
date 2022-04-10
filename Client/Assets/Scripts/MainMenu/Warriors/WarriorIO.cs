@@ -58,12 +58,23 @@ public class WarriorIO
       }
    }
    
+   
+   public string ChooseLoadFile(string directory)
+   {
+#if UNITY_EDITOR
+      return EditorUtility.OpenFilePanel("Select a warrior",directory,"redcode");
+#endif
+      return "aaaaaaa"; 
+   }
+   
    public Warrior LoadWarrior()
    {
       string directory = Application.dataPath;
-      string path = EditorUtility.OpenFilePanel("Select a warrior",directory,"redcode");
+      string path = ChooseLoadFile(directory);
 
-
+      if (!File.Exists(path))
+         return new Warrior("null","null","null",new []{"null"}); 
+      
       string[] rawData = File.ReadAllLines(path);
       string name = "No Name";
       string author = "No Author";
@@ -84,11 +95,25 @@ public class WarriorIO
    
       return new Warrior(path, name, author, rawData);
    }
+
+
+
+
+   public string ChooseSaveFile(string directory)
+   {
+#if UNITY_EDITOR
+      return EditorUtility.SaveFilePanel("Select save location", directory, "MiRedCode", "redcode");
+
+#endif
+
+      return "aaaaaaa"; 
+   }
    
    public void SaveWarrior(string[] rawData)
    {
       string directory = Application.dataPath;
-      string path = EditorUtility.SaveFilePanel("Select save location", directory, "MiRedCode", "redcode");
+
+      string path = ChooseSaveFile(directory);
 
       if (!File.Exists(path))
       {
