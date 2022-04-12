@@ -6,16 +6,22 @@ namespace Simulator
 {
     public abstract class CodeBlock : ICodeBlock
     {
-        private Modfier _mod;
-        public enum Modfier
+        private Modifier _mod;
+        public enum Modifier
         {
             A,B,AB,BA,
             F,X,I
         }
+
+        public class UnsupportedModifierException : System.Exception{
+            public UnsupportedModifierException(string mod):base($"The {mod} modifier is unsupported for this OpCode"){
+                
+            }
+        };
         public int _regA;
         public int _regB;
 
-        public CodeBlock(Modfier mod, int regA, int regB)
+        public CodeBlock(Modifier mod, int regA, int regB)
         {
             _mod = mod;
             _regA = regA;
@@ -26,25 +32,25 @@ namespace Simulator
         {
             switch (_mod)
             {
-                case Modfier.A:
+                case Modifier.A:
                     this.A(simulator, location);
                     break;
-                case Modfier.B:
+                case Modifier.B:
                     this.B(simulator, location);
                     break;
-                case Modfier.AB:
+                case Modifier.AB:
                     this.AB(simulator, location);
                     break;
-                case Modfier.BA:
+                case Modifier.BA:
                     this.BA(simulator, location);
                     break;
-                case Modfier.F:
+                case Modifier.F:
                     this.F(simulator, location);
                     break;
-                case Modfier.X:
+                case Modifier.X:
                     this.X(simulator, location);
                     break;
-                case Modfier.I:
+                case Modifier.I:
                     this.I(simulator, location);
                     break;
             }

@@ -9,41 +9,41 @@ namespace Simulator.CodeBlocks
 {
     public class DATBlock : CodeBlock
     {
-        public DATBlock(int regA = 0, int regB = 0, Modfier mod = Modfier.F) : base(mod, regA, regB) { }
+        public DATBlock(int regA = 0, int regB = 0, CodeBlock.Modifier mod = CodeBlock.Modifier.F) : base(mod, regA, regB) { }
 
         protected override void A(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            throw new CodeBlock.UnsupportedModifierException("A");
         }
 
         protected override void AB(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            throw new CodeBlock.UnsupportedModifierException("AB");
         }
 
         protected override void B(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            throw new CodeBlock.UnsupportedModifierException("B");
         }
 
         protected override void BA(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            throw new CodeBlock.UnsupportedModifierException("BA");
         }
 
         protected override void F(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            simulator.KillWarrior();
         }
 
         protected override void I(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            throw new CodeBlock.UnsupportedModifierException("I");
         }
 
         protected override void X(ISimulator simulator, int location)
         {
-            throw new NotImplementedException();
+            throw new CodeBlock.UnsupportedModifierException("X");
         }
     }
 }

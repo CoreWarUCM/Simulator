@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +8,10 @@ using Simulator;
 using Simulator.CodeBlocks;
 namespace Tests
 {
-    public class MockSimulator : ISimulator
+    public class MockMemorySimulator : ISimulator
     {
+        public int CountKills {get; private set;}
+
         public void CreateBlock(CodeBlock block, int position, int origin)
         {
             new DATBlock();
@@ -28,6 +30,9 @@ namespace Tests
         public void JumpTo(int destination,int origin)
         {
             
+        }
+        public void KillWarrior(){
+            CountKills++;
         }
     }
 }

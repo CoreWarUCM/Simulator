@@ -41,5 +41,9 @@ namespace Simulator
         {
             throw new System.NotImplementedException();
         }
+        public void KillWarrior(){
+            throw new System.NotImplementedException();
+        }
+
     }
 }

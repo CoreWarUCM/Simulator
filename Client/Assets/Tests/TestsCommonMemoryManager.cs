@@ -12,7 +12,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            _sim = new MockSimulator();
+            _sim = new MockBattleSimulator();
             _commonMemoryManager = new CommonMemoryManager(_sim);
         }
         

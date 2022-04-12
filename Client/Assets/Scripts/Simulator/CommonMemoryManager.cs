@@ -53,5 +53,7 @@ namespace Simulator
             _simulator.JumpTo(destination, origin);
         }
 
+        public void KillWarrior(){}
+
     }
 }
