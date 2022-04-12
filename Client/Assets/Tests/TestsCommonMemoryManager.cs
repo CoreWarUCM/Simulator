@@ -40,8 +40,8 @@ namespace Tests
             _commonMemoryManager.CreateBlock(new DATBlock(0,42), 8000, 0);
             DATBlock db = (DATBlock)_commonMemoryManager.GetBlock(0, 0);
             
-            Assert.AreEqual(db._regA, 0);
-            Assert.AreEqual(db._regB, 42);
+            Assert.AreEqual(db._regA.Get(), 0);
+            Assert.AreEqual(db._regB.Get(), 42);
         }
 
         [Test]
@@ -50,8 +50,8 @@ namespace Tests
             _commonMemoryManager.CreateBlock(new DATBlock(100, 2), -3, 0);
             DATBlock db = (DATBlock)_commonMemoryManager.GetBlock(-3, 0);
 
-            Assert.AreEqual(db._regA, 100);
-            Assert.AreEqual(db._regB, 2);
+            Assert.AreEqual(db._regA.Get(), 100);
+            Assert.AreEqual(db._regB.Get(), 2);
         }
     }
 }

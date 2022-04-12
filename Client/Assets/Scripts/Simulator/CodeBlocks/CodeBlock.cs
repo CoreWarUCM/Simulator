@@ -18,10 +18,38 @@ namespace Simulator
                 
             }
         };
-        public int _regA;
-        public int _regB;
 
-        public CodeBlock(Modifier mod, int regA, int regB)
+        public class Register{
+            public enum AddressingMode
+            {
+                immediate,//#
+                direct,//$
+                AIndirect,//*
+                BIndirect,//@
+                APredecrement,//{
+                BPredecrement,//<
+                APostincrement,//}
+                BPostincrement,//>
+            }
+            private int _value;
+            AddressingMode _mode;
+            public Register(){
+                _value = 0;
+                _mode = AddressingMode.immediate;
+            }
+            public Register(AddressingMode mode, int value) {_value = value; _mode= mode;}
+            public int Get(){
+                return _value;
+            }
+            public void Set(int v)
+            {
+                _value = v;
+            }
+        }
+        public Register _regA;
+        public Register _regB;
+
+        public CodeBlock(Modifier mod, Register regA, Register regB)
         {
             _mod = mod;
             _regA = regA;

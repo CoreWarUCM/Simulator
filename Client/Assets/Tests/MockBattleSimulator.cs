@@ -12,7 +12,7 @@ namespace Tests
     {
         public void CreateBlock(CodeBlock block, int position, int origin)
         {
-            new DATBlock();
+            new DATBlock(new CodeBlock.Register(), new CodeBlock.Register(), CodeBlock.Modifier.F);
         }
 
         public void CreateProcess(int warrior, int position, int origin)
@@ -22,7 +22,7 @@ namespace Tests
 
         public CodeBlock GetBlock(int position, int origin)
         {
-            return new DATBlock();
+            return new DATBlock(0,0,CodeBlock.Modifier.F);
         }
 
         public void JumpTo(int destination,int origin)

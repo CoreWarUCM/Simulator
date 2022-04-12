@@ -9,7 +9,17 @@ namespace Simulator.CodeBlocks
 {
     public class DATBlock : CodeBlock
     {
-        public DATBlock(int regA = 0, int regB = 0, CodeBlock.Modifier mod = CodeBlock.Modifier.F) : base(mod, regA, regB) { }
+        public DATBlock(int a, int b, CodeBlock.Modifier mod = CodeBlock.Modifier.F)
+            : base(mod,
+            new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, a),
+            new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, b))
+        {
+        }
+
+        public DATBlock(CodeBlock.Register regA,
+                        CodeBlock.Register regB,
+                        CodeBlock.Modifier mod = CodeBlock.Modifier.F) 
+                        : base(mod, regA, regB) { }
 
         protected override void A(ISimulator simulator, int location)
         {
