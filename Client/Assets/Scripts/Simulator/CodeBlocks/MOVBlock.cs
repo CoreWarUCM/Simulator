@@ -22,50 +22,50 @@ namespace Simulator.CodeBlocks
 
         protected override void A(ISimulator simulator, int location)
         {
-            simulator.GetBlock(_regB.Get(),location)._regA.Set(simulator.GetBlock(_regA.Get(),location)._regA.Get());
+            simulator.GetBlock(_regB.rGet(simulator, location),location)._regA.Set(simulator.GetBlock(_regA.rGet(simulator, location),location)._regA.rGet(simulator, location));
         }
 
         protected override void AB(ISimulator simulator, int location)
         {
-            CodeBlock dest = simulator.GetBlock(_regB.Get(),location);
-            CodeBlock origin = simulator.GetBlock(_regA.Get(),location);
-            dest._regB.Set(origin._regA.Get());
+            CodeBlock dest = simulator.GetBlock(_regB.rGet(simulator, location),location);
+            CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
+            dest._regB.Set(origin._regA.rGet(simulator, location));
         }
 
         protected override void B(ISimulator simulator, int location)
         {
-            CodeBlock dest = simulator.GetBlock(_regB.Get(),location);
-            CodeBlock origin = simulator.GetBlock(_regA.Get(),location);
-            dest._regB.Set(origin._regB.Get());
+            CodeBlock dest = simulator.GetBlock(_regB.rGet(simulator, location),location);
+            CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
+            dest._regB.Set(origin._regB.rGet(simulator, location));
         }
 
         protected override void BA(ISimulator simulator, int location)
         {
-            CodeBlock dest = simulator.GetBlock(_regB.Get(),location);
-            CodeBlock origin = simulator.GetBlock(_regA.Get(),location);
-            dest._regA.Set(origin._regB.Get());
+            CodeBlock dest = simulator.GetBlock(_regB.rGet(simulator, location),location);
+            CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
+            dest._regA.Set(origin._regB.rGet(simulator, location));
         }
 
         protected override void F(ISimulator simulator, int location)
         {
-            CodeBlock dest = simulator.GetBlock(_regB.Get(),location);
-            CodeBlock origin = simulator.GetBlock(_regA.Get(),location);
-            dest._regA.Set(origin._regA.Get());
-            dest._regB.Set(origin._regB.Get());
+            CodeBlock dest = simulator.GetBlock(_regB.rGet(simulator, location),location);
+            CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
+            dest._regA.Set(origin._regA.rGet(simulator, location));
+            dest._regB.Set(origin._regB.rGet(simulator, location));
         }
 
         protected override void I(ISimulator simulator, int location)
         {   
-            CodeBlock origin = simulator.GetBlock(_regA.Get(),location);
-            simulator.CreateBlock(origin, _regB.Get(),location);   
+            CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
+            simulator.CreateBlock(origin, _regB.rGet(simulator, location),location);   
         }
 
         protected override void X(ISimulator simulator, int location)
         {
-            CodeBlock dest = simulator.GetBlock(_regB.Get(),location);
-            CodeBlock origin = simulator.GetBlock(_regA.Get(),location);
-            dest._regA.Set(origin._regB.Get());
-            dest._regB.Set(origin._regA.Get());
+            CodeBlock dest = simulator.GetBlock(_regB.rGet(simulator, location),location);
+            CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
+            dest._regA.Set(origin._regB.rGet(simulator, location));
+            dest._regB.Set(origin._regA.rGet(simulator, location));
         }
     }
 }

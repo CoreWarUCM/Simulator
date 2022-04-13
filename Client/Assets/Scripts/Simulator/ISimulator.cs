@@ -8,5 +8,6 @@ namespace Simulator
         public CodeBlock GetBlock(int position, int origin);
         public void JumpTo(int destination, int origin);
         public void KillWarrior();
+        public int ResolveAddress(int relativeAddress, int originalPosition);
     }
 }

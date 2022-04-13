@@ -44,6 +44,10 @@ namespace Simulator
         public void KillWarrior(){
             throw new System.NotImplementedException();
         }
+        public int ResolveAddress(int relativeAddress, int originalPosition)
+        {
+            throw new System.NotImplementedException();
+        }
 
     }
 }

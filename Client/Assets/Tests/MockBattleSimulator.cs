@@ -32,5 +32,9 @@ namespace Tests
         public void KillWarrior(){
             
         }
+        public int ResolveAddress(int dest, int origin)
+        {
+            return -1;
+        }
     }
 }

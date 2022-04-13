@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 
 using Simulator;
 using Simulator.CodeBlocks;
@@ -38,8 +39,55 @@ namespace Simulator
                 _mode = AddressingMode.immediate;
             }
             public Register(AddressingMode mode, int value) {_value = value; _mode= mode;}
-            public int Get(){
+            
+            public int Value(){
                 return _value;
+            }
+            public int rGet(ISimulator sim, int location)
+            {
+                CodeBlock target = sim.GetBlock(_value,location);
+                switch (_mode)
+                {   
+                    case AddressingMode.immediate:
+                        return 0;
+                    case AddressingMode.AIndirect:
+                    {
+                        /*
+                        [0] MOV.I *3,3
+                        [1] DAT    ,
+                        [2] DAT    ,
+                        [3] DAT    2,0
+                        [4] DAT    ,
+                        [5] DAT    ,
+                        */
+                        return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value,location)));        
+                    }
+                    case AddressingMode.BIndirect:
+                    {
+                        return sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value,location)));        
+                    }
+                    case AddressingMode.APredecrement:{
+                        _value--;
+                        target = sim.GetBlock(_value,location);
+                        return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value,location)));        
+                    }
+                    case AddressingMode.BPredecrement:{
+                        _value--;
+                        target = sim.GetBlock(_value,location);
+                        return sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value,location)));        
+                    }
+                    case AddressingMode.APostincrement:{
+                        return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value++,location)));        
+                    }
+                    case AddressingMode.BPostincrement:{
+                        return sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value++,location)));        
+                    }
+
+                    case AddressingMode.direct:
+                    default:
+                        return Value();
+
+                }
             }
             public void Set(int v)
             {

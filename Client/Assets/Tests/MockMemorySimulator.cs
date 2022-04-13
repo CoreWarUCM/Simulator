@@ -21,6 +21,7 @@ namespace Tests
         }
         public void CreateBlock(CodeBlock block, int position, int origin)
         {
+            //this is a mock, we are not testing over 8000
             blocks[position] = block;
         }
 
@@ -31,6 +32,7 @@ namespace Tests
 
         public CodeBlock GetBlock(int position, int origin)
         {
+            //this is a mock, we are not testing over 8000
             return blocks[position];
         }
 
@@ -40,6 +42,11 @@ namespace Tests
         }
         public void KillWarrior(){
             CountKills++;
+        }
+        public int ResolveAddress(int dest, int origin)
+        {
+            //this is a mock, we are not testing over 8000
+            return dest+origin;
         }
     }
 }
