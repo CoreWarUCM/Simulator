@@ -45,11 +45,13 @@ namespace Simulator
             }
             public int rGet(ISimulator sim, int location)
             {
+
                 CodeBlock target = sim.GetBlock(_value,location);
                 switch (_mode)
                 {   
                     case AddressingMode.immediate:
-                        return 0;
+                        //throw new System.Exception("PANIC, NO SÉ CÓMO FUNCIONAN LAS CPUs");
+                        return Value();
                     case AddressingMode.AIndirect:
                     {
                         /*

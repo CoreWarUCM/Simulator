@@ -25,7 +25,7 @@ namespace Tests
             return new DATBlock(0,0,CodeBlock.Modifier.F);
         }
 
-        public void JumpTo(int destination,int origin)
+        public void JumpTo(int destination)
         {
             
         }

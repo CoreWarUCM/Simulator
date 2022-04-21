@@ -17,7 +17,7 @@ namespace Tests
                 new CodeBlock.Register(CodeBlock.Register.AddressingMode.immediate, 3),
                 new CodeBlock.Register(CodeBlock.Register.AddressingMode.immediate, 3)
                );
-            Assert.That(d._regA.rGet(sim,0)==0);
+            Assert.AreEqual(d._regA.rGet(sim,3),3);
         }
 
         [Test]

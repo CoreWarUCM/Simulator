@@ -37,7 +37,7 @@ namespace Simulator
             throw new System.NotImplementedException();
         }
 
-        public void JumpTo(int destination, int origin)
+        public void JumpTo(int destination)
         {
             throw new System.NotImplementedException();
         }
