@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Normal1v1Manager : MonoBehaviour
@@ -20,16 +17,16 @@ public class Normal1v1Manager : MonoBehaviour
     private ButtonElement historyButton;
 
     // Para saber cómo deben comportarse los callbacks
-    private bool normalInit = false;
+    private bool _normalInit;
 
     // Posición inicial del botón volver
-    private Vector3 backInitPos;
+    private Vector3 _backInitPos;
 
     // Posición inicial del botón cargar
-    private Vector3 loadInitPos;
+    private Vector3 _loadInitPos;
 
     // Posición inicial del botón historial
-    private Vector3 histInitPos;
+    private Vector3 _histInitPos;
 
 //------------------------------------------------------------//
     [System.Serializable]
@@ -38,17 +35,11 @@ public class Normal1v1Manager : MonoBehaviour
         [Tooltip("Referencia al botón principal del menú")]
         public Button button;
 
-        [Tooltip("Referencia al GameObject de Normal1v1")]
-        public GameObject normal1v1;
-
-        [Tooltip("Referencia al GameObject de MainMenu")]
-        public GameObject mainMenu;
-
-        [Tooltip("Referencia al panel de cargar guerreros")]
-        public GameObject loadPanel;
-
-        [Tooltip("Referencia al panel del historial")]
-        public GameObject historyPanel;
+        [Tooltip("GameObjects para desactivar")]
+        public GameObject [] objsToDisable;
+        
+        [Tooltip("GameObjects para activar")]
+        public GameObject [] objsToEnable;
 
         [Tooltip("Referencia al componente del movimiento")]
         public ButtonMovement mov;
@@ -84,9 +75,9 @@ public class Normal1v1Manager : MonoBehaviour
     private void Start()
     {
         // Se guardan las posiciones iniciales
-        backInitPos = backButton.button.gameObject.transform.position;
-        loadInitPos = loadButton.button.gameObject.transform.position;
-        histInitPos = historyButton.button.gameObject.transform.position;
+        _backInitPos = backButton.button.gameObject.transform.position;
+        _loadInitPos = loadButton.button.gameObject.transform.position;
+        _histInitPos = historyButton.button.gameObject.transform.position;
 
         // Se inicializan los callbacks
         backButton.Init(BackBehave);
@@ -97,14 +88,20 @@ public class Normal1v1Manager : MonoBehaviour
 //------------------------------------------------------------//
     private void BackBehave()
     {
-        // Se desactivan los elementos del menú
-        backButton.normal1v1.SetActive(false);
-        backButton.loadPanel.SetActive(false);
-        backButton.historyPanel.SetActive(false);
+        // Se desactivan los elementos necesarios
+        foreach (var obj in backButton.objsToDisable)
+        {
+            obj.SetActive(false);
+        }
+
         ResetPositions();
-        // Se activa el menú principal
-        backButton.mainMenu.SetActive(true);
-        normalInit = false;
+        // Se activan los elementos necesarios
+        foreach (var obj in backButton.objsToEnable)
+        {
+            obj.SetActive(true);
+        }
+        
+        _normalInit = false;
     }
 //------------------------------------------------------------//
     /// <summary>
@@ -114,14 +111,14 @@ public class Normal1v1Manager : MonoBehaviour
     {
         // Si no se ha inicializado entonces se hará la animación de movimiento
         // y luego se muestra el panel correspondiente
-        if (!normalInit)
+        if (!_normalInit)
         {
             backButton.mov.Init(transitionTime);
             loadButton.mov.Init(transitionTime);
             historyButton.mov.Init(transitionTime);
 
             Invoke(nameof(ShowLoadPanel), transitionTime + 0.5f);
-            normalInit = true;
+            _normalInit = true;
         }
         else
         {
@@ -137,14 +134,14 @@ public class Normal1v1Manager : MonoBehaviour
     {
         // Si no se ha inicializado entonces se hará la animación de movimiento
         // y luego se muestra el panel correspondiente
-        if (!normalInit)
+        if (!_normalInit)
         {
             backButton.mov.Init(transitionTime);
             loadButton.mov.Init(transitionTime);
             historyButton.mov.Init(transitionTime);
 
             Invoke(nameof(ShowHistoryPanel), transitionTime);
-            normalInit = true;
+            _normalInit = true;
         }
         else
         {
@@ -159,9 +156,9 @@ public class Normal1v1Manager : MonoBehaviour
     /// </summary>
     private void ResetPositions()
     {
-        backButton.button.gameObject.transform.position = backInitPos;
-        loadButton.button.gameObject.transform.position = loadInitPos;
-        historyButton.button.gameObject.transform.position = histInitPos;
+        backButton.button.gameObject.transform.position = _backInitPos;
+        loadButton.button.gameObject.transform.position = _loadInitPos;
+        historyButton.button.gameObject.transform.position = _histInitPos;
     }
 
     /// <summary>
