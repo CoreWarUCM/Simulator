@@ -47,10 +47,10 @@ namespace Simulator
             return _memory[ResolveAddress(position, origin)];
         }
 
-        public void JumpTo(int destination, int origin)
+        public void JumpTo(int destination)
         {
             //Call delegated to actual simulator
-            _simulator.JumpTo(destination, origin);
+            _simulator.JumpTo(destination);
         }
 
         public void KillWarrior(){}

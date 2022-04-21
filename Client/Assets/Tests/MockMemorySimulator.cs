@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using UnityEngine;
+using UnityEditor;
+
 using Simulator;
 using Simulator.CodeBlocks;
+
 namespace Tests
 {
     public class MockMemorySimulator : ISimulator
@@ -14,6 +18,7 @@ namespace Tests
 
         private List<CodeBlock> blocks = new List<CodeBlock>(8000);
 
+        public int lastJump = -1;
 
         public MockMemorySimulator(){
             for(int i  = 0; i<blocks.Capacity;i++)
@@ -33,12 +38,14 @@ namespace Tests
         public CodeBlock GetBlock(int position, int origin)
         {
             //this is a mock, we are not testing over 8000
-            return blocks[position];
+            if(position+origin<0)
+                Debug.Log($"{position},{origin}");
+            return blocks[position+origin];
         }
 
-        public void JumpTo(int destination,int origin)
+        public void JumpTo(int destination)
         {
-            
+            lastJump = destination;
         }
         public void KillWarrior(){
             CountKills++;
