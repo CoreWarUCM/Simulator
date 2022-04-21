@@ -50,7 +50,8 @@ namespace Simulator
                 switch (_mode)
                 {   
                     case AddressingMode.immediate:
-                        return throw new System.Exception("PANIC, NO SÉ CÓMO FUNCIONAN LAS CPUs");
+                        //throw new System.Exception("PANIC, NO SÉ CÓMO FUNCIONAN LAS CPUs");
+                        return Value();
                     case AddressingMode.AIndirect:
                     {
                         /*
