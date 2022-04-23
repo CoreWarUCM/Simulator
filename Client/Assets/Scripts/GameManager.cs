@@ -35,9 +35,8 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    public void SaveWarrior(string[] rawData)
+    public void SaveWarrior(string rawData)
     {
-        // _warriorIO.SaveWarrior(new []{";redcode",";author pepepopo",";name pruebapito", "DAT 0", "MOV 0", "DAT 0"});
         _warriorIO.SaveWarrior(rawData);
     }
 }

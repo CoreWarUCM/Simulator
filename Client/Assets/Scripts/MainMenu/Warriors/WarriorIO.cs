@@ -109,7 +109,7 @@ public class WarriorIO
       return "aaaaaaa"; 
    }
    
-   public void SaveWarrior(string[] rawData)
+   public void SaveWarrior(string rawData)
    {
       string directory = Application.dataPath;
 
@@ -117,7 +117,7 @@ public class WarriorIO
 
       if (!File.Exists(path))
       {
-         File.WriteAllLines(path,rawData);
+         File.WriteAllText(path,rawData);
       }
    }
 }
