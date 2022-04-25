@@ -20,6 +20,8 @@ namespace Simulator
             _memSize = memSize;
             _memory = new CodeBlock[_memSize];
             _simulator = simulator;
+            for (int i = 0; i < _memSize; i++)
+                _memory[i] = new DATBlock(0,0);
         }
 
         public int ResolveAddress(int relativeAddress, int originalPosition)

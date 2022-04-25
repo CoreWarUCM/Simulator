@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Simulator.CodeBlocks
 {
@@ -78,6 +79,7 @@ namespace Simulator.CodeBlocks
             CodeBlock origin = simulator.GetBlock(_regA.rGet(simulator, location),location);
 
             simulator.CreateBlock(origin, regB,location);
+            Debug.Log("Mov destination = " + (regB+location));
             return new BlockModifyMessage(simulator.ResolveAddress(regB, location));
 
         }
