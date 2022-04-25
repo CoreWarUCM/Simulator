@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Simulator.CodeBlocks
+namespace Simulator
 {
-    public interface ICodeBlock
+    public class BaseMessage
     {
-        public BaseMessage Execute(ISimulator simulator, int location);
     }
 }

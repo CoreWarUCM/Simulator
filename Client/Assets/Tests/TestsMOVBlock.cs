@@ -53,8 +53,8 @@ namespace Tests
         public void MOVXMovesABSourceToABDest(){
             MOVBlock block = new MOVBlock(1,20,CodeBlock.Modifier.X);
             block.Execute(sim,0);
-            Assert.That(sim.GetBlock(20,0)._regA.rGet(sim, 20) == 8);
-            Assert.That(sim.GetBlock(20,0)._regB.rGet(sim, 20) == 3);
+            Assert.AreEqual(3,sim.GetBlock(20,0)._regB.rGet(sim, 20));
+            Assert.AreEqual(8,sim.GetBlock(20,0)._regA.rGet(sim, 20));
         }
 
         [Test]
