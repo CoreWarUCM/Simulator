@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using Simulator;
 
 public class MemoryGroup : MonoBehaviour
 {
@@ -13,6 +15,15 @@ public class MemoryGroup : MonoBehaviour
     //     GetCell(UnityEngine.Random.Range(0,_cells.Count)).SetColor(Color.red);
     // }
 
+    public void Start()
+    {
+        BattleSimulator bs = GetComponent<BattleSimulator>();
+        bs._listeners[(int)Simulator.MessageType.BlockModify] = (BaseMessage bm) => 
+        {
+            GetCell((bm as BlockModifyMessage).modifiedLcoation).SetColor(bm.warrior==1 ? Color.red : Color.blue);
+        };
+        Debug.Log("AAHH");
+    }
     public void SetupMemory(int size, int columns = 5)
     {
         if (columns <= 0 || !memoryCell || size < 100)

@@ -1,5 +1,6 @@
 using Simulator.CodeBlocks;
 using UnityEngine;
+using System;
 
 namespace Simulator
 {
@@ -10,7 +11,11 @@ namespace Simulator
         private CommonMemoryManager _commonMemoryManager;
         private System.Random _random;
 
+        public Action<BaseMessage>[] _listeners;
 
+        void Awake(){
+            _listeners = new Action<BaseMessage>[Enum.GetValues(typeof(MessageType)).Length];
+        }
         void Start()
         {
             _random = new System.Random();
@@ -42,7 +47,9 @@ namespace Simulator
         {
             _warriorManager.GetCurrent(out int location, out int warrior);
             BaseMessage baseMessage = _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
-            Debug.Log($"Warrior {warrior} produced message {baseMessage} at {location}");
+            Debug.Log($"Warrior {warrior} produced message of type {baseMessage._type} at {location}");
+            baseMessage.warrior = warrior;
+            _listeners[(int)baseMessage._type]?.Invoke(baseMessage);
 
             _warriorManager.AdvanceCurrent();
             _warriorManager.Next();

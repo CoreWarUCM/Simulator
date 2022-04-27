@@ -3,7 +3,8 @@
     public class BlockModifyMessage : BaseMessage
     {
         public int modifiedLcoation { get;  private set; }
-        public BlockModifyMessage(int location)
+        public BlockModifyMessage(int location) :
+            base(MessageType.BlockModify)
         {
             modifiedLcoation = location;
         }

@@ -12,7 +12,7 @@ namespace Simulator
 
         private int _currentExecutingWarrior;
         private bool _jumped = false;
-
+        
         public WarriorManager(System.Random randomizer)
         {
             _firstWarriorProcesses = new List<int>();
