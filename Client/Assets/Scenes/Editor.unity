@@ -258,8 +258,8 @@ MonoBehaviour:
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
+  m_CaretColor: {r: 1, g: 1, b: 1, a: 1}
+  m_CustomCaretColor: 1
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: ';redcode
 
@@ -267,16 +267,26 @@ MonoBehaviour:
 
     ;author author
 
+    MOV 0 , 1
+
+    MOV #0
+    , >1
+
+    DAT 0 , 0
+
+    MOV <1, >0
+
+
 '
-  m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretBlinkRate: 0.9
+  m_CaretWidth: 4
   m_ReadOnly: 0
   m_RichText: 1
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 0
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
-  m_isRichTextEditingAllowed: 1
+  m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
 --- !u!114 &153215167
@@ -1253,6 +1263,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398d04a57b4651e4aa247b31cfac750e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  styles:
+  - Normal
+  - Comment
+  - Code
+  - Intruction
+  - Immediate
+  - Direct
+  - Error
 --- !u!4 &1271811525
 Transform:
   m_ObjectHideFlags: 0
@@ -1281,7 +1299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _editorField: {fileID: 153215166}
   _intellisense: {fileID: 1271811524}
-  editTime: 0.5
+  editTime: 0.1
   _checkedEdit: 0
   _lastEdit: 0
 --- !u!1001 &1279527657
@@ -1961,7 +1979,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ";redcode\n;name name\n;author author\n\u200B"
+  m_text: ";redcode\n;name name\n;author author\nMOV 0 , 1\nMOV #0 , >1\nDAT 0 ,
+    0\nMOV <1, >0\n\n\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

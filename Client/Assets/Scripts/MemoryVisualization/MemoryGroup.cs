@@ -10,10 +10,6 @@ public class MemoryGroup : MonoBehaviour
     [SerializeField] private MemoryCell memoryCell;
     private List<MemoryCell> _cells;
     private Vector3 _groupCenter;
-    // private void Update()
-    // {
-    //     GetCell(UnityEngine.Random.Range(0,_cells.Count)).SetColor(Color.red);
-    // }
 
     public void Start()
     {

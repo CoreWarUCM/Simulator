@@ -53,14 +53,13 @@ public class EditorManager : MonoBehaviour
 
     void FullTextCheck()
     {
-        
         _checkedEdit = true;
         string text = _editorField.text;
-      
+
         if(_lastText == text)
             return;
         
-        _intellisense.checkStyles(ref text, _lastText);
+        _intellisense.CheckStyles(ref text, _lastText);
 
         _lastText = text;
         _editorField.text = text;

@@ -8,8 +8,8 @@ public class MemorySetup : MonoBehaviour
     [SerializeField] private MemoryGroup _memoryGroup;
     [SerializeField] private Camera _camera;
 
-    private float _lastWidth = -1;
-    private float _lasthHeight = -1;
+    private float _lastWidth = -1, _lastScreenWidth = -1;
+    private float _lasthHeight = -1, _lastScreenHeiht = -1;
     private int _cellAmount = 0;
     
     void Start()
@@ -25,8 +25,10 @@ public class MemorySetup : MonoBehaviour
     private void Update()
     {
         Rect r = _camera.rect;
-        if (_lastWidth != r.width || _lasthHeight != r.height)
+        
+        if ((_lastWidth != r.width || _lasthHeight != r.height) || (_lastScreenWidth != Screen.width || _lastScreenHeiht != Screen.height))
         {
+            Debug.Log("PUTO");
             _memoryGroup.RegroupMemory(GetColumns());
             ResetCamera();
         }
@@ -45,12 +47,13 @@ public class MemorySetup : MonoBehaviour
         Rect r = _camera.rect;
         _lastWidth = r.width;
         _lasthHeight = r.height;
-        float rWidth = Screen.width * r.width;
-        float rHeight = Screen.height * r.height;
+        _lastScreenWidth = Screen.width;
+        _lastScreenHeiht = Screen.height;
+        float rWidth = _lastScreenWidth * _lastWidth;
+        float rHeight = _lastScreenHeiht * _lasthHeight;
         float ratio = rWidth / rHeight;
 
         
         return (int)Math.Sqrt(_cellAmount * ratio);
-
     }
 }
