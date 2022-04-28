@@ -22,10 +22,10 @@ public class MemoryGroup : MonoBehaviour
     public void Start()
     {
         BattleSimulator bs = GetComponent<BattleSimulator>();
-        bs._listeners[(int)Simulator.MessageType.BlockModify] = (BaseMessage bm) => 
+        bs.Subscribe((int)Simulator.MessageType.BlockModify, (BaseMessage bm) =>
         {
-            SetColor(((BlockModifyMessage)bm).modifiedLcoation, bm.warrior==1 ? Color.red : Color.blue);
-        };
+            SetColor(((BlockModifyMessage)bm).modifiedLcoation, bm.warrior == 1 ? Color.red : Color.blue);
+        });
     }
     
     public void SetupMemory(int size, bool verticalMode)

@@ -55,5 +55,6 @@ namespace Tests
             //this is a mock, we are not testing over 8000
             return dest+origin;
         }
+        public void SendMessage(BaseMessage message) { }
     }
 }

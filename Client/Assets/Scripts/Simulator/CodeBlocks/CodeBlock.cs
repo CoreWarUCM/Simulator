@@ -106,36 +106,42 @@ namespace Simulator
             _regB = regB;
         }
         
-        public BaseMessage Execute(ISimulator simulator, int location)
+        public void Execute(ISimulator simulator, int location)
         {
             switch (_mod)
             {
                 case Modifier.A:
-                    return this.A(simulator, location);
+                    this.A(simulator, location);
+				    break;
                 case Modifier.B:
-                    return this.B(simulator, location);
+                    this.B(simulator, location);
+				    break;
                 case Modifier.AB:
-                    return this.AB(simulator, location);
+                    this.AB(simulator, location);
+				    break;
                 case Modifier.BA:
-                    return this.BA(simulator, location);
+                    this.BA(simulator, location);
+				    break;
                 case Modifier.F:
-                    return this.F(simulator, location);
+                    this.F(simulator, location);
+				    break;
                 case Modifier.X:
-                    return this.X(simulator, location);
+                    this.X(simulator, location);
+				    break;
                 case Modifier.I:
-                    return this.I(simulator, location);
+                    this.I(simulator, location);
+				    break;
                 default:
                     throw new System.Exception("Unreachable case");
-                    return null;
             }
         }
 
-        protected abstract BaseMessage A(ISimulator simulator, int location);
-        protected abstract BaseMessage B(ISimulator simulator, int location);
-        protected abstract BaseMessage AB(ISimulator simulator, int location);
-        protected abstract BaseMessage BA(ISimulator simulator, int location);
-        protected abstract BaseMessage F(ISimulator simulator, int location);
-        protected abstract BaseMessage X(ISimulator simulator, int location);
-        protected abstract BaseMessage I(ISimulator simulator, int location);
+        protected abstract void A(ISimulator simulator, int location);
+        protected abstract void B(ISimulator simulator, int location);
+        protected abstract void AB(ISimulator simulator, int location);
+        protected abstract void BA(ISimulator simulator, int location);
+        protected abstract void F(ISimulator simulator, int location);
+        protected abstract void X(ISimulator simulator, int location);
+        protected abstract void I(ISimulator simulator, int location);
     }
 }

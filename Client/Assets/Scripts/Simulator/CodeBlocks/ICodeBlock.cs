@@ -8,6 +8,6 @@ namespace Simulator.CodeBlocks
 {
     public interface ICodeBlock
     {
-        public BaseMessage Execute(ISimulator simulator, int location);
+        public void Execute(ISimulator simulator, int location);
     }
 }

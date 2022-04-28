@@ -56,6 +56,6 @@ namespace Simulator
         }
 
         public void KillWarrior(){}
-
+        public void SendMessage(BaseMessage message) { _simulator.SendMessage(message); }
     }
 }

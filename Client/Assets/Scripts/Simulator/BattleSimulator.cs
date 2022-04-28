@@ -1,6 +1,8 @@
-using Simulator.CodeBlocks;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
+
+using Simulator.CodeBlocks;
 
 namespace Simulator
 {
@@ -11,10 +13,14 @@ namespace Simulator
         private CommonMemoryManager _commonMemoryManager;
         private System.Random _random;
 
-        public Action<BaseMessage>[] _listeners;
+        public List<Action<BaseMessage>>[] _listeners;
 
         void Awake(){
-            _listeners = new Action<BaseMessage>[Enum.GetValues(typeof(MessageType)).Length];
+            _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
+            for (int i = 0; i < _listeners.Length;i++)
+                _listeners[i] = new List<Action<BaseMessage>>();
+            BlockFactory.CreateBlock("START DJN.F\t$\t\t2, $\t\t1");
+            BlockFactory.CreateBlock("START DJN.AB\t$\t\t2, $\t\t1");
         }
         void Start()
         {
@@ -34,7 +40,6 @@ namespace Simulator
                                                           new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I ),
                                              location, 0);
             _warriorManager.Next();
-
         }
 
         // Update is called once per frame
@@ -46,11 +51,8 @@ namespace Simulator
         public void Step()
         {
             _warriorManager.GetCurrent(out int location, out int warrior);
-            BaseMessage baseMessage = _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
-            Debug.Log($"Warrior {warrior} produced message of type {baseMessage._type} at {location}");
-            baseMessage.warrior = warrior;
-            _listeners[(int)baseMessage._type]?.Invoke(baseMessage);
-
+            _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
+            
             _warriorManager.AdvanceCurrent();
             _warriorManager.Next();
         }
@@ -60,24 +62,38 @@ namespace Simulator
             throw new System.NotImplementedException();
         }
 
-        public void CreateBlock(CodeBlock block, int position, int origin)
+        public void Subscribe(MessageType type,Action<BaseMessage>action)
         {
-            throw new System.NotImplementedException();
+            _listeners[(int)type].Add(action);
         }
 
-        public CodeBlock GetBlock(int position, int origin)
+        public void SendMessage(BaseMessage message)
         {
-            throw new System.NotImplementedException();
+            _warriorManager.GetCurrent(out _, out int warrior);
+            message.warrior = warrior;
+
+            foreach (var listener in _listeners[(int)message._type])
+                listener.Invoke(message);
         }
 
         public void JumpTo(int destination)
         {
             _warriorManager.CurrentWarriorOfCurrentProcessJumpsTo(destination);
         }
+
         public void KillWarrior(){
             throw new System.NotImplementedException();
         }
         public int ResolveAddress(int relativeAddress, int originalPosition)
+        {
+            throw new System.NotImplementedException();
+        }
+        public void CreateBlock(CodeBlock block, int position, int origin)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public CodeBlock GetBlock(int position, int origin)
         {
             throw new System.NotImplementedException();
         }

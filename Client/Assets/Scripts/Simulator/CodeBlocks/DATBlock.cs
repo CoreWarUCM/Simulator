@@ -21,38 +21,38 @@ namespace Simulator.CodeBlocks
                         CodeBlock.Modifier mod = CodeBlock.Modifier.F) 
                         : base(mod, regA, regB) { }
 
-        protected override BaseMessage A(ISimulator simulator, int location)
+        protected override void A(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("A");
         }
 
-        protected override BaseMessage AB(ISimulator simulator, int location)
+        protected override void AB(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("AB");
         }
 
-        protected override BaseMessage B(ISimulator simulator, int location)
+        protected override void B(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("B");
         }
 
-        protected override BaseMessage BA(ISimulator simulator, int location)
+        protected override void BA(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("BA");
         }
 
-        protected override BaseMessage F(ISimulator simulator, int location)
+        protected override void F(ISimulator simulator, int location)
         {
             simulator.KillWarrior();
-            return new DeathMessage(location);
+            simulator.SendMessage(new DeathMessage(location));
         }
 
-        protected override BaseMessage I(ISimulator simulator, int location)
+        protected override void I(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("I");
         }
 
-        protected override BaseMessage X(ISimulator simulator, int location)
+        protected override void X(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("X");
         }

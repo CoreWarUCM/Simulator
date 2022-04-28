@@ -36,5 +36,6 @@ namespace Tests
         {
             return -1;
         }
+        public void SendMessage(BaseMessage message) { }
     }
 }

@@ -9,5 +9,6 @@ namespace Simulator
         public void JumpTo(int absoluteDestination);
         public void KillWarrior();
         public int ResolveAddress(int relativeAddress, int originalPosition);
+        public void SendMessage(BaseMessage message);
     }
 }
