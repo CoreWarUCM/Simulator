@@ -902,6 +902,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1404291171735178628, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
+      propertyPath: computeShader
+      value: 
+      objectReference: {fileID: 7200000, guid: aab1bee081bd867459d9ee8abf825342, type: 3}
+    - target: {fileID: 4750509320393470464, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f619288dce54a043bb80bad3c8064d1, type: 2}
     - target: {fileID: 8192872892047570269, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
       propertyPath: m_Name
       value: Plane
