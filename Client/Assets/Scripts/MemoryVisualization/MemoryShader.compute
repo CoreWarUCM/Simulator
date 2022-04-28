@@ -27,7 +27,7 @@ uint hash(uint state)
 [numthreads(8,8,1)]
 void UpdateCells(uint3 id : SV_DispatchThreadID)
 {
-    int x = numColls - id.x/cellWidth;
+    int x = numColls - 1 -floor(id.x/cellWidth);
     int y = (id.y/cellWidth) * numColls;
-    Texture[id.xy] = cells[x+y];
+    Texture[id.xy] = cells[x+y] - 1 * (id.x % cellWidth < 5 || id.y % cellWidth < 5);
 }
