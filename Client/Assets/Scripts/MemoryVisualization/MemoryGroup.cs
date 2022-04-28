@@ -12,23 +12,14 @@ public class MemoryGroup : MonoBehaviour
 
     private Renderer _groupShaderR;
 
-    [SerializeField] private float ratio = 0.7f;
+    private float _ratio;
 
     private void Awake()
     {
         _groupShaderR = _groupShader.GetComponent<Renderer>();
     }
 
-    public void Start()
-    {
-        BattleSimulator bs = GetComponent<BattleSimulator>();
-        bs.Subscribe((int)Simulator.MessageType.BlockModify, (BaseMessage bm) =>
-        {
-            SetColor(((BlockModifyMessage)bm).modifiedLcoation, bm.warrior == 1 ? Color.red : Color.blue);
-        });
-    }
-    
-    public void SetupMemory(int size, bool verticalMode)
+    public void SetupMemory(int size, bool verticalMode, float ratio)
     {
         if (size < 100)
         {
@@ -37,8 +28,21 @@ public class MemoryGroup : MonoBehaviour
             return;
         }
 
-        _groupShader.Init(size,verticalMode,ratio);
+        _ratio = ratio;
+
+        int x = (int)Math.Ceiling(Math.Sqrt(size / ratio));
+        int y = (int)(x * ratio);
+        
+        Debug.LogWarning(x);
+        Debug.LogWarning(y);
+        _groupShader.Init(size,verticalMode,new Vector2Int(x,y));
         RegroupMemory(verticalMode);
+        
+        BattleSimulator bs = GetComponent<BattleSimulator>();
+        bs.Subscribe((int)Simulator.MessageType.BlockModify, (BaseMessage bm) =>
+        {
+            SetColor(((BlockModifyMessage)bm).modifiedLcoation, bm.warrior == 1 ? Color.red : Color.blue);
+        });
     }
 
 
@@ -47,15 +51,15 @@ public class MemoryGroup : MonoBehaviour
         float hRatio = 1, vRatio = 1;
 
         if (verticalMode)
-            hRatio = ratio;
+            hRatio = _ratio;
         else
-            vRatio = ratio;
+            vRatio = _ratio;
         _groupShader.transform.localScale = new Vector3(100*hRatio, 1, 100*vRatio);
     }
 
     public void SetColor(int index, Color color)
     {
-        
+        _groupShader.SetColor(index,color);
     }
 
     public Vector3 GroupCenter()

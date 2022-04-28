@@ -304,6 +304,7 @@ MonoBehaviour:
   memoryGroup: {fileID: 1799577042}
   _camera: {fileID: 1343729721}
   verticalMode: 1
+  cellAmount: 8000
 --- !u!4 &210026693
 Transform:
   m_ObjectHideFlags: 0
@@ -812,7 +813,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groupShader: {fileID: 543885764}
-  ratio: 0.7
 --- !u!4 &1799577043
 Transform:
   m_ObjectHideFlags: 0
@@ -901,6 +901,10 @@ PrefabInstance:
     - target: {fileID: 250251051294984554, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404291171735178628, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
+      propertyPath: cellWidth
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1404291171735178628, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
       propertyPath: computeShader

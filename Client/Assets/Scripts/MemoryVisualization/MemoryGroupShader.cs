@@ -7,62 +7,68 @@ using UnityEngine;
 public class MemoryGroupShader : MonoBehaviour
 {
     [SerializeField] private ComputeShader computeShader;
+    [SerializeField] private int cellWidth = 50;
 
     private ComputeBuffer _cellsBuffer;
 
     private RenderTexture _texture;
 
-    private int _width, _heigth;
+    private int _width, _height;
 
-    public void Init(int numCells, bool verticalMode, float ratio)
+    private Color[] _cells;
+    
+    public void Init(int numCells, bool verticalMode, Vector2Int sides)
     {
         float hRatio = 1, vRatio = 1;
+        
+        _width = 50 * sides.x;
+        _height = 50 * sides.y;
 
-        if (verticalMode)
-            hRatio = ratio;
-        else
-            vRatio = ratio;
-
-
-        _width = (int)(5000 * hRatio);
-        _heigth = (int)(5000 * vRatio);
-
-        ComputeHelper.CreateRenderTexture(ref _texture, _width, _heigth);
+        ComputeHelper.CreateRenderTexture(ref _texture, _width, _height);
         computeShader.SetTexture(0, "Texture", _texture);
         GetComponent<MeshRenderer>().material.mainTexture = _texture;
 
-        Cell[] cells = new Cell[numCells];
-
-        int cellWidth = 0;
-        
-        for (int i = 0; i < numCells; i++)
-        {
-            cells[i] = new Cell(i, cellWidth);
-        }
-
-        ComputeHelper.CreateAndSetBuffer<Cell>(ref _cellsBuffer, cells, computeShader, "cells", 0);
-        computeShader.SetInt("numCells",numCells);
+        _cells = new Color[numCells];
+       
+        ComputeHelper.CreateAndSetBuffer<Color>(ref _cellsBuffer, _cells, computeShader, "cells");
+        computeShader.SetInt("numColls",sides.x);
         computeShader.SetInt("width",_width);
-        computeShader.SetInt("height",_heigth);
+        computeShader.SetInt("height",_height);
+        computeShader.SetInt("cellWidth",cellWidth);
     }
 
 
-    public void FixedUpdate()
+    public void Update()
     {
         computeShader.SetFloat("time", Time.time);
-        ComputeHelper.Dispatch(computeShader, _width, _heigth);
+        ComputeHelper.Dispatch(computeShader, _width, _height);
     }
 
 
-    struct Cell
+    public void SetColor(int index, Color color)
     {
-        public int index;
-        public int width;
-
-        public Cell(int index, int width)
-        {
-            this.index = index;
-            this.width = width;
-        }
+        _cells[index] = color;
+        ComputeHelper.CreateAndSetBuffer<Color>(ref _cellsBuffer, _cells, computeShader, "cells");
     }
+
+
+    private void OnDestroy()
+    {
+        _cellsBuffer.Release();
+    }
+
+
+    // struct Cell
+    // {
+    //     public Vector2Int startPos;
+    //     public int width;
+    //     public Color color; 
+    //
+    //     public Cell(Vector2Int startPos, int width, Color color)
+    //     {
+    //         this.startPos = startPos;
+    //         this.width = width;
+    //         this.color = color;
+    //     }
+    // }
 }

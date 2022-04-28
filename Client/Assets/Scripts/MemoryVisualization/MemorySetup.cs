@@ -12,14 +12,14 @@ public class MemorySetup : MonoBehaviour
 
     private float _lastWidth = -1, _lastScreenWidth = -1;
     private float _lasthHeight = -1, _lastScreenHeiht = -1;
-    private int _cellAmount = 0;
+    [SerializeField]
+    private int cellAmount = 8000;
+    
+    private float _ratio = 0.8f;
 
     void Start()
     {
-        _cellAmount = 8000;
-
-        memoryGroup.SetupMemory(_cellAmount, verticalMode);
-
+        memoryGroup.SetupMemory(cellAmount, verticalMode, _ratio);
         ResetCamera();
     }
 
@@ -40,5 +40,24 @@ public class MemorySetup : MonoBehaviour
     {
         _camera.transform.position = memoryGroup.GroupCenter() + Vector3.forward * -900;
         _camera.orthographicSize = (memoryGroup.RenderSize()/2) * 1.05f;
+    }
+
+
+    private void FindPerfectRatio()
+    {
+        float tolerance = 0.001f;
+        while (_ratio <= 0.8f)
+        {
+            _ratio = 0.5f;
+
+            float fLongSide = (float)Math.Sqrt(cellAmount/_ratio);
+            float fShortSide = fLongSide * _ratio;
+
+            if (Math.Abs(Math.Floor(fLongSide) - fLongSide) < tolerance &&
+                Math.Abs(Math.Floor(fShortSide) - fShortSide) < tolerance)
+                break;
+
+            _ratio += 0.1f;
+        }
     }
 }

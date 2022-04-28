@@ -19,8 +19,8 @@ namespace Simulator
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
             for (int i = 0; i < _listeners.Length;i++)
                 _listeners[i] = new List<Action<BaseMessage>>();
-            BlockFactory.CreateBlock("START DJN.F\t$\t\t2, $\t\t1");
-            BlockFactory.CreateBlock("START DJN.AB\t$\t\t2, $\t\t1");
+            BlockFactory.CreateBlock("START DAT.F\t$\t\t2, $\t\t1");
+            BlockFactory.CreateBlock("START DAT.AB\t$\t\t2, $\t\t1");
         }
         void Start()
         {
@@ -45,7 +45,7 @@ namespace Simulator
         // Update is called once per frame
         void Update()
         {
-            // Step();
+            Step();
         }
 
         public void Step()
