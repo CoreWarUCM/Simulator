@@ -71,8 +71,7 @@ public class Parser : MonoBehaviour
                 continue;
             
             Color alphaFactor = new Color(1.0f, 1.0f, 1.0f, stepData.isDat||stepData.processed==1?0.5f:1.0f);
-            memoryGroup.GetCell(stepData.position)
-                .SetColor((stepData.player == 0 ? Color.blue : Color.red)*alphaFactor);
+            memoryGroup.SetColor(stepData.position, (stepData.player == 0 ? Color.blue : Color.red)*alphaFactor);
             stepData.processed++;
         }
     }

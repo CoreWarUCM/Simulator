@@ -7,88 +7,64 @@ using Simulator;
 
 public class MemoryGroup : MonoBehaviour
 {
-    [SerializeField] private MemoryCell memoryCell;
-    private List<MemoryCell> _cells;
-    private Vector3 _groupCenter;
+    [SerializeField]
+    private MemoryGroupShader _groupShader;
+
+    private Renderer _groupShaderR;
+
+    [SerializeField] private float ratio = 0.7f;
+
+    private void Awake()
+    {
+        _groupShaderR = _groupShader.GetComponent<Renderer>();
+    }
 
     public void Start()
     {
         BattleSimulator bs = GetComponent<BattleSimulator>();
         bs._listeners[(int)Simulator.MessageType.BlockModify] = (BaseMessage bm) => 
         {
-            GetCell((bm as BlockModifyMessage).modifiedLcoation).SetColor(bm.warrior==1 ? Color.red : Color.blue);
+            SetColor(((BlockModifyMessage)bm).modifiedLcoation, bm.warrior==1 ? Color.red : Color.blue);
         };
-        Debug.Log("AAHH");
     }
-    public void SetupMemory(int size, int columns = 5)
+    
+    public void SetupMemory(int size, bool verticalMode)
     {
-        if (columns <= 0 || !memoryCell || size < 100)
+        if (size < 100)
         {
             Debug.LogWarning("Bad Layout Setup, check for null cell || length <= 0 || size <= 100");
             Destroy(gameObject);
             return;
         }
-        _groupCenter = Vector3.zero;
-        _cells = new List<MemoryCell>();
-        float mSizeX = memoryCell.GetComponent<Renderer>().bounds.size.x;
-        float mSizeY = memoryCell.GetComponent<Renderer>().bounds.size.y;
-        Vector3 startPos = transform.position;
-        for (int i = 0; i < size; i++)
-        {
-            Vector3 pos = new Vector3(
-                 startPos.x + (i % columns) * (mSizeX * 1.1f),
-                 startPos.y - (int)(i / columns) * (mSizeY * 1.1f),
-                 startPos.z);
 
-            MemoryCell mCell = Instantiate(memoryCell.gameObject, pos, Quaternion.identity, transform)
-                .GetComponent<MemoryCell>();
-            mCell.SetupCell(i);
-            _cells.Add(mCell);
-            _groupCenter += pos;
-        }
-
-        _groupCenter /= _cells.Count;
-        VerticalSize();
+        _groupShader.Init(size,verticalMode,ratio);
+        RegroupMemory(verticalMode);
     }
 
 
-    public void RegroupMemory(int columns = 5)
+    public void RegroupMemory( bool verticalMode)
     {
-        _groupCenter = Vector3.zero;
-        float mSizeX = memoryCell.GetComponent<Renderer>().bounds.size.x;
-        float mSizeY = memoryCell.GetComponent<Renderer>().bounds.size.y;
-        Vector3 startPos = transform.position;
-        for (int i = 0; i < _cells.Count; i++)
-        {
-            Vector3 pos = new Vector3(
-                startPos.x + (i % columns) * (mSizeX * 1.1f),
-                startPos.y - (int)(i / columns) * (mSizeY * 1.1f),
-                startPos.z);
+        float hRatio = 1, vRatio = 1;
 
-            _cells[i].transform.position = pos;
-            _groupCenter += pos;
-        }
-
-        _groupCenter /= _cells.Count;
+        if (verticalMode)
+            hRatio = ratio;
+        else
+            vRatio = ratio;
+        _groupShader.transform.localScale = new Vector3(100*hRatio, 1, 100*vRatio);
     }
 
-    public MemoryCell GetCell(int index)
+    public void SetColor(int index, Color color)
     {
-        return _cells[index];
+        
     }
 
     public Vector3 GroupCenter()
     {
-        return _groupCenter;
+        return _groupShader.transform.position;
     }
 
-    public float VerticalSize()
+    public float RenderSize()
     {
-        MemoryCell first = _cells[0];
-        MemoryCell last = _cells[_cells.Count - 1];
-
-        float offset = first.GetComponent<Renderer>().bounds.size.y;
-
-        return first.transform.position.y - last.transform.position.y + offset;
+        return _groupShaderR.bounds.size.y;
     }
 }

@@ -40,7 +40,7 @@ namespace Simulator
         // Update is called once per frame
         void Update()
         {
-            Step();
+            // Step();
         }
 
         public void Step()
