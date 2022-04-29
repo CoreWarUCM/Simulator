@@ -13,13 +13,20 @@ public class WarriorIO
       private string _name;
       private string _author;
       private string[] _rawData;
-
-      public Warrior(string path, string name, string author, string[] rawData)
+      private bool validWarrior;
+      
+      public Warrior(string path, string name, string author, string[] rawData, bool isValid = true)
       {
          _path = path;
          _name = name;
          _author = author;
          _rawData = rawData;
+         validWarrior = isValid;
+      }
+
+      public bool isValidWarrior()
+      {
+         return validWarrior;
       }
 
       public string GetPath()
@@ -73,8 +80,10 @@ public class WarriorIO
       string path = ChooseLoadFile(directory);
 
       if (!File.Exists(path))
-         return new Warrior("null","null","null",new []{"null"}); 
-      
+      {
+         return new Warrior("null", "null", "null", new[] {"null"}, false);
+      }
+
       string[] rawData = File.ReadAllLines(path);
       string name = "No Name";
       string author = "No Author";
@@ -95,9 +104,6 @@ public class WarriorIO
    
       return new Warrior(path, name, author, rawData);
    }
-
-
-
 
    public string ChooseSaveFile(string directory)
    {

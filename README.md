@@ -1,10 +1,8 @@
 # Bienvenidos a **CoreWarUCM: Simulador oficial**.
 
-Se trata de un proyecto para el [**Trabajo de Fin de Grado**](https://informatica.ucm.es/tfgs-2021-2022) del **Grado de Videojuegos** de la **Universidad Complutense de Madrid** donde vamos a _gamificar_ y, en la medida de lo posible, mejorar el juego [CoreWar](https://es.wikipedia.org/wiki/Core_War) mediante **Unity**. 
+Se trata de un proyecto para el [**Trabajo de Fin de Grado**](https://informatica.ucm.es/tfgs-2021-2022) del **Grado de Videojuegos** de la **Universidad Complutense de Madrid**.
 
-Nuestra idea principal es actualizar y desarrollar contenido adicional para el juego, debido a que actualmente lo encontramos un poco anticuado y queremos que el juego brille por sí solo, es decir, que sea atractivo no solo por la publicidad y la organización que recibe por parte del equipo que promueve su uso para torneos o para enseñar conceptos básicos de programación en ensamblador (entro otros), sino que sea capaz de atraer más gente porque _a priori_ pueda atraer a más gente por sus mecánicas.
-
-Puedes encontrar más información en la [wiki](https://github.com/CoreWarUCM/Simulator/wiki).
+El objetivo principal es plantear una alternativa para el simulador [**ARES**](https://corewar.co.uk/ares.htm) mediante **Unity** para su uso en los torneos, sobre todo adaptando la interfaz y la parte gráfica del mismo a un estilo más moderno. Por tanto, la idea principal es actualizar y desarrollar contenido adicional para el programa. Actualmente se encuentra anticuado y a los concursantes, principalmente jóvenes, les motiva una estética más colorida y con más efectos especiales como la que queremos plantear.
 
 |Autores|Correos|
 |-|-|

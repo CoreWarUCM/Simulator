@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Quitar : MonoBehaviour
+public class Remove : MonoBehaviour
 {
 
     private GameObject warrior;

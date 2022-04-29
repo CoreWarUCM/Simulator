@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,16 @@ public class GameManager : MonoBehaviour
         w.DebugInfo();
         w.DebugRawData();
 #endif
+    }
+
+    private void Update()
+    {
+        int a = 0;
+    }
+
+    public WarriorIO.Warrior GetWarrior(int player)
+    {
+        return _warriors[player];
     }
 
     public void SaveWarrior(string rawData)
