@@ -19,8 +19,7 @@ namespace Simulator
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
             for (int i = 0; i < _listeners.Length;i++)
                 _listeners[i] = new List<Action<BaseMessage>>();
-            BlockFactory.CreateBlock("START DAT.F\t$\t\t2, $\t\t1");
-            BlockFactory.CreateBlock("START DAT.AB\t$\t\t2, $\t\t1");
+            
         }
         void Start()
         {
@@ -31,14 +30,34 @@ namespace Simulator
             //Create two imps for testing
             _warriorManager.GetCurrent(out int location, out int warrior);
             _commonMemoryManager.CreateBlock(new MOVBlock(new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 0),
-                                                          new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I ),
-                                             location,0);
+                                                          new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I),
+                                             location, 0);
             _warriorManager.Next();
 
+
+            //_warriorManager.GetCurrent(out location, out warrior);
+            //_commonMemoryManager.CreateBlock(new MOVBlock(new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 0),
+            //                                              new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I),
+            //                                 location, 0);
+            /*
+             
+             START  ADD.AB #     4, $     3
+       MOV.I  $     2, @     2
+       JMP.B  $    -2, $     0
+       DAT.F  #     0, #     0
+             */
+
+            CodeBlock[] blocks = new CodeBlock[]{ BlockFactory.CreateBlock("START ADD.AB #4, $3"),
+                                                  BlockFactory.CreateBlock("   MOV.I  $     2, @     2"),
+                                                  BlockFactory.CreateBlock("   JMP.B  $    -2, $     0"),
+                                                  BlockFactory.CreateBlock("   DAT.F  #     0, #     0") };
             _warriorManager.GetCurrent(out location, out warrior);
-            _commonMemoryManager.CreateBlock(new MOVBlock(new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 0),
-                                                          new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I ),
-                                             location, 0);
+
+            foreach (CodeBlock b in blocks)
+            {
+                _commonMemoryManager.CreateBlock(b, location++, 0);
+            }
+
             _warriorManager.Next();
         }
 
@@ -51,10 +70,12 @@ namespace Simulator
         public void Step()
         {
             _warriorManager.GetCurrent(out int location, out int warrior);
+            Debug.Log($"[{location}:{warrior}] Step");
+
             _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
             
             _warriorManager.AdvanceCurrent();
-            _warriorManager.Next();
+            _warriorManager.Next();   
         }
 
         public void CreateProcess(int warrior, int position, int origin)

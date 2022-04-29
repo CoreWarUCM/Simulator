@@ -17,7 +17,7 @@ namespace Tests
                 new CodeBlock.Register(CodeBlock.Register.AddressingMode.immediate, 3),
                 new CodeBlock.Register(CodeBlock.Register.AddressingMode.immediate, 3)
                );
-            Assert.AreEqual(d._regA.rGet(sim,3),3);
+            Assert.AreEqual(d._regA.rGet(sim,3),0);
         }
 
         [Test]
@@ -45,6 +45,15 @@ namespace Tests
 
         [Test]
         public void TestBIndirect(){
+            /*
+             DAT @3,3
+             DAT 0,0
+             DAT 0,0
+             DAT 2,1
+             
+             
+             
+             */
             DATBlock source = new DATBlock(
                 new CodeBlock.Register(CodeBlock.Register.AddressingMode.BIndirect, 3),
                 new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 3)
@@ -53,7 +62,8 @@ namespace Tests
 
             sim.CreateBlock(source,0,0);
             sim.CreateBlock(other,3,0);
-            Assert.AreEqual(4,source._regA.rGet(sim,0));
+
+            Assert.AreEqual(4, source._regA.rGet(sim,0));
         }
         
         [Test]

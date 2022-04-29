@@ -11,14 +11,14 @@ namespace Simulator
         private int _secondWarriorIndex;
 
         private int _currentExecutingWarrior;
-        private bool _jumped = false;
+        private bool[] _jumped = { false, false };
         
         public WarriorManager(System.Random randomizer)
         {
             _firstWarriorProcesses = new List<int>();
             _secondWarriorProcesses = new List<int>();
 
-            int firstLocation = randomizer.Next(0,8000);
+            int firstLocation = randomizer.Next(0, 8000); ;
             _firstWarriorProcesses.Add(firstLocation);
             _firstWarriorIndex = 0;
 
@@ -26,7 +26,7 @@ namespace Simulator
             int secondLocation = 0;
             do
             {
-                secondLocation = randomizer.Next(0, 8000);
+                secondLocation = randomizer.Next(0,8000);
             } while (secondLocation < firstLocation + 100 && secondLocation > firstLocation - 100);
             
             _secondWarriorProcesses.Add(secondLocation);
@@ -44,7 +44,7 @@ namespace Simulator
         public void AdvanceCurrent()
         {
             //Advance regulary if you did not jump this turn
-            if(!_jumped)
+            if(!_jumped[_currentExecutingWarrior-1])
             {
                 List<int> processes = First() ? _firstWarriorProcesses : _secondWarriorProcesses;
                 int index = First() ? _firstWarriorIndex : _secondWarriorIndex;
@@ -52,7 +52,7 @@ namespace Simulator
                 processes[index] = (processes[index] + 1) % 8000;
             }
             //otherwise mark jumped false and continue
-            else _jumped = false;
+            else _jumped[_currentExecutingWarrior-1] = false;
         }
         public int Next()
         {
@@ -62,11 +62,15 @@ namespace Simulator
 
         public void CurrentWarriorOfCurrentProcessJumpsTo(int location)
         {
-            List<int> processes = First() ? _firstWarriorProcesses : _firstWarriorProcesses;
+            
             int index = First() ? _firstWarriorIndex : _secondWarriorIndex;
 
-            processes[index] = location;
-            _jumped = true;
+            if (First())
+                _firstWarriorProcesses[index] = location;
+            else
+                _secondWarriorProcesses[index] = location; 
+
+            _jumped[_currentExecutingWarrior-1] = true;
         }
     }
 }

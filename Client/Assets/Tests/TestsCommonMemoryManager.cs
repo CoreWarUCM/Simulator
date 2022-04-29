@@ -41,8 +41,8 @@ namespace Tests
             DATBlock db = (DATBlock)_commonMemoryManager.GetBlock(0, 0);
             
             int loc = _commonMemoryManager.ResolveAddress(8000,0);
-            Assert.AreEqual(db._regA.rGet(_commonMemoryManager, loc), 0);
-            Assert.AreEqual(db._regB.rGet(_commonMemoryManager, loc), 42);
+            Assert.AreEqual(db._regA.Value(), 0);
+            Assert.AreEqual(db._regB.Value(), 42);
         }
 
         [Test]
@@ -52,8 +52,8 @@ namespace Tests
             DATBlock db = (DATBlock)_commonMemoryManager.GetBlock(-3, 0);
 
             int loc = _commonMemoryManager.ResolveAddress(-3,0);
-            Assert.AreEqual(db._regA.rGet(_commonMemoryManager,loc), 100);
-            Assert.AreEqual(db._regB.rGet(_commonMemoryManager,loc), 2);
+            Assert.AreEqual(db._regA.Value(), 100);
+            Assert.AreEqual(db._regB.Value(), 2);
         }
     }
 }
