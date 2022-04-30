@@ -753,6 +753,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1404291171735178628, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
+      propertyPath: grid
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404291171735178628, guid: 0258f80ec650fec4f95db0827d1f3b7e, type: 3}
       propertyPath: cellWidth
       value: 50
       objectReference: {fileID: 0}

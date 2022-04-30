@@ -26,18 +26,17 @@ public class MemoryGroupShader : MonoBehaviour
         _height = 50 * sides.y;
 
         ComputeHelper.CreateRenderTexture(ref _texture, _width, _height);
-        RenderTexture.active = _texture;
-        GL.Clear(true,true,Color.black);
-        RenderTexture.active = null;
-        
+
         computeShader.SetTexture(0, "Texture", _texture);
         GetComponent<MeshRenderer>().material.mainTexture = _texture;
 
         _cells = new Color[numCells];
 
+        Color c = grid ? Color.white : Color.black;
+        
         for (int i = 0; i < numCells; i++)
         {
-            _cells[i] = Color.white;
+            _cells[i] = c;
         }
        
         ComputeHelper.CreateAndSetBuffer<Color>(ref _cellsBuffer, _cells, computeShader, "cells");
