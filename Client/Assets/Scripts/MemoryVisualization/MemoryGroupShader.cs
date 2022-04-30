@@ -8,6 +8,7 @@ public class MemoryGroupShader : MonoBehaviour
 {
     [SerializeField] private ComputeShader computeShader;
     [SerializeField] private int cellWidth = 50;
+    [SerializeField] private bool grid = false;
 
     private ComputeBuffer _cellsBuffer;
 
@@ -44,6 +45,7 @@ public class MemoryGroupShader : MonoBehaviour
         computeShader.SetInt("width",_width);
         computeShader.SetInt("height",_height);
         computeShader.SetInt("cellWidth",cellWidth);
+        computeShader.SetBool("grid",grid);
     }
 
 
