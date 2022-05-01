@@ -30,5 +30,6 @@ void UpdateCells(uint3 id : SV_DispatchThreadID)
 {
     int x = numColls - 1 -floor(id.x/cellWidth);
     int y = (id.y/cellWidth) * numColls;
-    Texture[id.xy] = cells[x+y] - (1 * (id.x % cellWidth < 10 || id.y % cellWidth < 10)) * grid;
+    Texture[id.xy] = cells[x+y] - (1 * (id.x % cellWidth < 5 || id.y % cellWidth < 5)) * grid;
+    Texture[id.xy] += (1 * (id.x < 5 || id.x > width - 5 || id.y < 5 || id.y > height - 5 )) * !grid;
 }
