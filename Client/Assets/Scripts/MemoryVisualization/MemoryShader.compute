@@ -10,6 +10,7 @@ uint width;
 uint height;
 uint numColls;
 uint cellWidth;
+bool grid;
 
 RWStructuredBuffer<float4> cells;
 
@@ -29,5 +30,5 @@ void UpdateCells(uint3 id : SV_DispatchThreadID)
 {
     int x = numColls - 1 -floor(id.x/cellWidth);
     int y = (id.y/cellWidth) * numColls;
-    Texture[id.xy] = cells[x+y] - 1 * (id.x % cellWidth < 10 || id.y % cellWidth < 10);
+    Texture[id.xy] = cells[x+y] - (1 * (id.x % cellWidth < 10 || id.y % cellWidth < 10)) * grid;
 }

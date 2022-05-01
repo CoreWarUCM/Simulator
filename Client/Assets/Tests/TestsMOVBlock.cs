@@ -17,44 +17,44 @@ namespace Tests
         public void MOVAMovesASourceToADest(){
             MOVBlock block = new MOVBlock(1,42,CodeBlock.Modifier.A);
             block.Execute(sim,0);
-            Assert.That(sim.GetBlock(42,0)._regA.rGet(sim, 42) == 3);
+            Assert.AreEqual(sim.GetBlock(42,0)._regA.Value(),3);
         }
         
         [Test]
         public void MOVBMovesBSourceToBDest(){
             MOVBlock block = new MOVBlock(1,42,CodeBlock.Modifier.B);
             block.Execute(sim,0);
-            Assert.That(sim.GetBlock(42,0)._regB.rGet(sim, 42) == 8);
+            Assert.AreEqual(sim.GetBlock(42,0)._regB.Value(),8);
         }
 
         [Test]
         public void MOVABMovesASourceToBDest(){
             MOVBlock block = new MOVBlock(1,14,CodeBlock.Modifier.AB);
             block.Execute(sim,0);
-            Assert.That(sim.GetBlock(14,0)._regB.rGet(sim, 14) == 3);
+            Assert.AreEqual(sim.GetBlock(14,0)._regB.Value(), 3);
         }
 
         [Test]
         public void MOVBAMovesBSourceToADest(){
             MOVBlock block = new MOVBlock(1,14,CodeBlock.Modifier.BA);
             block.Execute(sim,0);
-            Assert.That(sim.GetBlock(14,0)._regA.rGet(sim, 14) == 8);
+            Assert.AreEqual(sim.GetBlock(14,0)._regA.Value(), 8);
         }
 
         [Test]
         public void MOVFMovesABSourceToABDest(){
             MOVBlock block = new MOVBlock(1,20,CodeBlock.Modifier.F);
             block.Execute(sim,0);
-            Assert.That(sim.GetBlock(20,0)._regA.rGet(sim, 20) == 3);
-            Assert.That(sim.GetBlock(20,0)._regB.rGet(sim, 20) == 8);
+            Assert.AreEqual(sim.GetBlock(20,0)._regA.Value(), 3);
+            Assert.AreEqual(sim.GetBlock(20,0)._regB.Value(), 8);
         }
 
         [Test]
         public void MOVXMovesABSourceToABDest(){
             MOVBlock block = new MOVBlock(1,20,CodeBlock.Modifier.X);
             block.Execute(sim,0);
-            Assert.AreEqual(3,sim.GetBlock(20,0)._regB.rGet(sim, 20));
-            Assert.AreEqual(8,sim.GetBlock(20,0)._regA.rGet(sim, 20));
+            Assert.AreEqual(3,sim.GetBlock(20,0)._regB.Value());
+            Assert.AreEqual(8,sim.GetBlock(20,0)._regA.Value());
         }
 
         [Test]
@@ -63,8 +63,8 @@ namespace Tests
             sim.CreateBlock(block,0,0);
             block.Execute(sim,0);
 
-            Assert.That(sim.GetBlock(20,0)._regA.rGet(sim, 20) == 0);
-            Assert.That(sim.GetBlock(20,0)._regB.rGet(sim, 20) == 20);
+            Assert.AreEqual(sim.GetBlock(20,0)._regA.Value(), 0);
+            Assert.AreEqual(sim.GetBlock(20,0)._regB.Value(), 20);
             Assert.IsInstanceOf<MOVBlock>(sim.GetBlock(20,0)); 
         }
     }

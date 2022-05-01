@@ -16,6 +16,10 @@ namespace Tests
             JMPBlock block = new JMPBlock(-1);
             block.Execute(sim,2);
             Assert.AreEqual(1,sim.lastJump);
+
+            block = new JMPBlock(-2);
+            block.Execute(sim, 3);
+            Assert.AreEqual(1, sim.lastJump);
         }
 
         [Test]

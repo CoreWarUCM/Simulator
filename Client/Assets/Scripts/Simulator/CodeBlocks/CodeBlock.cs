@@ -51,22 +51,14 @@ namespace Simulator
                 {   
                     case AddressingMode.immediate:
                         //throw new System.Exception("PANIC, NO SÉ CÓMO FUNCIONAN LAS CPUs");
-                        return Value();
+                        return location;
                     case AddressingMode.AIndirect:
                     {
-                        /*
-                        [0] MOV.I *3,3
-                        [1] DAT    ,
-                        [2] DAT    ,
-                        [3] DAT    2,0
-                        [4] DAT    ,
-                        [5] DAT    ,
-                        */
-                        return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value,location)));        
+                            return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value,location)));        
                     }
                     case AddressingMode.BIndirect:
                     {
-                        return sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value,location)));        
+                            return sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value, location))); ;
                     }
                     case AddressingMode.APredecrement:{
                         _value--;
@@ -86,14 +78,20 @@ namespace Simulator
                     }
 
                     case AddressingMode.direct:
+                        return sim.ResolveAddress(Value(), location);
                     default:
-                        return Value();
+                        return sim.ResolveAddress(Value(),location);
 
                 }
             }
             public void Set(int v)
             {
                 _value = v;
+            }
+
+            public void Add(int v)
+            {
+                _value += v;
             }
         }
         public Register _regA;

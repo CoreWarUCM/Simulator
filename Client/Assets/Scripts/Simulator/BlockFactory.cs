@@ -12,7 +12,7 @@ namespace Simulator
     /// <summary>
     /// A simple factory static class that create blocks
     /// </summary>
-    class BlockFactory
+    public class BlockFactory
     {
         /// <summary>
         /// String must be equal to the compile output of pmars
@@ -76,6 +76,8 @@ namespace Simulator
                     return new JMPBlock(regA, regB, mod);
                 case "DAT":
                     return new DATBlock(regA, regB, mod);
+                case "ADD":
+                    return new ADDBlock(regA, regB, mod);
                 default:
                     throw new Exception("unsupported block type {"+opCode+"}, las quejas a Ricky");
             }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Simulator.CodeBlocks
 {
@@ -33,7 +34,8 @@ namespace Simulator.CodeBlocks
 
         protected override void B(ISimulator simulator, int location)
         {
-            int addr = simulator.ResolveAddress(_regA.rGet(simulator, location), location);
+            int addr = _regA.rGet(simulator, location);
+            Debug.Log($"Jumping: {location} to: {addr}");
             simulator.JumpTo(addr);
             simulator.SendMessage(new JumpMessage(addr));
         }
