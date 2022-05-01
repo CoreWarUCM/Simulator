@@ -33,7 +33,7 @@ public class Load : MonoBehaviour
     public void AddToList()
     {
         var player = list.transform.childCount;
-        GameManager.instance.LoadWarrior(player);
+        LoadWarrior(player);
         if (!warr.isValidWarrior()) return;
 
         var go = GameObject.Instantiate(warriorPrefab.transform, list.transform);
