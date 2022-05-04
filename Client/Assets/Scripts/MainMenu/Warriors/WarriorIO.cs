@@ -60,7 +60,7 @@ public class WarriorIO
       {
          foreach (var s in _rawData)
          {
-            Debug.Log(s);
+            //Debug.Log(s);
          }
       }
    }

@@ -33,8 +33,6 @@ public class MemoryGroup : MonoBehaviour
         int x = (int)Math.Ceiling(Math.Sqrt(size / ratio));
         int y = (int)(x * ratio);
         
-        Debug.LogWarning(x);
-        Debug.LogWarning(y);
         _groupShader.Init(size,verticalMode,new Vector2Int(x,y));
         RegroupMemory(verticalMode);
         

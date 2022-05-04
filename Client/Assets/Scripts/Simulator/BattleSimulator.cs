@@ -70,7 +70,6 @@ namespace Simulator
         public void Step()
         {
             _warriorManager.GetCurrent(out int location, out int warrior);
-            Debug.Log($"[{location}:{warrior}] Step");
 
             _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
             

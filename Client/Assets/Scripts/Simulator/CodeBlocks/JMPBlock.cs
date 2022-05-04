@@ -35,7 +35,6 @@ namespace Simulator.CodeBlocks
         protected override void B(ISimulator simulator, int location)
         {
             int addr = _regA.rGet(simulator, location);
-            Debug.Log($"Jumping: {location} to: {addr}");
             simulator.JumpTo(addr);
             simulator.SendMessage(new JumpMessage(addr));
         }

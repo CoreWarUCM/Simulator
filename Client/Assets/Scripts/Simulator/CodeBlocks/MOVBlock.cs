@@ -92,7 +92,6 @@ namespace Simulator.CodeBlocks
             simulator.SendMessage(new BlockModifyMessage(regB));
             simulator.SendMessage(new BlockModifyMessage(regA));
 
-            Debug.Log($"Copy: {regA} to: {regB}");
         }
 
         protected override void X(ISimulator simulator, int location)

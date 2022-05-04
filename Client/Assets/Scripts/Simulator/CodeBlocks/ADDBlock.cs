@@ -31,7 +31,6 @@ namespace Simulator.CodeBlocks
             int v = source._regA.Value();
             dest._regB.Add(v);
             
-            Debug.Log($"Added {v} to {dest._regB.Value()-v}");
             simulator.SendMessage(new BlockModifyMessage(simulator.ResolveAddress(regB, 0)));
         }
 
