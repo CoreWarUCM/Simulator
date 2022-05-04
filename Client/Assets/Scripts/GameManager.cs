@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private WarriorIO _warriorIO;
+    private VirusIO _virusIO;
 
-    private Dictionary<int, WarriorIO.Warrior> _warriors;
+    private Dictionary<int, VirusIO.Virus> _warriors;
 
     [SerializeField]
     private BattleSimulator _simulator;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             if (instance._warriors?.Count > 0)
             {
                 Debug.Log("Initializing BattleSimulator");
-                foreach (KeyValuePair<int, WarriorIO.Warrior> pair in instance._warriors)
+                foreach (KeyValuePair<int, VirusIO.Virus> pair in instance._warriors)
                 {
                     Debug.Log($"{pair.Key}:{pair.Value.GetPath()}");
                 }
@@ -38,15 +38,15 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-            _warriorIO = new WarriorIO();
-            _warriors = new Dictionary<int, WarriorIO.Warrior>();
+            _virusIO = new VirusIO();
+            _warriors = new Dictionary<int, VirusIO.Virus>();
             DontDestroyOnLoad(this);
         }
     }
 
     public void LoadWarrior(int player)
     {
-        WarriorIO.Warrior w = _warriorIO.LoadWarrior();
+        VirusIO.Virus w = _virusIO.LoadWarrior();
         _warriors[player] = w;
 
 #if UNITY_EDITOR
@@ -60,14 +60,14 @@ public class GameManager : MonoBehaviour
         int a = 0;
     }
 
-    public WarriorIO.Warrior GetWarrior(int player)
+    public VirusIO.Virus GetWarrior(int player)
     {
         return _warriors[player];
     }
 
     public void SaveWarrior(string rawData)
     {
-        _warriorIO.SaveWarrior(rawData);
+        _virusIO.SaveWarrior(rawData);
     }
 
     public void StartGame()

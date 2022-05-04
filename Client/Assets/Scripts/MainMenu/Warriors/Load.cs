@@ -1,48 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Load : MonoBehaviour
 {
-    [Header("Atributos para Normal1v1")]
-    [SerializeField] private InputField name;
-    [SerializeField] private InputField author;
-    
-    [Header("Atributos para Torneo")]
-    [SerializeField] private GameObject warriorPrefab;
-    [SerializeField] private Remove removeButton;
-    [SerializeField] private GameObject list;
+    [Header("Atributos para Normal1v1")] [SerializeField]
+    private InputField inputName;
 
-    private WarriorIO.Warrior warr;
+    [SerializeField] private InputField inputAuthor;
+
+    [Header("Atributos para Torneo")] [SerializeField]
+    private Remove removeButton;
+
+    [SerializeField] private VirusState[] virusList;
+
+    [Tooltip("Sprite que corresponde a un botón habilitado")] [SerializeField]
+    private Sprite enableButton;
+
+    private VirusIO.Virus virusIO;
+
     public void LoadWarrior(int player)
     {
         GameManager.instance.LoadWarrior(player);
-        warr = GameManager.instance.GetWarrior(player);
+        virusIO = GameManager.instance.GetWarrior(player);
     }
 
     public void ApplyTextWarrior()
     {
-        name.text = warr.GetName();
-        author.text = warr.GetAuthor();
+        inputName.text = virusIO.GetName();
+        inputAuthor.text = virusIO.GetAuthor();
     }
 
     /// <summary>
-    /// Para el torneo. Añade un nuevo guerrero a la lista
+    /// Añade un nuevo virus a la lista del torneo
     /// </summary>
     public void AddToList()
     {
-        var player = list.transform.childCount;
+        // 1. Busqueda del primer hueco vacio que haya.
+        int player = 0;
+        while (player < virusList.Length && virusList[player].IsVirusActive())
+        {
+            player++;
+        }
+        // TODO: Se podria poner un pequeño panel que avise de que ya no hay huecos disponibles para añadir más virus
+        // o simplemente se podría añadir un efecto de parpaedo en el botón de añadir indicando que no se puede usar
+        if (player == virusList.Length) return;
+        
         LoadWarrior(player);
-        if (!warr.isValidWarrior()) return;
+        if (!virusIO.isValidWarrior()) return;
 
-        var go = GameObject.Instantiate(warriorPrefab.transform, list.transform);
-        // TODO: Esto feo, pero solo quiero ver que funcione. Aunque tampoco sé de otra manera xDDD
-        name = go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<InputField>();
-        name.text = warr.GetName();
-        author = go.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<InputField>();
-        author.text = warr.GetAuthor();
-        var button = go.GetComponent<Button>();
-        button.onClick.AddListener(() => removeButton.ChangeWarrior(go.gameObject));
+        var virus = virusList[player];
+        var n = virusIO.GetName();
+        virus.SetName(n);
+        var a = virusIO.GetAuthor();
+        virus.SetAuthor(a);
+        void Ua() => removeButton.ChangeVirus(virus);
+        virus.AddListenerButton(Ua);
+        virus.SetButtonSprite(enableButton);
     }
 }

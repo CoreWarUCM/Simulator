@@ -3,17 +3,18 @@ using UnityEngine;
 public class Remove : MonoBehaviour
 {
 
-    private GameObject warrior;
-
-    public void ChangeWarrior(GameObject newW)
+    private VirusState virus;
+    
+    public void ChangeVirus(VirusState newW)
     {
-        warrior = newW;
+        virus = newW;
     }
 
-    public void RemoveWarrior()
+    public void RemoveVirus()
     {
-        if (!warrior) return;
-        
-        GameObject.Destroy(warrior);
+        if (!virus) return;
+
+        virus.Reset();
+        virus = null;
     }
 }

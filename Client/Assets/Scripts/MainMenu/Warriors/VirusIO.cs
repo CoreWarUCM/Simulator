@@ -5,9 +5,9 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class WarriorIO
+public class VirusIO
 {
-   public struct Warrior
+   public struct Virus
    {
       private string _path;
       private string _name;
@@ -15,7 +15,7 @@ public class WarriorIO
       private string[] _rawData;
       private bool validWarrior;
       
-      public Warrior(string path, string name, string author, string[] rawData, bool isValid = true)
+      public Virus(string path, string name, string author, string[] rawData, bool isValid = true)
       {
          _path = path;
          _name = name;
@@ -74,14 +74,14 @@ public class WarriorIO
       return "aaaaaaa"; 
    }
    
-   public Warrior LoadWarrior()
+   public Virus LoadWarrior()
    {
       string directory = Application.dataPath;
       string path = ChooseLoadFile(directory);
 
       if (!File.Exists(path))
       {
-         return new Warrior("null", "null", "null", new[] {"null"}, false);
+         return new Virus("null", "null", "null", new[] {"null"}, false);
       }
 
       string[] rawData = File.ReadAllLines(path);
@@ -102,7 +102,7 @@ public class WarriorIO
          }
       }
    
-      return new Warrior(path, name, author, rawData);
+      return new Virus(path, name, author, rawData);
    }
 
    public string ChooseSaveFile(string directory)
