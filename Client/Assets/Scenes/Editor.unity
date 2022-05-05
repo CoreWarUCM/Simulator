@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &79683204 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5053443983439841292, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
+  m_PrefabInstance: {fileID: 283791120244743622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &153215165 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 283791120397827451, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
@@ -1240,6 +1251,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1797836174}
     m_Modifications:
     - target: {fileID: 283791120397827448, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
+      propertyPath: m_VerticalScrollbar
+      value: 
+      objectReference: {fileID: 79683204}
+    - target: {fileID: 283791120397827448, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1271811526}
@@ -1337,6 +1352,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 283791120403656420, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672496701091287150, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672496701091287150, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672496701091287150, guid: 73a68a7ea421b1a42b2a3e0efadada31, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
