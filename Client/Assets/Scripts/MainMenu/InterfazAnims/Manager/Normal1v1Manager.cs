@@ -16,6 +16,9 @@ public class Normal1v1Manager : MonoBehaviour
     [Tooltip("Atributos para el botón del historial")] [SerializeField]
     private ButtonElement historyButton;
 
+    [Tooltip("Boton de jugar")] [SerializeField]
+    private Button playButton;
+    
     // Para saber cómo deben comportarse los callbacks
     private bool _normalInit;
 
@@ -83,6 +86,15 @@ public class Normal1v1Manager : MonoBehaviour
         backButton.Init(BackBehave);
         loadButton.Init(LoadButtonBehave);
         historyButton.Init(HistoryButtonBehave);
+    }
+
+    public void UpdateVirusList()
+    {
+        int players = GameManager.Instance.GetVirusListCount();
+        if (players == 2 && !playButton.interactable)
+        {
+            playButton.interactable = true;
+        }
     }
 
 //------------------------------------------------------------//

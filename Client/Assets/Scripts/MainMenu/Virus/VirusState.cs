@@ -10,11 +10,10 @@ public class VirusState : MonoBehaviour
     [Tooltip("Nombre del autor")] [SerializeField]
     private InputField inputAuthor;
 
-    [Tooltip("Referencia al componente Button")] [SerializeField]
+    [Header("Solo para torneo")] [Tooltip("Referencia al componente Button")] [SerializeField]
     private Button button;
 
-    [Tooltip("Referencia al componente Image")] [SerializeField]
-    private Image buttonSprite;
+    private int _playerIndex = -1;
 
     public void SetName(string newName)
     {
@@ -26,33 +25,33 @@ public class VirusState : MonoBehaviour
         inputAuthor.text = newAuthor;
     }
 
-    public void AddListenerButton(UnityAction cb)
+    public void ActivateButton()
     {
-        button.onClick.AddListener(cb);
-        
-        if (!button.interactable)
-        {
-            button.interactable = true;
-        }
+        button.interactable = true;
     }
-    
-    public void SetButtonSprite(Sprite newSprite)
+
+    public void SetPlayerIndex(int player)
     {
-        button.image.sprite = newSprite;
+        _playerIndex = player;
     }
 
     public void Reset()
     {
+        _playerIndex = -1;
         inputName.text = "NULL";
         inputAuthor.text = "NULL";
-        button.onClick.RemoveAllListeners();
-        button.image.sprite = button.spriteState.disabledSprite;
-        button.onClick.RemoveAllListeners();
+
+        if (!button) return;
         button.interactable = false;
     }
 
     public bool IsVirusActive()
     {
         return button.interactable;
+    }
+
+    public int GetPlayerIndex()
+    {
+        return _playerIndex;
     }
 }

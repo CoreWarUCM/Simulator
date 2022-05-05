@@ -7,47 +7,47 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
     private VirusIO _virusIO;
 
-    private Dictionary<int, VirusIO.Virus> _warriors;
+    private Dictionary<int, VirusIO.Virus> _virus;
 
     [SerializeField]
-    private BattleSimulator _simulator;
+    private BattleSimulator simulator;
 
     private List<string> _warrior1Data;
     private List<string> _warrior2Data;
 
     private void Awake()
     {
-        if (instance)
+        if (Instance)
         {
             //Pass simulator for initialization
-            if (_simulator != null && instance._simulator == null)
-                instance._simulator = _simulator;
-            if (instance._warriors?.Count > 0)
+            if (simulator != null && Instance.simulator == null)
+                Instance.simulator = simulator;
+            if (Instance._virus?.Count > 0)
             {
                 Debug.Log("Initializing BattleSimulator");
-                foreach (KeyValuePair<int, VirusIO.Virus> pair in instance._warriors)
+                foreach (KeyValuePair<int, VirusIO.Virus> pair in Instance._virus)
                 {
                     Debug.Log($"{pair.Key}:{pair.Value.GetPath()}");
                 }
-                instance._warrior1Data = new List<string>();
-                instance._warrior2Data = new List<string>();
-                Parser.LoadWarriors(instance._warriors[0].GetPath(),instance._warriors[1].GetPath(),
-                    out instance._warrior1Data, out instance._warrior2Data);
+                Instance._warrior1Data = new List<string>();
+                Instance._warrior2Data = new List<string>();
+                Parser.LoadWarriors(Instance._virus[0].GetPath(),Instance._virus[1].GetPath(),
+                    out Instance._warrior1Data, out Instance._warrior2Data);
 
-                instance._simulator.LoadWarriors(instance._warrior1Data, instance._warrior2Data);
+                Instance.simulator.LoadWarriors(Instance._warrior1Data, Instance._warrior2Data);
             }
             Destroy(this);
             
         }
         else
         {
-            instance = this;
+            Instance = this;
             _virusIO = new VirusIO();
-            _warriors = new Dictionary<int, VirusIO.Virus>();
+            _virus = new Dictionary<int, VirusIO.Virus>();
             DontDestroyOnLoad(this);
         }
     }
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     public void LoadWarrior(int player)
     {
         VirusIO.Virus w = _virusIO.LoadWarrior();
-        _warriors[player] = w;
+        _virus[player] = w;
 
 #if UNITY_EDITOR
         w.DebugInfo();
@@ -65,17 +65,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // TODO: Borrar
         int a = 0;
     }
 
-    public VirusIO.Virus GetWarrior(int player)
+    public VirusIO.Virus GetVirus(int player)
     {
-        return _warriors[player];
+        return _virus[player];
     }
 
     public void SaveWarrior(string rawData)
     {
         _virusIO.SaveWarrior(rawData);
+    }
+
+    public void RemoveWarrior(int player)
+    {
+        _virus.Remove(player);
     }
 
     public void StartGame()
@@ -85,5 +91,15 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Base");
         }
+    }
+
+    public void ClearVirusList()
+    {
+        _virus.Clear();
+    }
+
+    public int GetVirusListCount()
+    {
+        return _virus.Count;
     }
 }

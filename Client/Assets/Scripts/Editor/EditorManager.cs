@@ -69,6 +69,6 @@ public class EditorManager : MonoBehaviour
     {
         string tagText = _editorField.text;
         string outText = Regex.Replace(tagText, "<.*?>", string.Empty);
-        GameManager.instance.SaveWarrior(outText);
+        GameManager.Instance.SaveWarrior(outText);
     }
 }
