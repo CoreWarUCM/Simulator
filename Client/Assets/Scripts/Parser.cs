@@ -9,13 +9,20 @@ using Debug = UnityEngine.Debug;
 public class Parser
 {
     private static string PATH;
+    private static List<string> warriorData;
+    
 
-    // Start is called before the first frame update
-    public static void Start(string warrior1Path, string warrior2Path)
+    // This should only be called by GameManager when changin scenes
+    public static void LoadWarriors(string warrior1Path, string warrior2Path, out List<string> warrior1Data, out List<string> warrior2Data)
     {
         PATH = Application.dataPath;
-        
-        //Process cumbersome initialization0
+
+
+        warriorData = new List<string>();
+        warrior1Data = new List<string>();
+        warrior2Data = new List<string>();
+
+        //Process cumbersome initialization
         Process pmarsDebugger = new Process();
         pmarsDebugger.StartInfo.FileName = SystemInfo.operatingSystem.ToLower().Contains("windows") ? PATH + "/pMars.exe" : "pmars";
         pmarsDebugger.StartInfo.Arguments = $"{warrior1Path} {warrior2Path} .";
@@ -30,7 +37,8 @@ public class Parser
         
         //Error callback
         pmarsDebugger.ErrorDataReceived += (sender, args) => {
-            if (args.Data != null && args.Data.Trim() != "") Debug.LogError(args.Data);
+            //if (args.Data != null && args.Data.Trim() != "") 
+                //Debug.LogError(args.Data);
         };
         pmarsDebugger.BeginErrorReadLine();
 
@@ -58,14 +66,44 @@ public class Parser
         //You had your chance
         if(!pmarsDebugger.HasExited)
             pmarsDebugger.Kill();
-    }
-    private static void Handler(object sendingProcess,
-            DataReceivedEventArgs args)
+
+        int splitIndex = -1, count=0;
+        for(int i =0;i<warriorData.Count;i++)
         {
-            //Ignore if exit or empty string
-            if (args.Data == null || args.Data.Trim() == "")
-                return;
-            Debug.Log("AHHHH:"+args.Data);
+            if (warriorData[i].Contains("Program"))
+                count++;
+            if (count == 2)
+            {
+                splitIndex = i;
+                break;
+            }
         }
+
+        for (int i = 0; i < warriorData.Count; i++)
+        {
+            try
+            {
+                string s = warriorData[i];
+                Simulator.BlockFactory.CreateBlock(s);
+                if (i < splitIndex)
+                    warrior1Data.Add(s);
+                else
+                    warrior2Data.Add(s);
+            }
+            catch (Exception)
+            {
+                //ignore and pray
+            }
+        }
+
+    }
+    private static void Handler(object sendingProcess, DataReceivedEventArgs args)
+    {
+        //Ignore if exit or empty string
+        if (args.Data == null || args.Data.Trim() == "")
+            return;
+
+        warriorData.Add(args.Data);
+    }
     
 }

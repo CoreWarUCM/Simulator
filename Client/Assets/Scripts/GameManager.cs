@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BattleSimulator _simulator;
 
+    private List<string> _warrior1Data;
+    private List<string> _warrior2Data;
+
     private void Awake()
     {
         if (instance)
@@ -30,7 +33,12 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log($"{pair.Key}:{pair.Value.GetPath()}");
                 }
-                Parser.Start(instance._warriors[0].GetPath(),instance._warriors[1].GetPath());
+                instance._warrior1Data = new List<string>();
+                instance._warrior2Data = new List<string>();
+                Parser.LoadWarriors(instance._warriors[0].GetPath(),instance._warriors[1].GetPath(),
+                    out instance._warrior1Data, out instance._warrior2Data);
+
+                instance._simulator.LoadWarriors(instance._warrior1Data, instance._warrior2Data);
             }
             Destroy(this);
             

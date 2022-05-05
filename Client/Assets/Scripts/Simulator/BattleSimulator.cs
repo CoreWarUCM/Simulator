@@ -14,6 +14,8 @@ namespace Simulator
         private System.Random _random;
 
         public List<Action<BaseMessage>>[] _listeners;
+        List<string> _warrior1;
+        List<string> _warrior2;
 
         void Awake(){
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
@@ -27,38 +29,31 @@ namespace Simulator
             _warriorManager = new WarriorManager(_random);
             _commonMemoryManager = new CommonMemoryManager(this);
 
-            //Create two imps for testing
+            //Get current warrior location to load it into memory
             _warriorManager.GetCurrent(out int location, out int warrior);
-            _commonMemoryManager.CreateBlock(new MOVBlock(new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 0),
-                                                          new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I),
-                                             location, 0);
-            _warriorManager.Next();
-
-
-            //_warriorManager.GetCurrent(out location, out warrior);
-            //_commonMemoryManager.CreateBlock(new MOVBlock(new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 0),
-            //                                              new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, 1), CodeBlock.Modifier.I),
-            //                                 location, 0);
-            /*
-             
-             START  ADD.AB #     4, $     3
-       MOV.I  $     2, @     2
-       JMP.B  $    -2, $     0
-       DAT.F  #     0, #     0
-             */
-
-            CodeBlock[] blocks = new CodeBlock[]{ BlockFactory.CreateBlock("START ADD.AB #4, $3"),
-                                                  BlockFactory.CreateBlock("   MOV.I  $     2, @     2"),
-                                                  BlockFactory.CreateBlock("   JMP.B  $    -2, $     0"),
-                                                  BlockFactory.CreateBlock("   DAT.F  #     0, #     0") };
-            _warriorManager.GetCurrent(out location, out warrior);
-
-            foreach (CodeBlock b in blocks)
+            foreach (string b in _warrior1)
             {
-                _commonMemoryManager.CreateBlock(b, location++, 0);
+                _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
+                Debug.Log(b);
             }
 
+            //Next artificial turn to get next warrior and repeat
             _warriorManager.Next();
+            _warriorManager.GetCurrent(out location, out warrior);
+            foreach (string b in _warrior2)
+            {
+                _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
+                Debug.Log(b);
+            }
+
+            //Advance to turn to leave first as first
+            _warriorManager.Next();
+        }
+        
+        public void LoadWarriors(List<string> warrior1, List<string> warrior2)
+        {
+            _warrior1 = warrior1;
+            _warrior2 = warrior2;
         }
 
         // Update is called once per frame
