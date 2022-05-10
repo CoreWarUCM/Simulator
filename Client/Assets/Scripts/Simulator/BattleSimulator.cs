@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 
 using Simulator.CodeBlocks;
+using UnityEngine.SceneManagement;
 
 namespace Simulator
 {
-    // This class probabbly will be moved to work on a thread so this Start and Update code are testing only
     public class BattleSimulator : MonoBehaviour, IBattleSimulator, ISimulator
     {
         private WarriorManager _warriorManager;
@@ -16,6 +16,7 @@ namespace Simulator
         public List<Action<BaseMessage>>[] _listeners;
         List<string> _warrior1;
         List<string> _warrior2;
+        private bool running = true;
 
         void Awake(){
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
@@ -48,6 +49,9 @@ namespace Simulator
 
             //Advance to turn to leave first as first
             _warriorManager.Next();
+
+            //Subscribe end of simulation callback
+            Subscribe(MessageType.Death, (BaseMessage message) => { running = false; }); // this should actually call WM to handle death of thread, but not multithread yet
         }
         
         public void LoadWarriors(List<string> warrior1, List<string> warrior2)
@@ -59,15 +63,24 @@ namespace Simulator
         // Update is called once per frame
         void Update()
         {
-            Step();
+            if (Input.GetKeyDown(KeyCode.Space))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if(running)
+                Step();
         }
 
         public void Step()
         {
             _warriorManager.GetCurrent(out int location, out int warrior);
+            try
+            {
+                _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
+                SendMessage(new BlockExecutedMessage(location));
+            }
+            //catch (System.Exception e){ Debug.LogError(e.Message); }
+            catch (CodeBlock.UnsupportedModifierException e) { Debug.LogError(e.Message); }
 
-            _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
-            
+
             _warriorManager.AdvanceCurrent();
             _warriorManager.Next();   
         }
@@ -97,7 +110,7 @@ namespace Simulator
         }
 
         public void KillWarrior(){
-            throw new System.NotImplementedException();
+            Debug.LogError("AAAAH WARRIOR DIES");
         }
         public int ResolveAddress(int relativeAddress, int originalPosition)
         {

@@ -10,6 +10,18 @@ public class MemoryGroup : MonoBehaviour
     [SerializeField]
     private MemoryGroupShader _groupShader;
 
+    [SerializeField]
+    private Color _warrior1Color;
+
+    [SerializeField]
+    private Color _warrior2Color;
+
+    [SerializeField]
+    private Color _warrior1ExecuteColor;
+
+    [SerializeField]
+    private Color _warrior2ExecuteColor;
+
     private Renderer _groupShaderR;
 
     private float _ratio;
@@ -37,9 +49,14 @@ public class MemoryGroup : MonoBehaviour
         RegroupMemory(verticalMode);
         
         BattleSimulator bs = GetComponent<BattleSimulator>();
-        bs.Subscribe((int)Simulator.MessageType.BlockModify, (BaseMessage bm) =>
+        bs.Subscribe(Simulator.MessageType.BlockModify, (BaseMessage bm) =>
         {
-            SetColor(((BlockModifyMessage)bm).modifiedLcoation, bm.warrior == 1 ? Color.red : Color.blue);
+            SetColor(((BlockModifyMessage)bm).modifiedLcoation, (bm.warrior == 1 ? _warrior1Color : _warrior2Color));
+        });
+
+        bs.Subscribe(Simulator.MessageType.BlockExecuted, (BaseMessage bm) =>
+        {
+            SetColor(((BlockExecutedMessage)bm).modifiedLcoation, (bm.warrior == 1 ? _warrior1ExecuteColor : _warrior2ExecuteColor));
         });
     }
 

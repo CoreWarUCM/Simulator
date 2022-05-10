@@ -9,6 +9,7 @@ namespace Simulator
     public enum MessageType{
         BlockModify,
         Death,
+        BlockExecuted,
         Jump
     }
     public class BaseMessage

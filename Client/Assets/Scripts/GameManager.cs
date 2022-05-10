@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance)
+        if (GameManager.Instance)
         {
+            Debug.Log("AAAAAAAH");
             //Pass simulator for initialization
             if (simulator != null && Instance.simulator == null)
                 Instance.simulator = simulator;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             _virusIO = new VirusIO();
             _virus = new Dictionary<int, VirusIO.Virus>();
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 

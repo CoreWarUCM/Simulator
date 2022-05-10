@@ -6,6 +6,7 @@ namespace Simulator
 {
     /// <summary>
     /// Class that handles common memory, that is: memory shared for all warriors
+    /// Extends ISimulator as a decorator to forward calls from blocks to actual manager without coupling them directly
     /// </summary>
     public class CommonMemoryManager : ISimulator
     {
@@ -49,13 +50,10 @@ namespace Simulator
             return _memory[ResolveAddress(position, origin)];
         }
 
-        public void JumpTo(int destination)
-        {
-            //Call delegated to actual simulator
-            _simulator.JumpTo(destination);
-        }
+        //Calls delegated to actual simulator ----------------------------------------------
 
-        public void KillWarrior(){}
+        public void JumpTo(int destination){_simulator.JumpTo(destination);}
+        public void KillWarrior(){_simulator.KillWarrior(); }
         public void SendMessage(BaseMessage message) { _simulator.SendMessage(message); }
     }
 }
