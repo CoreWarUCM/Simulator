@@ -19,11 +19,19 @@ public class GameManager : MonoBehaviour
     private List<string> _warrior1Data;
     private List<string> _warrior2Data;
 
+    private void SetUpWarriors(VirusIO.Virus first, VirusIO.Virus second)
+    {
+        Instance._warrior1Data = new List<string>();
+        Instance._warrior2Data = new List<string>();
+        Parser.LoadWarriors(first.GetPath(),second.GetPath(),
+            out Instance._warrior1Data, out Instance._warrior2Data);
+
+        Instance.simulator.LoadWarriors(Instance._warrior1Data, Instance._warrior2Data);
+    }
     private void Awake()
     {
         if (GameManager.Instance)
         {
-            Debug.Log("AAAAAAAH");
             //Pass simulator for initialization
             if (simulator != null && Instance.simulator == null)
                 Instance.simulator = simulator;
@@ -34,12 +42,11 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log($"{pair.Key}:{pair.Value.GetPath()}");
                 }
-                Instance._warrior1Data = new List<string>();
-                Instance._warrior2Data = new List<string>();
-                Parser.LoadWarriors(Instance._virus[0].GetPath(),Instance._virus[1].GetPath(),
-                    out Instance._warrior1Data, out Instance._warrior2Data);
-
-                Instance.simulator.LoadWarriors(Instance._warrior1Data, Instance._warrior2Data);
+                SetUpWarriors(Instance._virus[0], Instance._virus[1]);
+            }
+            else
+            {
+                Debug.LogError("This should not be possible; starting battle scene without warriors :C");
             }
             Destroy(this);
             
@@ -49,6 +56,14 @@ public class GameManager : MonoBehaviour
             Instance = this;
             _virusIO = new VirusIO();
             _virus = new Dictionary<int, VirusIO.Virus>();
+            if (simulator) //We are in launching in simulation, lets select some warriors by default
+            {
+                string PATH = Application.dataPath+"/SampleWarriors/";
+                Debug.Log("EPA QUE VOY: " + PATH);
+                _virus[0] = new VirusIO.Virus(PATH+"imp.redcode","Debug","Dev",null,true);
+                _virus[1] = new VirusIO.Virus(PATH+"dwarf.redcode","Debug","Dev",null,true);
+                SetUpWarriors(_virus[0], _virus[1]);
+            }
             DontDestroyOnLoad(this.gameObject);
         }
     }

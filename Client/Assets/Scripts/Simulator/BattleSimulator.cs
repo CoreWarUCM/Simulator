@@ -32,7 +32,10 @@ namespace Simulator
 
             //Get current warrior location to load it into memory
             _warriorManager.GetCurrent(out int location, out int warrior);
-            foreach (string b in _warrior1)
+            List<string> starting_warrior = warrior == 1 ? _warrior1 : _warrior2;
+            List<string> next_warrior = warrior != 1 ? _warrior1 : _warrior2;
+            
+            foreach (string b in starting_warrior)
             {
                 _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
                 Debug.Log(b);
@@ -41,7 +44,7 @@ namespace Simulator
             //Next artificial turn to get next warrior and repeat
             _warriorManager.Next();
             _warriorManager.GetCurrent(out location, out warrior);
-            foreach (string b in _warrior2)
+            foreach (string b in next_warrior)
             {
                 _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
                 Debug.Log(b);

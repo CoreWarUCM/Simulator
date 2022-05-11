@@ -25,6 +25,9 @@ public class Parser
         //Process cumbersome initialization
         Process pmarsDebugger = new Process();
         pmarsDebugger.StartInfo.FileName = SystemInfo.operatingSystem.ToLower().Contains("windows") ? PATH + "/pMars.exe" : "pmars";
+        Debug.Log("EH: " +warrior1Path);
+        Debug.Log("EH: " +warrior2Path);
+        Debug.Log("EH: " +pmarsDebugger.StartInfo.FileName);
         pmarsDebugger.StartInfo.Arguments = $"{warrior1Path} {warrior2Path} .";
         pmarsDebugger.StartInfo.UseShellExecute = false;
         // pmarsDebugger.StartInfo.CreateNoWindow = true;
@@ -38,7 +41,7 @@ public class Parser
         //Error callback
         pmarsDebugger.ErrorDataReceived += (sender, args) => {
             //if (args.Data != null && args.Data.Trim() != "") 
-                //Debug.LogError(args.Data);
+              //  Debug.LogError(args.Data);
         };
         pmarsDebugger.BeginErrorReadLine();
 
@@ -47,25 +50,27 @@ public class Parser
         pmarsDebugger.BeginOutputReadLine();
         
         pmarsDebugger.StandardInput.AutoFlush = true;
-        Thread.Sleep(20); 
-
-        //The first important thing we do, write a pmars command to invoke a few macros
-        //pmarsDebugger.StandardInput.Write($"macro buscatodo, {PATH}/pmars.mac~echo begin~.~macro busca~\n");
-        pmarsDebugger.StandardInput.Write($"q\n");
         
-        pmarsDebugger.StandardInput.AutoFlush = false;
-        Thread.Sleep(20);
-        //Try the quit command
-        if(!pmarsDebugger.HasExited)
+        //Try to kill it gracefully
+        try 
+        {
             pmarsDebugger.StandardInput.Write($"q\n");
         
-        //Should have stopped, but just in case
-        if(!pmarsDebugger.HasExited)
-            pmarsDebugger.WaitForExit();
+            pmarsDebugger.StandardInput.AutoFlush = false;
+            Thread.Sleep(20);
+            //Try the quit command
+            if(!pmarsDebugger.HasExited)
+                pmarsDebugger.StandardInput.Write($"q\n");
+        
+            //Should have stopped, but just in case
+            if(!pmarsDebugger.HasExited)
+                pmarsDebugger.WaitForExit();
     
-        //You had your chance
-        if(!pmarsDebugger.HasExited)
-            pmarsDebugger.Kill();
+            //You had your chance
+            if(!pmarsDebugger.HasExited)
+                pmarsDebugger.Kill();
+        }
+        catch(Exception e){}
 
         int splitIndex = -1, count=0;
         for(int i =0;i<warriorData.Count;i++)
