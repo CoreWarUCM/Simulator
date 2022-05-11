@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Simulator;
+using TMPro;
 
 public class MemoryGroup : MonoBehaviour
 {
@@ -26,6 +27,15 @@ public class MemoryGroup : MonoBehaviour
 
     private float _ratio;
 
+    [SerializeField]
+    private TextMeshProUGUI _virus1Text;
+    [SerializeField]
+    private TextMeshProUGUI _virus2Text;
+    [SerializeField]
+    private TextMeshProUGUI _virus1Author;
+    [SerializeField]
+    private TextMeshProUGUI _virus2Author;
+    
     private void Awake()
     {
         _groupShaderR = _groupShader.GetComponent<Renderer>();
@@ -58,6 +68,18 @@ public class MemoryGroup : MonoBehaviour
         {
             SetColor(((BlockExecutedMessage)bm).modifiedLcoation, (bm.warrior == 1 ? _warrior1ExecuteColor : _warrior2ExecuteColor));
         });
+
+        _virus1Author.color = _warrior1ExecuteColor;
+        _virus1Text.color = _warrior1Color;
+        
+        _virus2Author.color = _warrior2ExecuteColor;
+        _virus2Text.color = _warrior2ExecuteColor;
+
+        _virus1Author.text = GameManager.Instance._virus[0].GetAuthor();
+        _virus1Text.text = GameManager.Instance._virus[0].GetName();
+        
+        _virus2Author.text = GameManager.Instance._virus[1].GetAuthor();
+        _virus2Text.text = GameManager.Instance._virus[1].GetName();
     }
 
 

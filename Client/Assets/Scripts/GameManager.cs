@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private VirusIO _virusIO;
 
-    private Dictionary<int, VirusIO.Virus> _virus;
+    public Dictionary<int, VirusIO.Virus> _virus;
 
     [SerializeField]
     private BattleSimulator simulator;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
                 string PATH = Application.dataPath+"/SampleWarriors/";
                 Debug.Log("EPA QUE VOY: " + PATH);
                 _virus[0] = new VirusIO.Virus(PATH+"imp.redcode","Debug","Dev",null,true);
-                _virus[1] = new VirusIO.Virus(PATH+"dwarf.redcode","Debug","Dev",null,true);
+                _virus[1] = new VirusIO.Virus(PATH+"inversedwarf.redcode","Debug2","Dev2",null,true);
                 SetUpWarriors(_virus[0], _virus[1]);
             }
             DontDestroyOnLoad(this.gameObject);

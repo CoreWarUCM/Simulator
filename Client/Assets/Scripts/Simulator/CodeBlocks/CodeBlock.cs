@@ -1,3 +1,4 @@
+using Codice.CM.Common;
 using UnityEngine;
 using UnityEditor;
 
@@ -89,9 +90,18 @@ namespace Simulator
                 _value = v;
             }
 
+            private int AssureBetween0AndMax(int v)
+            {
+                return v >= 0 ? v % 8000 : 8000 - ((v * -1) % 8000); 
+            }
+            
             public void Add(int v)
             {
-                _value += v;
+                _value = AssureBetween0AndMax(_value + v);
+            }
+            public void Sub(int v)
+            {
+                _value = AssureBetween0AndMax(_value - v);
             }
         }
         public Register _regA;

@@ -22,7 +22,6 @@ namespace Simulator
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
             for (int i = 0; i < _listeners.Length;i++)
                 _listeners[i] = new List<Action<BaseMessage>>();
-            
         }
         void Start()
         {
@@ -38,7 +37,6 @@ namespace Simulator
             foreach (string b in starting_warrior)
             {
                 _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
-                Debug.Log(b);
             }
 
             //Next artificial turn to get next warrior and repeat
@@ -47,7 +45,6 @@ namespace Simulator
             foreach (string b in next_warrior)
             {
                 _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
-                Debug.Log(b);
             }
 
             //Advance to turn to leave first as first

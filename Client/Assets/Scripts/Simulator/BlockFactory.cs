@@ -78,6 +78,8 @@ namespace Simulator
                     return new DATBlock(regA, regB, mod);
                 case "ADD":
                     return new ADDBlock(regA, regB, mod);
+                case "SUB":
+                    return new SUBBlock(regA, regB, mod);
                 default:
                     throw new Exception("unsupported block type {"+opCode+"}, las quejas a Ricky");
             }
