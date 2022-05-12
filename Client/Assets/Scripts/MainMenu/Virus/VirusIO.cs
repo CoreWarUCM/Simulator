@@ -68,10 +68,7 @@ public class VirusIO
    
    public string ChooseLoadFile(string directory)
    {
-#if UNITY_EDITOR
       return EditorUtility.OpenFilePanel("Select a warrior",directory,"redcode");
-#endif
-      return "aaaaaaa"; 
    }
    
    public Virus LoadWarrior()
@@ -107,12 +104,7 @@ public class VirusIO
 
    public string ChooseSaveFile(string directory)
    {
-#if UNITY_EDITOR
       return EditorUtility.SaveFilePanel("Select save location", directory, "MiRedCode", "redcode");
-
-#endif
-
-      return "aaaaaaa"; 
    }
    
    public void SaveWarrior(string rawData)

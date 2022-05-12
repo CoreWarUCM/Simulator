@@ -52,25 +52,28 @@ public class Parser
         pmarsDebugger.StandardInput.AutoFlush = true;
         
         //Try to kill it gracefully
-        try 
+        try
         {
             pmarsDebugger.StandardInput.Write($"q\n");
-        
+
             pmarsDebugger.StandardInput.AutoFlush = false;
             Thread.Sleep(20);
             //Try the quit command
-            if(!pmarsDebugger.HasExited)
+            if (!pmarsDebugger.HasExited)
                 pmarsDebugger.StandardInput.Write($"q\n");
-        
+
             //Should have stopped, but just in case
-            if(!pmarsDebugger.HasExited)
+            if (!pmarsDebugger.HasExited)
                 pmarsDebugger.WaitForExit();
-    
+
             //You had your chance
-            if(!pmarsDebugger.HasExited)
+            if (!pmarsDebugger.HasExited)
                 pmarsDebugger.Kill();
         }
-        catch(Exception e){}
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
 
         int splitIndex = -1, count=0;
         for(int i =0;i<warriorData.Count;i++)

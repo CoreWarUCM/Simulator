@@ -20,8 +20,6 @@ public class MemoryGroupShader : MonoBehaviour
     
     public void Init(int numCells, bool verticalMode, Vector2Int sides)
     {
-        float hRatio = 1, vRatio = 1;
-        
         _width = 50 * sides.x;
         _height = 50 * sides.y;
 

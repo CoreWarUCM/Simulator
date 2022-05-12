@@ -1,6 +1,5 @@
 using Simulator;
 using NUnit.Framework;
-using Simulator;
 using Simulator.CodeBlocks;
 using UnityEngine;
 

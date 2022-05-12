@@ -79,12 +79,6 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    private void Update()
-    {
-        // TODO: Borrar
-        int a = 0;
-    }
-
     public VirusIO.Virus GetVirus(int player)
     {
         return _virus[player];
