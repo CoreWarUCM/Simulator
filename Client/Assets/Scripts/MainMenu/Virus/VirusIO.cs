@@ -70,18 +70,17 @@ public class VirusIO
 
     public IEnumerator LoadWarrior(int player, VirusState state = null,  Action<int,VirusState, VirusIO.Virus> callback = null, Action extraCallBack = null)
     {
-        string directory = Application.dataPath;
-
-
         dialogOpen = true;
         yield return
-            FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, directory, title: "Select Virus",
+            FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, UserConfig.LastLoadPath(), title: "Select Virus",
                 loadButtonText: "Load");
         dialogOpen = false;
 
         if (FileBrowser.Success)
         {
             string path = FileBrowser.Result[0];
+            
+            UserConfig.SetLastLoadPath(path);
             
             Debug.Log(path);
             string[] rawData = File.ReadAllLines(path);
@@ -115,17 +114,16 @@ public class VirusIO
 
     public IEnumerator SaveVirus(string rawData)
     {
-        string directory = Application.dataPath;
-
         dialogOpen = true;
         yield return
-            FileBrowser.WaitForSaveDialog(FileBrowser.PickMode.Files, false, directory, title: "Save Virus",
+            FileBrowser.WaitForSaveDialog(FileBrowser.PickMode.Files, false, UserConfig.LastSavePath(), title: "Save Virus",
                 saveButtonText: "Save");
         dialogOpen = false;
         
         if (FileBrowser.Success)
         {
             string path = FileBrowser.Result[0];
+            UserConfig.SetLastSavePath(path);
             File.WriteAllText(path, rawData);
         }
     }
