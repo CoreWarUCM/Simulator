@@ -1,38 +1,24 @@
+using System;
 using UnityEngine;
 
-public class Load : MonoBehaviour
+public static class Load 
 {
-    private VirusIO.Virus _virusIO;
-    private int _player = -1;
+
+    public static void LoadVirus(int player, VirusState state, Action extraCallBack = null)
+    {
+        GameManager.Instance.LoadVirus(player, state, UpdateVirusState, extraCallBack);
+    }
     
-    public void LoadWarrior(int player)
+    public static void UpdateVirusState(int player,VirusState state, VirusIO.Virus v)
     {
-        _player = player;
-        GameManager.Instance.LoadWarrior(_player);
-        _virusIO = GameManager.Instance.GetVirus(_player);
-    }
-
-    public void UpdateVirusState(VirusState virus)
-    {
-        if (!_virusIO.isValidWarrior()) return;
-
+        if (!v.isValidWarrior() || !state) return;
         // Indice del jugador
-        virus.SetPlayerIndex(_player);
+        state.SetPlayerIndex(player);
         // Nombre del virus
-        var n = _virusIO.GetName();
-        virus.SetName(n);
+        var n = v.GetName();
+        state.SetName(n);
         // Autor del virus
-        var a = _virusIO.GetAuthor();
-        virus.SetAuthor(a);
-    }
-
-    public VirusIO.Virus GetCurrentVirus()
-    {
-        return _virusIO;
-    }
-
-    public int GetCurrentPlayer()
-    {
-        return _player;
+        var a = v.GetAuthor();
+        state.SetAuthor(a);
     }
 }

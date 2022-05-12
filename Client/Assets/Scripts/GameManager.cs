@@ -10,11 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private VirusIO _virusIO;
-
+    
     public Dictionary<int, VirusIO.Virus> _virus;
 
-    [SerializeField]
-    private BattleSimulator simulator;
+    [SerializeField] private BattleSimulator simulator;
 
     private List<string> _warrior1Data;
     private List<string> _warrior2Data;
@@ -23,11 +22,12 @@ public class GameManager : MonoBehaviour
     {
         Instance._warrior1Data = new List<string>();
         Instance._warrior2Data = new List<string>();
-        Parser.LoadWarriors(first.GetPath(),second.GetPath(),
+        Parser.LoadWarriors(first.GetPath(), second.GetPath(),
             out Instance._warrior1Data, out Instance._warrior2Data);
 
         Instance.simulator.LoadWarriors(Instance._warrior1Data, Instance._warrior2Data);
     }
+
     private void Awake()
     {
         if (GameManager.Instance)
@@ -42,41 +42,47 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log($"{pair.Key}:{pair.Value.GetPath()}");
                 }
+
                 SetUpWarriors(Instance._virus[0], Instance._virus[1]);
             }
             else
             {
                 Debug.LogError("This should not be possible; starting battle scene without warriors :C");
             }
+
             Destroy(this);
-            
         }
         else
         {
             Instance = this;
             _virusIO = new VirusIO();
+            _virusIO.Init();
+
             _virus = new Dictionary<int, VirusIO.Virus>();
             if (simulator) //We are in launching in simulation, lets select some warriors by default
             {
-                string PATH = Application.dataPath+"/SampleWarriors/";
+                string PATH = Application.dataPath + "/SampleWarriors/";
                 Debug.Log("EPA QUE VOY: " + PATH);
-                _virus[0] = new VirusIO.Virus(PATH+"imp.redcode","Debug","Dev",null,true);
-                _virus[1] = new VirusIO.Virus(PATH+"inversedwarf.redcode","Debug2","Dev2",null,true);
+                _virus[0] = new VirusIO.Virus(PATH + "imp.redcode", "Debug", "Dev", null, true);
+                _virus[1] = new VirusIO.Virus(PATH + "inversedwarf.redcode", "Debug2", "Dev2", null, true);
                 SetUpWarriors(_virus[0], _virus[1]);
             }
+
             DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    public void LoadWarrior(int player)
+    public void LoadVirus(int player, VirusState state = null,  Action<int,VirusState, VirusIO.Virus> callback = null, Action extraCallBack = null)
     {
-        VirusIO.Virus w = _virusIO.LoadWarrior();
-        _virus[player] = w;
+        if (_virusIO.dialogOpen)
+            return;
+        StartCoroutine(_virusIO.LoadWarrior(player, state, callback, extraCallBack));
+    }
 
-#if UNITY_EDITOR
-        w.DebugInfo();
-        w.DebugRawData();
-#endif
+
+    public void SetVirus(int player, VirusIO.Virus v)
+    {
+        _virus[player] = v;
     }
 
     public VirusIO.Virus GetVirus(int player)
@@ -84,12 +90,14 @@ public class GameManager : MonoBehaviour
         return _virus[player];
     }
 
-    public void SaveWarrior(string rawData)
+    public void SaveVirus(string rawData)
     {
-        _virusIO.SaveWarrior(rawData);
+        if (_virusIO.dialogOpen)
+            return;
+        StartCoroutine(_virusIO.SaveVirus(rawData));
     }
 
-    public void RemoveWarrior(int player)
+    public void RemoveVirus(int player)
     {
         _virus.Remove(player);
     }

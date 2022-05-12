@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TournamentManager : MonoBehaviour
 {
     [SerializeField] private List<VirusState> virusList;
-    [SerializeField] private Load load;
     [SerializeField] private Remove remove;
     [SerializeField] private Clear clear;
     [SerializeField] private Button configButton;
@@ -33,25 +32,25 @@ public class TournamentManager : MonoBehaviour
             player++;
         }
 
-        load.LoadWarrior(player);
-        var virusIO = load.GetCurrentVirus();
-        if (!virusIO.isValidWarrior()) return;
-
-        // Si el hueco encontrado es del ultimo jugador, entonces significa que ya no hay mas huecos
-        if (player == virusList.Count - 1)
+        var state = virusList[player];
+        Load.LoadVirus(player, state, () =>
         {
-            addButton.interactable = false;
-        }
+            // Si el hueco encontrado es del ultimo jugador, entonces significa que ya no hay mas huecos
+            if (player == virusList.Count - 1)
+            {
+                addButton.interactable = false;
+            }
 
-        var numPlayers = GameManager.Instance.GetVirusListCount();
-        if (!configButton.interactable && numPlayers >= 2)
-        {
-            configButton.interactable = true;
-        }
+            var numPlayers = GameManager.Instance.GetVirusListCount();
+            if (!configButton.interactable && numPlayers >= 2)
+            {
+                configButton.interactable = true;
+            }
 
-        var virus = virusList[player];
-        load.UpdateVirusState(virus);
-        virus.ActivateButton();
+            state.ActivateButton();
+        });
+
+        
     }
 
     public void SetSelectedVirus(VirusState selected)

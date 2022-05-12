@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -30,6 +31,10 @@ public class Normal1v1Manager : MonoBehaviour
 
     // Posición inicial del botón historial
     private Vector3 _histInitPos;
+
+
+    [SerializeField]
+    private List<VirusState> states;
 
 //------------------------------------------------------------//
     [System.Serializable]
@@ -187,5 +192,12 @@ public class Normal1v1Manager : MonoBehaviour
     private void ShowHistoryPanel()
     {
         historyButton.panelToEnable.SetActive(true);
+    }
+
+
+
+    public void LoadVirus(int player)
+    {
+        Load.LoadVirus(player, states[player],UpdateVirusList);
     }
 }

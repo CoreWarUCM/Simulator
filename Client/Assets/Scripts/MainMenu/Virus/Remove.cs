@@ -19,7 +19,7 @@ public class Remove : MonoBehaviour
         if (!_virus) return;
 
         var i = _virus.GetPlayerIndex();
-        GameManager.Instance.RemoveWarrior(i);
+        GameManager.Instance.RemoveVirus(i);
         _virus.Reset();
         _virus = null;
         var total = GameManager.Instance.GetVirusListCount();

@@ -1,8 +1,3 @@
-using Codice.CM.Common;
-using UnityEngine;
-using UnityEditor;
-
-using Simulator;
 using Simulator.CodeBlocks;
 namespace Simulator
 {

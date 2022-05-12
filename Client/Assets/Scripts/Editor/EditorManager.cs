@@ -22,6 +22,8 @@ public class EditorManager : MonoBehaviour
     private string _lastText = "";
     
     
+    
+    
     void Start()
     {
         if (!_editorField || !_intellisense)
@@ -69,6 +71,6 @@ public class EditorManager : MonoBehaviour
     {
         string tagText = _editorField.text;
         string outText = Regex.Replace(tagText, "<.*?>", string.Empty);
-        GameManager.Instance.SaveWarrior(outText);
+        GameManager.Instance.SaveVirus(outText);
     }
 }

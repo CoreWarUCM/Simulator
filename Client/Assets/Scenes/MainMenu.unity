@@ -4112,7 +4112,6 @@ GameObject:
   - component: {fileID: 525255010}
   - component: {fileID: 525255009}
   - component: {fileID: 525255008}
-  - component: {fileID: 525255011}
   m_Layer: 5
   m_Name: Load
   m_TagString: Untagged
@@ -4184,49 +4183,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 525255011}
-        m_TargetAssemblyTypeName: Load, Game
-        m_MethodName: LoadWarrior
+      - m_Target: {fileID: 1719225986}
+        m_TargetAssemblyTypeName: Normal1v1Manager, Game
+        m_MethodName: LoadVirus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 525255011}
-        m_TargetAssemblyTypeName: Load, Game
-        m_MethodName: UpdateVirusState
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 384853823}
-          m_ObjectArgumentAssemblyTypeName: VirusState, Game
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1719225986}
-        m_TargetAssemblyTypeName: Normal1v1Manager, Game
-        m_MethodName: UpdateVirusList
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1719225984}
-        m_TargetAssemblyTypeName: Load, Game
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4270,18 +4233,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525255006}
   m_CullTransparentMesh: 1
---- !u!114 &525255011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525255006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e908a6f3f325cf94d8898e065b99fa8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &534528916 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4840792552563786844, guid: 8de505521e2ef354998d3eb0c8bf407f, type: 3}
@@ -4535,7 +4486,6 @@ MonoBehaviour:
   - {fileID: 1131155884}
   - {fileID: 150208828}
   - {fileID: 1553178542}
-  load: {fileID: 940085417}
   remove: {fileID: 623163682}
   clear: {fileID: 472080732}
   configButton: {fileID: 247221004}
@@ -7324,7 +7274,6 @@ GameObject:
   - component: {fileID: 940085416}
   - component: {fileID: 940085415}
   - component: {fileID: 940085414}
-  - component: {fileID: 940085417}
   m_Layer: 5
   m_Name: Load
   m_TagString: Untagged
@@ -7446,18 +7395,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940085412}
   m_CullTransparentMesh: 1
---- !u!114 &940085417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940085412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e908a6f3f325cf94d8898e065b99fa8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &943847079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13769,7 +13706,6 @@ GameObject:
   - component: {fileID: 1678652503}
   - component: {fileID: 1678652502}
   - component: {fileID: 1678652501}
-  - component: {fileID: 1678652504}
   m_Layer: 5
   m_Name: Load
   m_TagString: Untagged
@@ -13841,38 +13777,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1678652504}
-        m_TargetAssemblyTypeName: Load, Game
-        m_MethodName: LoadWarrior
+      - m_Target: {fileID: 1719225986}
+        m_TargetAssemblyTypeName: Normal1v1Manager, Game
+        m_MethodName: LoadVirus
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1678652504}
-        m_TargetAssemblyTypeName: Load, Game
-        m_MethodName: UpdateVirusState
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 439351550}
-          m_ObjectArgumentAssemblyTypeName: VirusState, Game
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1719225986}
-        m_TargetAssemblyTypeName: Normal1v1Manager, Game
-        m_MethodName: UpdateVirusList
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13915,18 +13827,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678652499}
   m_CullTransparentMesh: 1
---- !u!114 &1678652504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678652499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e908a6f3f325cf94d8898e065b99fa8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1719225984
 GameObject:
   m_ObjectHideFlags: 0
@@ -13994,6 +13894,9 @@ MonoBehaviour:
     panelToDisable: {fileID: 2089208165}
     mov: {fileID: 590365147}
   playButton: {fileID: 725035108}
+  states:
+  - {fileID: 384853823}
+  - {fileID: 439351550}
 --- !u!114 &1719225987
 MonoBehaviour:
   m_ObjectHideFlags: 0
