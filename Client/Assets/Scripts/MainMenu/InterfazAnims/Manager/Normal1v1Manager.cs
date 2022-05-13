@@ -14,8 +14,8 @@ public class Normal1v1Manager : MonoBehaviour
     [Tooltip("Atributos para el botón de cargar guerreros")] [SerializeField]
     private ButtonElement loadButton;
 
-    [Tooltip("Atributos para el botón del historial")] [SerializeField]
-    private ButtonElement historyButton;
+    [Tooltip("Atributos para el botón del editor")] [SerializeField]
+    private ButtonElement editButton;
 
     [Tooltip("Boton de jugar")] [SerializeField]
     private Button playButton;
@@ -29,8 +29,8 @@ public class Normal1v1Manager : MonoBehaviour
     // Posición inicial del botón cargar
     private Vector3 _loadInitPos;
 
-    // Posición inicial del botón historial
-    private Vector3 _histInitPos;
+    // Posición inicial del botón editor
+    private Vector3 _editInitPos;
 
 
     [SerializeField]
@@ -52,6 +52,8 @@ public class Normal1v1Manager : MonoBehaviour
         [Tooltip("Referencia al componente del movimiento")]
         public ButtonMovement mov;
 
+        [Tooltip("Referencia al componente RectTransform")]
+        public RectTransform rectPos;
         public void Init(UnityAction action)
         {
             button.onClick.AddListener(action);
@@ -73,6 +75,9 @@ public class Normal1v1Manager : MonoBehaviour
         [Tooltip("Referencia al componente del movimiento")]
         public ButtonMovement mov;
 
+        [Tooltip("Referencia al componente RectTransform")]
+        public RectTransform rectPos;
+        
         public void Init(UnityAction action)
         {
             button.onClick.AddListener(action);
@@ -83,14 +88,14 @@ public class Normal1v1Manager : MonoBehaviour
     private void Start()
     {
         // Se guardan las posiciones iniciales
-        _backInitPos = backButton.button.gameObject.transform.position;
-        _loadInitPos = loadButton.button.gameObject.transform.position;
-        _histInitPos = historyButton.button.gameObject.transform.position;
+        _backInitPos = backButton.rectPos.anchoredPosition;
+        _loadInitPos = loadButton.rectPos.anchoredPosition;
+        _editInitPos = editButton.rectPos.anchoredPosition;
 
         // Se inicializan los callbacks
         backButton.Init(BackBehave);
         loadButton.Init(LoadButtonBehave);
-        historyButton.Init(HistoryButtonBehave);
+        editButton.Init(EditButtonBehave);
     }
 
     public void UpdateVirusList()
@@ -132,7 +137,7 @@ public class Normal1v1Manager : MonoBehaviour
         {
             backButton.mov.Init(transitionTime);
             loadButton.mov.Init(transitionTime);
-            historyButton.mov.Init(transitionTime);
+            editButton.mov.Init(transitionTime);
 
             Invoke(nameof(ShowLoadPanel), transitionTime + 0.5f);
             _normalInit = true;
@@ -145,9 +150,9 @@ public class Normal1v1Manager : MonoBehaviour
     }
 
     /// <summary>
-    /// Comportamiento del botón del historial
+    /// Comportamiento del botón del editor
     /// </summary>
-    private void HistoryButtonBehave()
+    private void EditButtonBehave()
     {
         // Si no se ha inicializado entonces se hará la animación de movimiento
         // y luego se muestra el panel correspondiente
@@ -155,15 +160,15 @@ public class Normal1v1Manager : MonoBehaviour
         {
             backButton.mov.Init(transitionTime);
             loadButton.mov.Init(transitionTime);
-            historyButton.mov.Init(transitionTime);
+            editButton.mov.Init(transitionTime);
 
-            Invoke(nameof(ShowHistoryPanel), transitionTime);
+            Invoke(nameof(ShowEditPanel), transitionTime);
             _normalInit = true;
         }
         else
         {
-            historyButton.panelToEnable.SetActive(true);
-            historyButton.panelToDisable.SetActive(false);
+            editButton.panelToEnable.SetActive(true);
+            editButton.panelToDisable.SetActive(false);
         }
     }
 //------------------------------------------------------------//
@@ -173,9 +178,9 @@ public class Normal1v1Manager : MonoBehaviour
     /// </summary>
     private void ResetPositions()
     {
-        backButton.button.gameObject.transform.position = _backInitPos;
-        loadButton.button.gameObject.transform.position = _loadInitPos;
-        historyButton.button.gameObject.transform.position = _histInitPos;
+        backButton.rectPos.anchoredPosition = _backInitPos;
+        loadButton.rectPos.anchoredPosition = _loadInitPos;
+        editButton.rectPos.anchoredPosition = _editInitPos;
     }
 
     /// <summary>
@@ -187,11 +192,11 @@ public class Normal1v1Manager : MonoBehaviour
     }
  
     /// <summary>
-    /// Muestra el panel de historial
+    /// Muestra el panel de editor
     /// </summary>
-    private void ShowHistoryPanel()
+    private void ShowEditPanel()
     {
-        historyButton.panelToEnable.SetActive(true);
+        editButton.panelToEnable.SetActive(true);
     }
 
 

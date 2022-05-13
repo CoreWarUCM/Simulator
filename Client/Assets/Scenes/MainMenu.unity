@@ -1496,7 +1496,7 @@ GameObject:
   - component: {fileID: 207034840}
   - component: {fileID: 207034841}
   m_Layer: 5
-  m_Name: TargetHistory
+  m_Name: TargetEdit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10044,7 +10044,7 @@ GameObject:
   - component: {fileID: 1277531278}
   - component: {fileID: 1277531279}
   m_Layer: 5
-  m_Name: TargetCargar
+  m_Name: TargetLoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13883,16 +13883,19 @@ MonoBehaviour:
     - {fileID: 1431202804}
     - {fileID: 1534077569}
     mov: {fileID: 803657567}
+    rectPos: {fileID: 803657563}
   loadButton:
     button: {fileID: 1316983149}
     panelToEnable: {fileID: 2089208165}
     panelToDisable: {fileID: 971286909}
     mov: {fileID: 1316983152}
-  historyButton:
+    rectPos: {fileID: 1316983148}
+  editButton:
     button: {fileID: 590365144}
     panelToEnable: {fileID: 971286909}
     panelToDisable: {fileID: 2089208165}
     mov: {fileID: 590365147}
+    rectPos: {fileID: 590365143}
   playButton: {fileID: 725035108}
   states:
   - {fileID: 384853823}
