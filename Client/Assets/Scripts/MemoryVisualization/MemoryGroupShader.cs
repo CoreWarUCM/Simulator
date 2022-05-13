@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ComputeShaderUtility;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MemoryGroupShader : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class MemoryGroupShader : MonoBehaviour
         ComputeHelper.CreateRenderTexture(ref _texture, _width, _height);
 
         computeShader.SetTexture(0, "Texture", _texture);
-        GetComponent<MeshRenderer>().material.mainTexture = _texture;
+        _texture.name = "ShaderTexture";
+        GetComponent<RawImage>().texture = _texture;
 
         _cells = new Color[numCells];
 
@@ -58,25 +60,10 @@ public class MemoryGroupShader : MonoBehaviour
         _cells[index] = color;
         ComputeHelper.CreateAndSetBuffer<Color>(ref _cellsBuffer, _cells, computeShader, "cells");
     }
-
+    
 
     private void OnDestroy()
     {
         _cellsBuffer.Release();
     }
-
-
-    // struct Cell
-    // {
-    //     public Vector2Int startPos;
-    //     public int width;
-    //     public Color color; 
-    //
-    //     public Cell(Vector2Int startPos, int width, Color color)
-    //     {
-    //         this.startPos = startPos;
-    //         this.width = width;
-    //         this.color = color;
-    //     }
-    // }
 }

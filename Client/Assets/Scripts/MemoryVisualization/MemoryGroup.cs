@@ -56,8 +56,7 @@ public class MemoryGroup : MonoBehaviour
         int y = (int)(x * ratio);
         
         _groupShader.Init(size,verticalMode,new Vector2Int(x,y));
-        RegroupMemory(verticalMode);
-        
+
         BattleSimulator bs = GetComponent<BattleSimulator>();
         bs.Subscribe(Simulator.MessageType.BlockModify, (BaseMessage bm) =>
         {
@@ -81,31 +80,9 @@ public class MemoryGroup : MonoBehaviour
         _virus2Author.text = GameManager.Instance._virus[1].GetAuthor();
         _virus2Text.text = GameManager.Instance._virus[1].GetName();
     }
-
-
-    public void RegroupMemory( bool verticalMode)
-    {
-        float hRatio = 1, vRatio = 1;
-
-        if (verticalMode)
-            hRatio = _ratio;
-        else
-            vRatio = _ratio;
-        _groupShader.transform.localScale = new Vector3(100*hRatio, 1, 100*vRatio);
-    }
-
+    
     public void SetColor(int index, Color color)
     {
         _groupShader.SetColor(index,color);
-    }
-
-    public Vector3 GroupCenter()
-    {
-        return _groupShader.transform.position;
-    }
-
-    public float RenderSize()
-    {
-        return _groupShaderR.bounds.size.y;
     }
 }
