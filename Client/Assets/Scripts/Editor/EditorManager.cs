@@ -6,24 +6,18 @@ using UnityEngine;
 
 public class EditorManager : MonoBehaviour
 {
-    [SerializeField] 
-    private TMP_InputField _editorField;
+    [SerializeField] private TMP_InputField _editorField;
 
-    [SerializeField] 
-    private EditorIntellisense _intellisense;
+    [SerializeField] private EditorIntellisense _intellisense;
 
     [SerializeField] private float editTime = 0.5f;
 
-    [SerializeField]
-    private bool _checkedEdit = false;
-    [SerializeField]
-    private float _lastEdit = 0;
-    
+    [SerializeField] private bool _checkedEdit = false, intellisense = false;
+    [SerializeField] private float _lastEdit = 0;
+
     private string _lastText = "";
-    
-    
-    
-    
+
+
     void Start()
     {
         if (!_editorField || !_intellisense)
@@ -32,9 +26,13 @@ public class EditorManager : MonoBehaviour
             Destroy(this);
             return;
         }
-        FullTextCheck();
+
         _lastEdit = Time.time;
-        StartCoroutine(CheckChanges());
+        if (intellisense)
+        {
+            FullTextCheck();
+            StartCoroutine(CheckChanges());
+        }
     }
 
     public void OnTextEdited()
@@ -48,7 +46,7 @@ public class EditorManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(editTime);
-            if(Time.time - _lastEdit >= editTime && !_checkedEdit)
+            if (Time.time - _lastEdit >= editTime && !_checkedEdit)
                 FullTextCheck();
         }
     }
@@ -58,9 +56,9 @@ public class EditorManager : MonoBehaviour
         _checkedEdit = true;
         string text = _editorField.text;
 
-        if(_lastText == text)
+        if (_lastText == text)
             return;
-        
+
         _intellisense.CheckStyles(ref text, _lastText);
 
         _lastText = text;
@@ -69,8 +67,10 @@ public class EditorManager : MonoBehaviour
 
     public void SaveWarrior()
     {
-        string tagText = _editorField.text;
-        string outText = Regex.Replace(tagText, "<.*?>", string.Empty);
+        string outText = _editorField.text;
+        if (intellisense)
+             outText = Regex.Replace(outText, "<.*?>", string.Empty);
+        
         GameManager.Instance.SaveVirus(outText);
     }
 }
