@@ -8,6 +8,10 @@ public class Loader : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         UserConfig.Init();
+    }
+
+    public void LoadScene()
+    {
         SceneManager.LoadScene(1);
     }
 

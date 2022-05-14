@@ -188,7 +188,7 @@ public class Normal1v1Manager : MonoBehaviour
     /// </summary>
     private void ShowLoadPanel()
     {
-        if(loadButton.panelToEnable.transform.parent.parent.gameObject.activeSelf)
+        if(backButton.objsToDisable[0].activeSelf)
             loadButton.panelToEnable.SetActive(true);
     }
  

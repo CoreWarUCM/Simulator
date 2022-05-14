@@ -52,6 +52,7 @@ public class ButtonMovement : MonoBehaviour
         
         while (fracJourney < 1.0f)
         {
+            // Move to the target end position.
             transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
 
             yield return null;
@@ -65,6 +66,5 @@ public class ButtonMovement : MonoBehaviour
         }
     } 
 
-    // Move to the target end position.
 
 }
