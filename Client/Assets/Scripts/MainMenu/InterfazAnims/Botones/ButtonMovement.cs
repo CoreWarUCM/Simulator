@@ -22,35 +22,49 @@ public class ButtonMovement : MonoBehaviour
     // Velocidad del movimiento
     private float speed;
 
+
+    private void Awake()
+    {
+        startMarker = startPos.position;
+        endMarker = targetPos.position;
+    }
+    
     public void Init(float t)
     {
         // Keep a note of the time the movement started.
         startTime = Time.time;
-        startMarker = startPos.position;
-        endMarker = targetPos.position;
         // Calculate the journey length.
         distance = Vector3.Distance(startMarker, endMarker);
         // vel = dist / time
         time = t;
         speed = distance / time;
-        InvokeRepeating(nameof(AnimationLoop), 0.0f, Time.deltaTime);
+        StartCoroutine(AnimationLoop());
     }
 
-    // Move to the target end position.
-    private void AnimationLoop()
+
+    private IEnumerator AnimationLoop()
     {
         // Distance moved equals elapsed time times speed..
         float distCovered = (Time.time - startTime) * speed;
 
         // Fraction of journey completed equals current distance divided by total distance.
         float fracJourney = distCovered / distance;
-
-        // Set our position as a fraction of the distance between the markers.
-        transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
         
-        if (fracJourney < 1.0f) return;
-        CancelInvoke();
-    }
-    
-    
+        while (fracJourney < 1.0f)
+        {
+            transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
+
+            yield return null;
+            
+            // Distance moved equals elapsed time times speed..
+            distCovered = (Time.time - startTime) * speed;
+
+            // Fraction of journey completed equals current distance divided by total distance.
+            fracJourney = distCovered / distance;
+            // Set our position as a fraction of the distance between the markers.
+        }
+    } 
+
+    // Move to the target end position.
+
 }

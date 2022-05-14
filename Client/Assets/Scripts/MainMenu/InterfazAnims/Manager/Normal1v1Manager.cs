@@ -139,7 +139,7 @@ public class Normal1v1Manager : MonoBehaviour
             loadButton.mov.Init(transitionTime);
             editButton.mov.Init(transitionTime);
 
-            Invoke(nameof(ShowLoadPanel), transitionTime + 0.5f);
+            Invoke(nameof(ShowLoadPanel), transitionTime + 0.1f);
             _normalInit = true;
         }
         else
@@ -188,7 +188,8 @@ public class Normal1v1Manager : MonoBehaviour
     /// </summary>
     private void ShowLoadPanel()
     {
-        loadButton.panelToEnable.SetActive(true);
+        if(loadButton.panelToEnable.transform.parent.parent.gameObject.activeSelf)
+            loadButton.panelToEnable.SetActive(true);
     }
  
     /// <summary>

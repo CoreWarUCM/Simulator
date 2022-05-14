@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="02e9234e-792c-47ac-95ee-0f512eba268b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Base.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Base.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroupShader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroupShader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemorySetup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemorySetup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryShader.compute" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/InterfazAnims/Botones/ButtonMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/InterfazAnims/Botones/ButtonMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,18 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "rider.run.widget.enabled.cache": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Desktop/AAAAAA\Client.exe" />
@@ -123,6 +118,8 @@
       <workItem from="1652389045797" duration="5805000" />
       <workItem from="1652443534985" duration="1728000" />
       <workItem from="1652469604745" duration="1255000" />
+      <workItem from="1652549047368" duration="603000" />
+      <workItem from="1652554030673" duration="286000" />
     </task>
     <servers />
   </component>
