@@ -4,15 +4,30 @@ using UnityEngine.SceneManagement;
 
 public class Loader : MonoBehaviour
 {
+    public FadeAnim fadeAnim;
+    
     void Awake()
     {
         DontDestroyOnLoad(this);
         UserConfig.Init();
+        if (fadeAnim)
+        {
+            fadeAnim.gameObject.SetActive(true);
+        }
     }
 
-    public void LoadScene()
+    private void Update()
     {
-        SceneManager.LoadScene(1);
+        if (Input.GetMouseButtonDown(0) && fadeAnim)
+        {
+            fadeAnim.gameObject.SetActive(true);
+            fadeAnim.FadeToLevel(1);
+        }
+    }
+    
+    public static void LoadScene(int levelToLoad)
+    {
+        SceneManager.LoadScene(levelToLoad);
     }
 
     private void OnApplicationQuit()
