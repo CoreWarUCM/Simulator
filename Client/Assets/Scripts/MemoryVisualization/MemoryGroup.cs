@@ -8,34 +8,29 @@ using TMPro;
 
 public class MemoryGroup : MonoBehaviour
 {
-    [SerializeField]
-    private MemoryGroupShader _groupShader;
+    [SerializeField] private MemoryGroupShader _groupShader;
 
-    [SerializeField]
-    private Color _warrior1Color;
+    [SerializeField] private Color _virus1Color;
 
-    [SerializeField]
-    private Color _warrior2Color;
+    [SerializeField] private Color _author1Color;
 
-    [SerializeField]
-    private Color _warrior1ExecuteColor;
+    [SerializeField] private Color _virus1ExecuteColor;
+    
+    [SerializeField] private Color _virus2Color;
 
-    [SerializeField]
-    private Color _warrior2ExecuteColor;
+    [SerializeField] private Color _author2Color;
+    
+    [SerializeField] private Color _virus2ExecuteColor;
 
     private Renderer _groupShaderR;
 
     private float _ratio;
 
-    [SerializeField]
-    private TextMeshProUGUI _virus1Text;
-    [SerializeField]
-    private TextMeshProUGUI _virus2Text;
-    [SerializeField]
-    private TextMeshProUGUI _virus1Author;
-    [SerializeField]
-    private TextMeshProUGUI _virus2Author;
-    
+    [SerializeField] private TextMeshProUGUI _virus1Text;
+    [SerializeField] private TextMeshProUGUI _virus2Text;
+    [SerializeField] private TextMeshProUGUI _virus1Author;
+    [SerializeField] private TextMeshProUGUI _virus2Author;
+
     private void Awake()
     {
         _groupShaderR = _groupShader.GetComponent<Renderer>();
@@ -52,37 +47,40 @@ public class MemoryGroup : MonoBehaviour
 
         _ratio = ratio;
 
-        int x = (int)Math.Ceiling(Math.Sqrt(size / ratio));
-        int y = (int)(x * ratio);
-        
-        _groupShader.Init(size,verticalMode,new Vector2Int(x,y));
+        int x = (int) Math.Ceiling(Math.Sqrt(size / ratio));
+        int y = (int) (x * ratio);
+
+        _groupShader.Init(size, verticalMode, new Vector2Int(x, y));
 
         BattleSimulator bs = GetComponent<BattleSimulator>();
-        bs.Subscribe(Simulator.MessageType.BlockModify, (BaseMessage bm) =>
-        {
-            SetColor(((BlockModifyMessage)bm).modifiedLcoation, (bm.warrior == 1 ? _warrior1Color : _warrior2Color));
-        });
+        bs.Subscribe(Simulator.MessageType.BlockModify,
+            (BaseMessage bm) =>
+            {
+                SetColor(((BlockModifyMessage) bm).modifiedLcoation, (bm.warrior == 1 ? _virus1Color : _virus2Color));
+            });
 
-        bs.Subscribe(Simulator.MessageType.BlockExecuted, (BaseMessage bm) =>
-        {
-            SetColor(((BlockExecutedMessage)bm).modifiedLcoation, (bm.warrior == 1 ? _warrior1ExecuteColor : _warrior2ExecuteColor));
-        });
+        bs.Subscribe(Simulator.MessageType.BlockExecuted,
+            (BaseMessage bm) =>
+            {
+                SetColor(((BlockExecutedMessage) bm).modifiedLcoation,
+                    (bm.warrior == 1 ? _virus1ExecuteColor : _virus2ExecuteColor));
+            });
 
-        _virus1Author.color = _warrior1ExecuteColor;
-        _virus1Text.color = _warrior1Color;
-        
-        _virus2Author.color = _warrior2ExecuteColor;
-        _virus2Text.color = _warrior2ExecuteColor;
+        _virus1Author.color = _author1Color;
+        _virus1Text.color = _virus1Color;
+
+        _virus2Author.color = _author2Color;
+        _virus2Text.color = _virus2Color;
 
         _virus1Author.text = GameManager.Instance._virus[0].GetAuthor();
         _virus1Text.text = GameManager.Instance._virus[0].GetName();
-        
+
         _virus2Author.text = GameManager.Instance._virus[1].GetAuthor();
         _virus2Text.text = GameManager.Instance._virus[1].GetName();
     }
-    
+
     public void SetColor(int index, Color color)
     {
-        _groupShader.SetColor(index,color);
+        _groupShader.SetColor(index, color);
     }
 }
