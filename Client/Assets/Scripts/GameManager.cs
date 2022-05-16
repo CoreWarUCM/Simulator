@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private VirusIO _virusIO;
-    
+
     public Dictionary<int, VirusIO.Virus> _virus;
 
     [SerializeField] private BattleSimulator simulator;
@@ -72,7 +72,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadVirus(int player, VirusState state = null,  Action<int,VirusState, VirusIO.Virus> callback = null, Action extraCallBack = null)
+    public void LoadVirus(int player, VirusState state = null, Action<int, VirusState, VirusIO.Virus> callback = null,
+        Action extraCallBack = null)
     {
         if (_virusIO.dialogOpen)
             return;
@@ -104,11 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        //Comprobar si podemos empezar partida, pero me da pereza pensar ahora
-        if (true)
-        {
-            SceneManager.LoadScene("Base");
-        }
+        SceneManager.LoadScene(2);
     }
 
     public void ClearVirusList()
