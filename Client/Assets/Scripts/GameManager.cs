@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("This should not be possible; starting battle scene without warriors :C");
             }
 
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
