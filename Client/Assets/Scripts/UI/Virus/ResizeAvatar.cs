@@ -15,13 +15,13 @@ public class ResizeAvatar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!avatarSprite) return;
-
         UpdateAvatar();
     }
 
-    private void UpdateAvatar()
+    public void UpdateAvatar()
     {
+        if (!avatarSprite) return;
+
         var resetColor = new Color(1, 1, 1, 1);
         image.color = resetColor;
 

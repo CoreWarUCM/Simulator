@@ -108,6 +108,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void ClearVirusList()
     {
         _virus.Clear();
