@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="" />
+    <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,10 +80,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="4148">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="4148" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -90,7 +94,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="02e9234e-792c-47ac-95ee-0f512eba268b" name="Changes" comment="" />
+      <changelist id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="" />
       <created>1637437297178</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -119,6 +123,7 @@
       <workItem from="1652567416208" duration="3648000" />
       <workItem from="1652633096492" duration="975000" />
       <workItem from="1652691319173" duration="1501000" />
+      <workItem from="1652780726966" duration="4862000" />
     </task>
     <servers />
   </component>
@@ -147,7 +152,14 @@
       <pinned-members>
         <PinnedItemInfo parentTag="Frame#BlinkEffect.ImageBlink" memberName="this" />
         <PinnedItemInfo parentTag="Type#Normal1v1Manager" memberName="backButton" />
+        <PinnedItemInfo parentTag="Type#UnityEngine.RectTransform" memberName="rect" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="this.avatarGO.rect.m_Height" />
+        <watch expression="this.avatarGO.tag" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
