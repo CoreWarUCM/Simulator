@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -16,7 +15,6 @@ public class EditorManager : MonoBehaviour
     [SerializeField] private float _lastEdit = 0;
 
     private string _lastText = "";
-
 
     void Start()
     {
@@ -72,5 +70,15 @@ public class EditorManager : MonoBehaviour
              outText = Regex.Replace(outText, "<.*?>", string.Empty);
         
         GameManager.Instance.SaveVirus(outText);
+    }
+
+    private void LoadCallback(Virus v)
+    {
+        _editorField.text = string.Join("\n", v.GetRawData());
+    }
+
+    public void LoadToEdit()
+    {
+        StartCoroutine(GameManager.Instance.GetVirusIO().LoadVirus(-1,null,null,LoadCallback));
     }
 }

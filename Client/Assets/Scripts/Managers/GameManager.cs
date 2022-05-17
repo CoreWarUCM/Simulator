@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     {
         if (_virusIO.dialogOpen)
             return;
-        StartCoroutine(_virusIO.LoadWarrior(player, state, callback, extraCallBack));
+        StartCoroutine(_virusIO.LoadVirus(player, state, callback, extraCallBack));
     }
     
     public void SaveVirus(string rawData)
@@ -89,5 +89,10 @@ public class GameManager : MonoBehaviour
     public VirusManager GetVirusManager()
     {
         return _virusManager;
+    }
+
+    public VirusIO GetVirusIO()
+    {
+        return _virusIO;
     }
 }

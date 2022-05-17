@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Virus.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Virus.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BattleManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MainMenu/Editor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MainMenu/Editor.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/EditorManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/EditorManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Normal1v1Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Normal1v1Manager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/TournamentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/TournamentManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/Messages/StartMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/Messages/StartMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Clear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Clear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Load.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Load.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Remove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Remove.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/VirusIO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/VirusIO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +132,7 @@
       <workItem from="1652786048536" duration="3898000" />
       <workItem from="1652792852352" duration="12560000" />
       <workItem from="1652815252010" duration="5000000" />
+      <workItem from="1652829818163" duration="811000" />
     </task>
     <servers />
   </component>
