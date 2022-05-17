@@ -9,7 +9,10 @@ RWTexture2D<float4> Texture;
 uint width;
 uint height;
 uint numColls;
+uint numRows;
 uint cellWidth;
+uint cellHeight;
+uint numCells;
 bool grid;
 
 RWStructuredBuffer<float4> cells;
@@ -28,8 +31,19 @@ uint hash(uint state)
 [numthreads(8,8,1)]
 void UpdateCells(uint3 id : SV_DispatchThreadID)
 {
-    int x = numColls - 1 -floor(id.x/cellWidth);
-    int y = (id.y/cellWidth) * numColls;
-    Texture[id.xy] = cells[x+y] - float(1 * (id.x % cellWidth < 5 || id.y % cellWidth < 5)) * grid;
-    Texture[id.xy] += 1 * (id.x < 5 || id.x > width - 5 || id.y < 5 || id.y > height - 5 ) * !grid;
+    int x = floor(id.x/cellWidth);
+    int y = numRows - 1 - floor(id.y/cellHeight);
+
+    int pos = x + y*numColls;
+
+    if(pos >= numCells)
+    {
+        Texture[id.xy] = 1;
+        return;   
+    }
+    
+    if((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid)
+        Texture[id.xy] = 0;
+    else
+        Texture[id.xy] = cells[pos];
 }

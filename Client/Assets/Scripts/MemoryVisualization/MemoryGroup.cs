@@ -24,7 +24,10 @@ public class MemoryGroup : MonoBehaviour
 
     private Renderer _groupShaderR;
 
-    private float _ratio;
+    public static int cellAmount;
+    
+    [SerializeField]
+    private uint cellAmountSet = 8000;
 
     [SerializeField] private TextMeshProUGUI _virus1Text;
     [SerializeField] private TextMeshProUGUI _virus2Text;
@@ -36,21 +39,18 @@ public class MemoryGroup : MonoBehaviour
         _groupShaderR = _groupShader.GetComponent<Renderer>();
     }
 
-    public void SetupMemory(int size, bool verticalMode, float ratio)
+    public void Start()
     {
-        if (size < 100)
+        if (cellAmountSet < 100)
         {
             Debug.LogWarning("Bad Layout Setup, check for null cell || length <= 0 || size <= 100");
             Destroy(gameObject);
             return;
         }
 
-        _ratio = ratio;
+        MemoryGroup.cellAmount = (int)cellAmountSet;
 
-        int x = (int) Math.Ceiling(Math.Sqrt(size / ratio));
-        int y = (int) (x * ratio);
-
-        _groupShader.Init(size, verticalMode, new Vector2Int(x, y));
+        _groupShader.Init(cellAmountSet);
 
         BattleSimulator bs = GetComponent<BattleSimulator>();
         bs.Subscribe(Simulator.MessageType.BlockModify,
