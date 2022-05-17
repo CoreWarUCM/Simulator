@@ -96,18 +96,18 @@ public class Normal1v1Manager : MonoBehaviour
         backButton.Init(BackBehave);
         loadButton.Init(LoadButtonBehave);
         editButton.Init(EditButtonBehave);
+        
+        playButton.onClick.AddListener(PlayBehave);
     }
 
-    public void UpdateVirusList()
+    //------------------------------------------------------------//
+    private void PlayBehave()
     {
-        int players = GameManager.Instance.GetVirusListCount();
-        if (players == 2 && !playButton.interactable)
-        {
-            playButton.interactable = true;
-        }
+        GameManager.Instance.GetVirusManager().SetMode(false);
+        GameManager.Instance.StartGame();
     }
 
-//------------------------------------------------------------//
+    //------------------------------------------------------------//
     private void BackBehave()
     {
         // Se desactivan los elementos necesarios
@@ -204,6 +204,15 @@ public class Normal1v1Manager : MonoBehaviour
 
     public void LoadVirus(int player)
     {
-        Load.LoadVirus(player, states[player],UpdateVirusList);
+        Load.LoadVirus(player, states[player],(Virus v)=>
+        {
+            VirusManager vM = GameManager.Instance.GetVirusManager();
+            vM.SetVersusVirus(player == 0,v);
+            if (vM.IsVersusReady() && !playButton.interactable)
+            {
+                playButton.interactable = true;
+            }
+        });
     }
 }
+

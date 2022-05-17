@@ -6,55 +6,6 @@ using SimpleFileBrowser;
 
 public class VirusIO
 {
-    public struct Virus
-    {
-        private string _path;
-        private string _name;
-        private string _author;
-        private string[] _rawData;
-        private bool validWarrior;
-
-        public Virus(string path, string name, string author, string[] rawData, bool isValid = true)
-        {
-            _path = path;
-            _name = name;
-            _author = author;
-            _rawData = rawData;
-            validWarrior = isValid;
-        }
-
-        public bool isValidWarrior()
-        {
-            return validWarrior;
-        }
-
-        public string GetPath()
-        {
-            return _path;
-        }
-
-        public string GetName()
-        {
-            return _name;
-        }
-
-        public string GetAuthor()
-        {
-            return _author;
-        }
-
-        public string[] GetRawData()
-        {
-            return _rawData;
-        }
-
-        public void DebugInfo()
-        {
-            Debug.Log("Path: " + _path);
-            Debug.Log("Name: " + _name);
-            Debug.Log("Author: " + _author);
-        }
-    }
 
     public bool dialogOpen { get; private set; }
 
@@ -68,7 +19,7 @@ public class VirusIO
         FileBrowser.SetDefaultFilter(".redcode");
     }
 
-    public IEnumerator LoadWarrior(int player, VirusState state = null,  Action<int,VirusState, VirusIO.Virus> callback = null, Action extraCallBack = null)
+    public IEnumerator LoadWarrior(int player, VirusState state = null,  Action<int,VirusState, Virus> callback = null, Action<Virus> virusCallBack = null)
     {
         dialogOpen = true;
         yield return
@@ -102,11 +53,10 @@ public class VirusIO
             }
 
             Virus v = new Virus(path, name, author, rawData);
-            GameManager.Instance.SetVirus(player, v);
             if (callback != null)
                 callback(player, state, v);
-            if (extraCallBack != null && v.isValidWarrior())
-                extraCallBack();
+            if (virusCallBack != null && v.isValidWarrior())
+                virusCallBack(v);
         }
     }
     

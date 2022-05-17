@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private VirusIO.Virus _virusA, _virusB;
-
     [SerializeField] private BattleSimulator battleSimulator;
     [SerializeField] private UIManager UIManager;
 
-    public void Init(VirusIO.Virus A, VirusIO.Virus B)
+    public void Init(VirusPair pair)
     {
-        _virusA = A;
-        _virusB = B;
+        Virus A = pair.A;
+        Virus B = pair.B;
         List<string> virusAData = new List<string>();
         List<string> virusBData = new List<string>();
         Parser.LoadWarriors(A.GetPath(), B.GetPath(),

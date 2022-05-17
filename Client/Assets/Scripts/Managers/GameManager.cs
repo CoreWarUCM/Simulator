@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Simulator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,11 +9,12 @@ public class GameManager : MonoBehaviour
 
     private VirusIO _virusIO;
 
-    public Dictionary<int, VirusIO.Virus> _virus;
-
+    private VirusManager _virusManager;
+    
     [SerializeField] private UIManager uiManager;
 
     [SerializeField] private BattleManager battleManager;
+
     
     private void Awake()
     {
@@ -34,16 +33,17 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            _virusManager = new VirusManager();
             _virusIO = new VirusIO();
             _virusIO.Init();
-
-            _virus = new Dictionary<int, VirusIO.Virus>();
+            
             if (battleManager) //We are in launching in simulation, lets select some warriors by default
             {
                 string PATH = Application.dataPath + "/SampleWarriors/";
                 Debug.Log("EPA QUE VOY: " + PATH);
-                _virus[0] = new VirusIO.Virus(PATH + "imp.redcode", "Debug", "Dev", null, true);
-                _virus[1] = new VirusIO.Virus(PATH + "inversedwarf.redcode", "Debug2", "Dev2", null, true);
+                _virusManager.SetVersusVirus(true,new Virus(PATH + "imp.redcode", "Debug", "Dev", null, true));
+                _virusManager.SetVersusVirus(false,new Virus(PATH + "inversedwarf.redcode", "Debug2", "Dev2", null, true));
+                _virusManager.SetMode(false);
                 SetupBattle();
             }
 
@@ -51,25 +51,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadVirus(int player, VirusState state = null, Action<int, VirusState, VirusIO.Virus> callback = null,
-        Action extraCallBack = null)
+    public void LoadVirus(int player, VirusState state = null, Action<int, VirusState, Virus> callback = null,
+        Action<Virus> extraCallBack = null)
     {
         if (_virusIO.dialogOpen)
             return;
         StartCoroutine(_virusIO.LoadWarrior(player, state, callback, extraCallBack));
     }
-
-
-    public void SetVirus(int player, VirusIO.Virus v)
-    {
-        _virus[player] = v;
-    }
-
-    public VirusIO.Virus GetVirus(int player)
-    {
-        return _virus[player];
-    }
-
+    
     public void SaveVirus(string rawData)
     {
         if (_virusIO.dialogOpen)
@@ -77,14 +66,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(_virusIO.SaveVirus(rawData));
     }
 
-    public void RemoveVirus(int player)
-    {
-        _virus.Remove(player);
-    }
-
     private void SetupBattle()
     {
-        battleManager.Init(_virus[0],_virus[1]);
+        battleManager.Init(_virusManager.GetCurrentVersus());
     }
 
     public void StartGame()
@@ -96,19 +80,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
-    public void ClearVirusList()
-    {
-        _virus.Clear();
-    }
-
-    public int GetVirusListCount()
-    {
-        return _virus.Count;
-    }
-
-    public UIManager getUIManager()
+    
+    public UIManager GetUIManager()
     {
         return uiManager;
+    }
+
+    public VirusManager GetVirusManager()
+    {
+        return _virusManager;
     }
 }

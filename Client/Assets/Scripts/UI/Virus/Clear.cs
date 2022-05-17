@@ -15,7 +15,7 @@ public class Clear : MonoBehaviour
             virus.Reset();
         }
 
-        GameManager.Instance.ClearVirusList();
+        GameManager.Instance.GetVirusManager().ClearVirusList();
 
         if (!_addButton) return;
         _addButton.interactable = true;

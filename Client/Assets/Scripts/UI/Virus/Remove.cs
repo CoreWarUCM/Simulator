@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class Remove : MonoBehaviour
 {
-    
-    
     private VirusState _virus;
     private Button _addButton;
     private int _numPlayers = 0;
@@ -19,10 +17,11 @@ public class Remove : MonoBehaviour
         if (!_virus) return;
 
         var i = _virus.GetPlayerIndex();
-        GameManager.Instance.RemoveVirus(i);
+        VirusManager vM = GameManager.Instance.GetVirusManager();
+        vM.RemoveTournamentVirus(i);
         _virus.Reset();
         _virus = null;
-        var total = GameManager.Instance.GetVirusListCount();
+        var total = vM.GetTournamentCount();
         if (total < 2)
         {
             configButton.interactable = false;

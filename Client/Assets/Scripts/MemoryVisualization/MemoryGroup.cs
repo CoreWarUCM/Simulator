@@ -30,7 +30,7 @@ public class MemoryGroup : MonoBehaviour
 
         _groupShader.Init(cellAmountSet);
 
-        UIManager ui = GameManager.Instance.getUIManager();
+        UIManager ui = GameManager.Instance.GetUIManager();
 
         BattleSimulator bs = GetComponent<BattleSimulator>();
         bs.Subscribe(Simulator.MessageType.BlockModify,

@@ -33,15 +33,16 @@ public class TournamentManager : MonoBehaviour
         }
 
         var state = virusList[player];
-        Load.LoadVirus(player, state, () =>
+        Load.LoadVirus(player, state, (Virus v) =>
         {
             // Si el hueco encontrado es del ultimo jugador, entonces significa que ya no hay mas huecos
             if (player == virusList.Count - 1)
             {
                 addButton.interactable = false;
             }
-
-            var numPlayers = GameManager.Instance.GetVirusListCount();
+            VirusManager vM = GameManager.Instance.GetVirusManager();
+            vM.SetTournamentVirus(player, v);
+            var numPlayers = vM.GetTournamentCount();
             if (!configButton.interactable && numPlayers >= 2)
             {
                 configButton.interactable = true;

@@ -4,12 +4,12 @@ using UnityEngine;
 public static class Load 
 {
 
-    public static void LoadVirus(int player, VirusState state, Action extraCallBack = null)
+    public static void LoadVirus(int player, VirusState state, Action<Virus> extraCallBack = null)
     {
         GameManager.Instance.LoadVirus(player, state, UpdateVirusState, extraCallBack);
     }
     
-    public static void UpdateVirusState(int player,VirusState state, VirusIO.Virus v)
+    public static void UpdateVirusState(int player,VirusState state, Virus v)
     {
         if (!v.isValidWarrior() || !state) return;
         // Indice del jugador
