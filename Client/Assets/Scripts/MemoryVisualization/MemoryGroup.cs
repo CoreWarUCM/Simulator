@@ -1,38 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using Simulator;
-using TMPro;
 
 public class MemoryGroup : MonoBehaviour
 {
     [SerializeField] private MemoryGroupShader _groupShader;
-
-    [SerializeField] private Color _virus1Color;
-
-    [SerializeField] private Color _author1Color;
-
-    [SerializeField] private Color _virus1ExecuteColor;
     
-    [SerializeField] private Color _virus2Color;
-
-    [SerializeField] private Color _author2Color;
-    
-    [SerializeField] private Color _virus2ExecuteColor;
-
     private Renderer _groupShaderR;
 
     public static int cellAmount;
     
     [SerializeField]
     private uint cellAmountSet = 8000;
-
-    [SerializeField] private TextMeshProUGUI _virus1Text;
-    [SerializeField] private TextMeshProUGUI _virus2Text;
-    [SerializeField] private TextMeshProUGUI _virus1Author;
-    [SerializeField] private TextMeshProUGUI _virus2Author;
 
     private void Awake()
     {
@@ -52,31 +30,21 @@ public class MemoryGroup : MonoBehaviour
 
         _groupShader.Init(cellAmountSet);
 
+        UIManager ui = GameManager.Instance.getUIManager();
+
         BattleSimulator bs = GetComponent<BattleSimulator>();
         bs.Subscribe(Simulator.MessageType.BlockModify,
             (BaseMessage bm) =>
             {
-                SetColor(((BlockModifyMessage) bm).modifiedLcoation, (bm.warrior == 1 ? _virus1Color : _virus2Color));
+                SetColor(((BlockModifyMessage) bm).modifiedLcoation, (bm.warrior == 1 ? ui.virus1Color : ui.virus2Color));
             });
 
         bs.Subscribe(Simulator.MessageType.BlockExecuted,
             (BaseMessage bm) =>
             {
                 SetColor(((BlockExecutedMessage) bm).modifiedLcoation,
-                    (bm.warrior == 1 ? _virus1ExecuteColor : _virus2ExecuteColor));
+                    (bm.warrior == 1 ? ui.virus1ExecuteColor : ui.virus2ExecuteColor));
             });
-
-        _virus1Author.color = _author1Color;
-        _virus1Text.color = _virus1Color;
-
-        _virus2Author.color = _author2Color;
-        _virus2Text.color = _virus2Color;
-
-        _virus1Author.text = GameManager.Instance._virus[0].GetAuthor();
-        _virus1Text.text = GameManager.Instance._virus[0].GetName();
-
-        _virus2Author.text = GameManager.Instance._virus[1].GetAuthor();
-        _virus2Text.text = GameManager.Instance._virus[1].GetName();
     }
 
     public void SetColor(int index, Color color)

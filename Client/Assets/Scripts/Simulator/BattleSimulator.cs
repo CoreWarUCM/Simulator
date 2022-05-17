@@ -16,19 +16,21 @@ namespace Simulator
         public List<Action<BaseMessage>>[] _listeners;
         List<string> _warrior1;
         List<string> _warrior2;
-        private bool running = true;
+        private bool running = false;
 
         void Awake(){
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
             for (int i = 0; i < _listeners.Length;i++)
                 _listeners[i] = new List<Action<BaseMessage>>();
-        }
-        void Start()
-        {
+            
             _random = new System.Random();
             _warriorManager = new WarriorManager(_random);
             _commonMemoryManager = new CommonMemoryManager(this);
-
+            
+        }
+        public void StartBattle()
+        {
+            
             //Get current warrior location to load it into memory
             _warriorManager.GetCurrent(out int location, out int warrior);
             List<string> starting_warrior = warrior == 1 ? _warrior1 : _warrior2;
@@ -52,6 +54,8 @@ namespace Simulator
 
             //Subscribe end of simulation callback
             Subscribe(MessageType.Death, (BaseMessage message) => { running = false; }); // this should actually call WM to handle death of thread, but not multithread yet
+
+            running = true;
         }
         
         public void LoadWarriors(List<string> warrior1, List<string> warrior2)

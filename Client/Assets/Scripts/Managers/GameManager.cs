@@ -13,43 +13,22 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<int, VirusIO.Virus> _virus;
 
-    [SerializeField] private BattleSimulator simulator;
+    [SerializeField] private UIManager uiManager;
 
-    private List<string> _warrior1Data;
-    private List<string> _warrior2Data;
-
-    private void SetUpWarriors(VirusIO.Virus first, VirusIO.Virus second)
-    {
-        Instance._warrior1Data = new List<string>();
-        Instance._warrior2Data = new List<string>();
-        Parser.LoadWarriors(first.GetPath(), second.GetPath(),
-            out Instance._warrior1Data, out Instance._warrior2Data);
-
-        Instance.simulator.LoadWarriors(Instance._warrior1Data, Instance._warrior2Data);
-    }
-
+    [SerializeField] private BattleManager battleManager;
+    
     private void Awake()
     {
         if (GameManager.Instance)
         {
             //Pass simulator for initialization
-            if (simulator != null && Instance.simulator == null)
-                Instance.simulator = simulator;
-            if (Instance._virus?.Count > 0)
+            if (battleManager)
             {
-                Debug.Log("Initializing BattleSimulator");
-                foreach (KeyValuePair<int, VirusIO.Virus> pair in Instance._virus)
-                {
-                    Debug.Log($"{pair.Key}:{pair.Value.GetPath()}");
-                }
-
-                SetUpWarriors(Instance._virus[0], Instance._virus[1]);
+                Instance.battleManager = battleManager;
+                Instance.SetupBattle();
             }
-            else
-            {
-                Debug.LogError("This should not be possible; starting battle scene without warriors :C");
-            }
-
+            if (uiManager)
+                Instance.uiManager = uiManager;
             Destroy(this.gameObject);
         }
         else
@@ -59,13 +38,13 @@ public class GameManager : MonoBehaviour
             _virusIO.Init();
 
             _virus = new Dictionary<int, VirusIO.Virus>();
-            if (simulator) //We are in launching in simulation, lets select some warriors by default
+            if (battleManager) //We are in launching in simulation, lets select some warriors by default
             {
                 string PATH = Application.dataPath + "/SampleWarriors/";
                 Debug.Log("EPA QUE VOY: " + PATH);
                 _virus[0] = new VirusIO.Virus(PATH + "imp.redcode", "Debug", "Dev", null, true);
                 _virus[1] = new VirusIO.Virus(PATH + "inversedwarf.redcode", "Debug2", "Dev2", null, true);
-                SetUpWarriors(_virus[0], _virus[1]);
+                SetupBattle();
             }
 
             DontDestroyOnLoad(this.gameObject);
@@ -103,6 +82,11 @@ public class GameManager : MonoBehaviour
         _virus.Remove(player);
     }
 
+    private void SetupBattle()
+    {
+        battleManager.Init(_virus[0],_virus[1]);
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(2);
@@ -121,5 +105,10 @@ public class GameManager : MonoBehaviour
     public int GetVirusListCount()
     {
         return _virus.Count;
+    }
+
+    public UIManager getUIManager()
+    {
+        return uiManager;
     }
 }

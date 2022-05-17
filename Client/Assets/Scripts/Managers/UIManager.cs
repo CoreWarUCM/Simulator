@@ -7,6 +7,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Results results;
     [SerializeField] private VirusUI virusA;
     [SerializeField] private VirusUI virusB;
+    
+    public Color virus1Color;
+    public Color author1Color;
+    public Color virus1ExecuteColor;
+    public Color virus2Color;
+    public Color author2Color;
+    public Color virus2ExecuteColor;
 
     [System.Serializable]
     private class VirusUI
@@ -25,6 +32,16 @@ public class UIManager : MonoBehaviour
         public TextMeshProUGUI winnerAuthorText;
         public Image winnerAvatar;
         public ResizeAvatar resize;
+    }
+
+
+    private void Awake()
+    {
+        virusA.authorName.color = author1Color;
+        virusA.virusName.color = virus1Color;
+
+        virusB.authorName.color = author2Color;
+        virusB.virusName.color = virus2Color;
     }
 
     public void ShowResults(int winner)
@@ -55,5 +72,17 @@ public class UIManager : MonoBehaviour
                 results.resize.avatarSprite = null;
                 break;
         }
+    }
+
+    public void SetVirusA(string name, string author)
+    {
+        virusA.authorName.text = author;
+        virusA.virusName.text = name;
+    }
+    
+    public void SetVirusB(string name, string author)
+    {
+        virusB.authorName.text = author;
+        virusB.virusName.text = name;
     }
 }

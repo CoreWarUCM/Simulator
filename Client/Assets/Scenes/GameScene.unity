@@ -421,6 +421,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 777676984}
+        m_TargetAssemblyTypeName: BattleManager, Game
+        m_MethodName: StartBattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &100231078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,10 +498,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2106944032}
   - {fileID: 1609132301}
+  - {fileID: 777676983}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &113794555
 GameObject:
@@ -799,7 +811,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.1
+  m_fontSize: 62.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1285,7 +1297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &318566215
 GameObject:
@@ -1637,7 +1649,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 106494718}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 829149499402574127, guid: bc08e87f66beb17489e0902600e2bb5d, type: 3}
       propertyPath: m_Name
@@ -1647,6 +1659,14 @@ PrefabInstance:
       propertyPath: simulator
       value: 
       objectReference: {fileID: 1799577044}
+    - target: {fileID: 3259418039827611609, guid: bc08e87f66beb17489e0902600e2bb5d, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 1609132302}
+    - target: {fileID: 3259418039827611609, guid: bc08e87f66beb17489e0902600e2bb5d, type: 3}
+      propertyPath: battleManager
+      value: 
+      objectReference: {fileID: 777676984}
     - target: {fileID: 4000478773129816124, guid: bc08e87f66beb17489e0902600e2bb5d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2939,6 +2959,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!1 &777676982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777676983}
+  - component: {fileID: 777676984}
+  m_Layer: 0
+  m_Name: BattleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777676983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777676982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 106494718}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &777676984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777676982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b77d7951e185834d9b7c451a79efce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleSimulator: {fileID: 1799577044}
+  UIManager: {fileID: 1609132302}
 --- !u!1 &801682971
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,7 +4190,7 @@ Transform:
   - {fileID: 1799577043}
   - {fileID: 1604358323}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1235851316
 GameObject:
@@ -4580,7 +4645,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1561910399
 GameObject:
@@ -4679,7 +4744,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 106494718}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1609132302
 MonoBehaviour:
@@ -4709,6 +4774,12 @@ MonoBehaviour:
     authorName: {fileID: 1260887678}
     virusAvatar: {fileID: 1319892835}
     resize: {fileID: 1319892837}
+  virus1Color: {r: 1, g: 0, b: 0, a: 1}
+  author1Color: {r: 1, g: 0, b: 0, a: 1}
+  virus1ExecuteColor: {r: 1, g: 0, b: 0, a: 1}
+  virus2Color: {r: 0, g: 0, b: 1, a: 1}
+  author2Color: {r: 0, g: 0, b: 1, a: 1}
+  virus2ExecuteColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1639557515
 GameObject:
   m_ObjectHideFlags: 0
@@ -4829,7 +4900,7 @@ Transform:
   m_LocalScale: {x: 2.657588, y: 2.6992543, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1640816361
 GameObject:
@@ -5689,7 +5760,7 @@ RectTransform:
   - {fileID: 158286999}
   - {fileID: 5344886}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5850,17 +5921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groupShader: {fileID: 1793479805}
-  _virus1Color: {r: 0.5849056, g: 0.09104664, b: 0.12063694, a: 1}
-  _author1Color: {r: 0.58431375, g: 0.09019608, b: 0.12156863, a: 1}
-  _virus1ExecuteColor: {r: 1, g: 0, b: 0, a: 0.62352943}
-  _virus2Color: {r: 0.09411712, g: 0.13702776, b: 0.4245283, a: 1}
-  _author2Color: {r: 0.09411765, g: 0.13725491, b: 0.42352942, a: 1}
-  _virus2ExecuteColor: {r: 0.11372549, g: 0.13725491, b: 0.8901961, a: 0.62352943}
   cellAmountSet: 8000
-  _virus1Text: {fileID: 184549481}
-  _virus2Text: {fileID: 2019232395}
-  _virus1Author: {fileID: 1721939222}
-  _virus2Author: {fileID: 1260887678}
 --- !u!4 &1799577043
 Transform:
   m_ObjectHideFlags: 0
@@ -6786,11 +6847,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102482341}
   m_CullTransparentMesh: 1
---- !u!4 &2106944032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4000478773129816124, guid: bc08e87f66beb17489e0902600e2bb5d, type: 3}
-  m_PrefabInstance: {fileID: 378649429}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112893402
 GameObject:
   m_ObjectHideFlags: 0
