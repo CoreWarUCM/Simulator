@@ -1846,6 +1846,7 @@ GameObject:
   - component: {fileID: 484218273}
   - component: {fileID: 484218272}
   - component: {fileID: 484218271}
+  - component: {fileID: 484218274}
   m_Layer: 5
   m_Name: SI
   m_TagString: Untagged
@@ -1917,9 +1918,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1672035503}
-        m_TargetAssemblyTypeName: GameManager, Game
-        m_MethodName: BackToMenu
+      - m_Target: {fileID: 484218274}
+        m_TargetAssemblyTypeName: BackToMenu, Game
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1967,6 +1968,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484218269}
   m_CullTransparentMesh: 1
+--- !u!114 &484218274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484218269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139c6d58151b41e478598c6cfd86f048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &487057776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,9 +2571,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1672035503}
-        m_TargetAssemblyTypeName: GameManager, Game
-        m_MethodName: BackToMenu
+      - m_Target: {fileID: 484218274}
+        m_TargetAssemblyTypeName: BackToMenu, Game
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
