@@ -16995,6 +16995,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822285979375150995, guid: d06e328c8f7f3da4f9ae2ac67380cb42, type: 3}
+      propertyPath: m_Text
+      value: ';redcode
+
+        ;name name
+
+        ;author author
+
+        MOV 0
+        , 1
+
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822285979375150995, guid: d06e328c8f7f3da4f9ae2ac67380cb42, type: 3}
       propertyPath: m_VerticalScrollbar
       value: 
       objectReference: {fileID: 2001984763}

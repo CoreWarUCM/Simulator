@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             }
             if (uiManager)
                 Instance.uiManager = uiManager;
-            Destroy(this.gameObject);
+            Destroy(this);
         }
         else
         {
