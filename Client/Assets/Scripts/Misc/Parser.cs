@@ -15,7 +15,7 @@ public class Parser
     // This should only be called by GameManager when changin scenes
     public static void LoadWarriors(string warrior1Path, string warrior2Path, out List<string> warrior1Data, out List<string> warrior2Data)
     {
-        PATH = Application.dataPath;
+        PATH = Application.streamingAssetsPath;
 
 
         warriorData = new List<string>();

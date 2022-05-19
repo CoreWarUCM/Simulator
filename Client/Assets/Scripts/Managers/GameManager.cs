@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
             if (battleManager) //We are in launching in simulation, lets select some warriors by default
             {
-                string PATH = Application.dataPath + "/SampleWarriors/";
+                string PATH = Application.streamingAssetsPath + "/SampleWarriors/";
                 Debug.Log("EPA QUE VOY: " + PATH);
                 _virusManager.SetVersusVirus(true, new Virus(PATH + "imp.redcode", "Debug", "Dev", null, true));
                 _virusManager.SetVersusVirus(false, new Virus(PATH + "inversedwarf.redcode", "Debug2", "Dev2", null, true));

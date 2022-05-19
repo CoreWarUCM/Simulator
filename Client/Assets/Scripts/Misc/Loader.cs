@@ -8,6 +8,8 @@ public class Loader : MonoBehaviour
     
     void Awake()
     {
+        Application.targetFrameRate = -1;
+        QualitySettings.vSyncCount = 0;
         DontDestroyOnLoad(this);
         UserConfig.Init();
         if (fadeAnim)

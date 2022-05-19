@@ -31,8 +31,8 @@ public static class UserConfig
         else
         {
             _config = new Config();
-            _config.lastLoadPath = Application.dataPath;
-            _config.lastSavePath = Application.dataPath;
+            _config.lastLoadPath = Application.streamingAssetsPath + "/SampleWarriors";
+            _config.lastSavePath = Application.streamingAssetsPath + "/SampleWarriors";
         }
     }
 

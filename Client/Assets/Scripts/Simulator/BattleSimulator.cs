@@ -69,8 +69,10 @@ namespace Simulator
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            if(running)
+            if(running){
                 Step();
+                Step();
+            }
         }
 
         public void Step()
