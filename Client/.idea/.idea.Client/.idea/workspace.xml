@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/bars.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/dwarf.redcode" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/dwarf.redcode.meta" beforeDir="false" />
@@ -18,6 +19,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/prueba.redcode" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/prueba.redcode.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Loader.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Parser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" afterDir="false" />
@@ -107,10 +109,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20308">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="20308" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -185,17 +187,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs</url>
-          <line>31</line>
-          <properties documentPath="G:\MisCosas\VsProyectos\Simulator\Client\Assets\Scripts\Managers\VirusManager.cs" initialLine="28" containingFunctionPresentation="method 'SetTournamentVirus'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs</url>
+          <line>45</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" initialLine="45" containingFunctionPresentation="method 'Awake'">
             <startOffsets>
-              <option value="588" />
+              <option value="1207" />
             </startOffsets>
             <endOffsets>
-              <option value="589" />
+              <option value="1303" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -19,6 +19,7 @@ public class VirusManager
 
     public void SetVersusVirus(bool first, Virus v)
     {
+        Debug.Log("PRINT");
         if (first)
             _versus.A = v;
         else

@@ -28,20 +28,25 @@ public class Parser
         Debug.Log("EH: " +warrior1Path);
         Debug.Log("EH: " +warrior2Path);
         Debug.Log("EH: " +pmarsDebugger.StartInfo.FileName);
-        pmarsDebugger.StartInfo.Arguments = $"{warrior1Path} {warrior2Path} .";
+        string copyPath1 = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
+        System.IO.File.Copy(warrior1Path,copyPath1);
+        string copyPath2 = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
+        System.IO.File.Copy(warrior2Path,copyPath2);
+
+        pmarsDebugger.StartInfo.Arguments = $"{copyPath1} {copyPath2} .";
         pmarsDebugger.StartInfo.UseShellExecute = false;
         // pmarsDebugger.StartInfo.CreateNoWindow = true;
         pmarsDebugger.StartInfo.RedirectStandardOutput = true;
         pmarsDebugger.StartInfo.RedirectStandardError = true;
         pmarsDebugger.StartInfo.RedirectStandardInput = true;
         pmarsDebugger.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-        
+
         pmarsDebugger.Start(); 
         
         //Error callback
         pmarsDebugger.ErrorDataReceived += (sender, args) => {
-            //if (args.Data != null && args.Data.Trim() != "") 
-              //  Debug.LogError(args.Data);
+//            if (args.Data != null && args.Data.Trim() != "") 
+//                Debug.LogError(args.Data);
         };
         pmarsDebugger.BeginErrorReadLine();
 
@@ -74,6 +79,13 @@ public class Parser
         {
             Debug.LogError(e.Message);
         }
+        finally
+        {
+            if(System.IO.File.Exists(copyPath1))
+                System.IO.File.Delete(copyPath1);
+            if(System.IO.File.Exists(copyPath2))
+                System.IO.File.Delete(copyPath2);
+        }
 
         int splitIndex = -1, count=0;
         for(int i =0;i<warriorData.Count;i++)
@@ -98,12 +110,18 @@ public class Parser
                 else
                     warrior2Data.Add(s);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 //ignore and pray
             }
+            finally
+            {
+                if(System.IO.File.Exists(copyPath1))
+                    System.IO.File.Delete(copyPath1);
+                if(System.IO.File.Exists(copyPath2))
+                    System.IO.File.Delete(copyPath2);
+            }
         }
-
     }
     private static void Handler(object sendingProcess, DataReceivedEventArgs args)
     {
