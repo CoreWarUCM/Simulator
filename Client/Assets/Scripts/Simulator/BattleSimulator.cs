@@ -16,7 +16,12 @@ namespace Simulator
         public List<Action<BaseMessage>>[] _listeners;
         List<string> _warrior1;
         List<string> _warrior2;
-        private bool running = false;
+        private bool _running = false;
+        private double _nextStep = 0;
+
+        [SerializeField] [Range(1, 500)] private uint stepPS = 200;
+        [SerializeField]
+        private bool caped = true;
 
         void Awake(){
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
@@ -53,9 +58,9 @@ namespace Simulator
             _warriorManager.Next();
 
             //Subscribe end of simulation callback
-            Subscribe(MessageType.Death, (BaseMessage message) => { running = false; }); // this should actually call WM to handle death of thread, but not multithread yet
+            Subscribe(MessageType.Death, (BaseMessage message) => { _running = false; }); // this should actually call WM to handle death of thread, but not multithread yet
 
-            running = true;
+            _running = true;
         }
         
         public void LoadWarriors(List<string> warrior1, List<string> warrior2)
@@ -69,7 +74,9 @@ namespace Simulator
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            if(running){
+            if(_running && Time.time >= _nextStep)
+            {
+                _nextStep = Time.time + (1.0 / stepPS) * Convert.ToUInt32(caped);
                 Step();
                 Step();
             }
