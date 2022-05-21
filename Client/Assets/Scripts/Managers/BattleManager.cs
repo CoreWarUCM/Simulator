@@ -14,10 +14,10 @@ public class BattleManager : MonoBehaviour
         Virus B = pair.B;
         List<string> virusAData = new List<string>();
         List<string> virusBData = new List<string>();
-        Parser.LoadWarriors(A.GetPath(), B.GetPath(),
+        Parser.LoadVirus(A.GetPath(), B.GetPath(),
             out virusAData, out virusBData);
 
-        battleSimulator.LoadWarriors(virusAData, virusBData);
+        battleSimulator.LoadVirus(virusAData, virusBData);
 
         UIManager.SetVirusA(A.GetName(), A.GetAuthor());
         UIManager.SetVirusB(B.GetName(), B.GetAuthor());

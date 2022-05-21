@@ -9,29 +9,29 @@ using Debug = UnityEngine.Debug;
 public class Parser
 {
     private static string PATH;
-    private static List<string> warriorData;
+    private static List<string> virusData;
     
 
     // This should only be called by GameManager when changin scenes
-    public static void LoadWarriors(string warrior1Path, string warrior2Path, out List<string> warrior1Data, out List<string> warrior2Data)
+    public static void LoadVirus(string virus1Path, string virus2Path, out List<string> virus1Data, out List<string> virus2Data)
     {
         PATH = Application.streamingAssetsPath;
 
 
-        warriorData = new List<string>();
-        warrior1Data = new List<string>();
-        warrior2Data = new List<string>();
+        virusData = new List<string>();
+        virus1Data = new List<string>();
+        virus2Data = new List<string>();
 
         //Process cumbersome initialization
         Process pmarsDebugger = new Process();
         pmarsDebugger.StartInfo.FileName = SystemInfo.operatingSystem.ToLower().Contains("windows") ? PATH + "/pMars.exe" : "pmars";
-        Debug.Log("EH: " +warrior1Path);
-        Debug.Log("EH: " +warrior2Path);
+        Debug.Log("EH: " +virus1Path);
+        Debug.Log("EH: " +virus2Path);
         Debug.Log("EH: " +pmarsDebugger.StartInfo.FileName);
         string copyPath1 = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
-        System.IO.File.Copy(warrior1Path,copyPath1);
+        System.IO.File.Copy(virus1Path,copyPath1);
         string copyPath2 = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
-        System.IO.File.Copy(warrior2Path,copyPath2);
+        System.IO.File.Copy(virus2Path,copyPath2);
 
         pmarsDebugger.StartInfo.Arguments = $"{copyPath1} {copyPath2} .";
         pmarsDebugger.StartInfo.UseShellExecute = false;
@@ -88,9 +88,9 @@ public class Parser
         }
 
         int splitIndex = -1, count=0;
-        for(int i =0;i<warriorData.Count;i++)
+        for(int i =0;i<virusData.Count;i++)
         {
-            if (warriorData[i].Contains("Program"))
+            if (virusData[i].Contains("Program"))
                 count++;
             if (count == 2)
             {
@@ -99,16 +99,16 @@ public class Parser
             }
         }
 
-        for (int i = 0; i < warriorData.Count; i++)
+        for (int i = 0; i < virusData.Count; i++)
         {
             try
             {
-                string s = warriorData[i];
+                string s = virusData[i];
                 Simulator.BlockFactory.CreateBlock(s);
                 if (i < splitIndex)
-                    warrior1Data.Add(s);
+                    virus1Data.Add(s);
                 else
-                    warrior2Data.Add(s);
+                    virus2Data.Add(s);
             }
             catch (Exception e)
             {
@@ -129,7 +129,7 @@ public class Parser
         if (args.Data == null || args.Data.Trim() == "")
             return;
 
-        warriorData.Add(args.Data);
+        virusData.Add(args.Data);
     }
     
 }

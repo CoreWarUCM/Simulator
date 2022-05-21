@@ -39,10 +39,10 @@ namespace Simulator
             _memory[ResolveAddress(position, origin)] = block;
         }
 
-        public void CreateProcess(int warrior, int position, int origin)
+        public void CreateProcess(int virus, int position, int origin)
         {
             //Call delegated to actual simulator
-            _simulator.CreateProcess(warrior, position, origin);
+            _simulator.CreateProcess(virus, position, origin);
         }
 
         public CodeBlock GetBlock(int position, int origin)
@@ -53,7 +53,7 @@ namespace Simulator
         //Calls delegated to actual simulator ----------------------------------------------
 
         public void JumpTo(int destination){_simulator.JumpTo(destination);}
-        public void KillWarrior(){_simulator.KillWarrior(); }
+        public void KillVirus(){_simulator.KillVirus(); }
         public void SendMessage(BaseMessage message) { _simulator.SendMessage(message); }
     }
 }

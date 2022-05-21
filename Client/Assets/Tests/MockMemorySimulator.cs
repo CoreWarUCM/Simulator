@@ -30,7 +30,7 @@ namespace Tests
             blocks[position] = block;
         }
 
-        public void CreateProcess(int warrior, int position, int origin)
+        public void CreateProcess(int virus, int position, int origin)
         {
             
         }
@@ -47,7 +47,7 @@ namespace Tests
         {
             lastJump = destination;
         }
-        public void KillWarrior(){
+        public void KillVirus(){
             CountKills++;
         }
         public int ResolveAddress(int dest, int origin)

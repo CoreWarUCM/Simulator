@@ -15,7 +15,7 @@ namespace Simulator
     public class BaseMessage
     {
         public MessageType _type { get; private set;}
-        public int warrior;
+        public int virus;
         public BaseMessage(MessageType type){_type = type;}
     }
 }

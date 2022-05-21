@@ -11,7 +11,7 @@ public static class Load
     
     public static void UpdateVirusState(int player,VirusState state, Virus v)
     {
-        if (!v.isValidWarrior() || !state) return;
+        if (!v.isValidVirus() || !state) return;
         // Indice del jugador
         state.SetPlayerIndex(player);
         // Nombre del virus

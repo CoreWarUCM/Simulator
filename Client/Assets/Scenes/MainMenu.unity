@@ -16948,6 +16948,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1.5125732
       objectReference: {fileID: 0}
+    - target: {fileID: 5561336609659076274, guid: d06e328c8f7f3da4f9ae2ac67380cb42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SaveVirus
+      objectReference: {fileID: 0}
     - target: {fileID: 6727703253784348497, guid: d06e328c8f7f3da4f9ae2ac67380cb42, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

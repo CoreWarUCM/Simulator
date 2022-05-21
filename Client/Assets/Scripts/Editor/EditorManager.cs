@@ -63,7 +63,7 @@ public class EditorManager : MonoBehaviour
         _editorField.text = text;
     }
 
-    public void SaveWarrior()
+    public void SaveVirus()
     {
         string outText = _editorField.text;
         if (intellisense)
@@ -74,6 +74,7 @@ public class EditorManager : MonoBehaviour
 
     private void LoadCallback(Virus v)
     {
+        _editorField.verticalScrollbar.value = 0;
         _editorField.text = string.Join("\n", v.GetRawData());
     }
 

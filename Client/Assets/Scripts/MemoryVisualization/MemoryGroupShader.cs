@@ -84,7 +84,7 @@ public class MemoryGroupShader : MonoBehaviour
         while (t.gameObject != canvas.gameObject)
         {
              Vector2 a = t.anchorMax - t.anchorMin;
-             anchor = Vector2.Scale(anchor, a);
+             anchor = Vector2.Scale(anchor, a); 
 
              t = t.parent.GetComponent<RectTransform>();
         }

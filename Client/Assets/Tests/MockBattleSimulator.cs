@@ -15,7 +15,7 @@ namespace Tests
             new DATBlock(new CodeBlock.Register(), new CodeBlock.Register(), CodeBlock.Modifier.F);
         }
 
-        public void CreateProcess(int warrior, int position, int origin)
+        public void CreateProcess(int virus, int position, int origin)
         {
             
         }
@@ -29,7 +29,7 @@ namespace Tests
         {
             
         }
-        public void KillWarrior(){
+        public void KillVirus(){
             
         }
         public int ResolveAddress(int dest, int origin)

@@ -28,7 +28,7 @@ namespace Tests
         }
 
         [Test]
-        public void DATExecuteCallsKillWarriorOnFModifier(){
+        public void DATExecuteCallsKillVirusOnFModifier(){
             DATBlock block = new DATBlock(0,0, CodeBlock.Modifier.F);
             block.Execute(sim, 0);
             Assert.That(sim.CountKills == 1);

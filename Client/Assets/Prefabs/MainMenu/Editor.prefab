@@ -281,8 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7532693808989728816, guid: e5ee04dff02e23245aad0510b8badfb7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveWarrior
-      objectReference: {fileID: 0}
+      value:SaveVirus      objectReference: {fileID: 0}
     - target: {fileID: 7532693808989728816, guid: e5ee04dff02e23245aad0510b8badfb7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EditorManager, Game

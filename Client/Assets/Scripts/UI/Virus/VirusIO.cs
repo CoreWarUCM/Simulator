@@ -59,7 +59,7 @@ public class VirusIO
                 Virus v = new Virus(path, name, author, rawData);
                 if (callback != null)
                     callback(player, state, v);
-                if (virusCallBack != null && v.isValidWarrior())
+                if (virusCallBack != null && v.isValidVirus())
                     virusCallBack(v);
             }
         }

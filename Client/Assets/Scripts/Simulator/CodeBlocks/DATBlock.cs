@@ -43,7 +43,7 @@ namespace Simulator.CodeBlocks
 
         protected override void F(ISimulator simulator, int location)
         {
-            simulator.KillWarrior();
+            simulator.KillVirus();
             simulator.SendMessage(new DeathMessage(location));
         }
 

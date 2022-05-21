@@ -5,7 +5,7 @@ public class Virus
     private string _name;
     private string _author;
     private string[] _rawData;
-    private bool validWarrior;
+    private bool validVirus;
 
     public Virus(string path, string name, string author, string[] rawData, bool isValid = true)
     {
@@ -13,12 +13,12 @@ public class Virus
         _name = name;
         _author = author;
         _rawData = rawData;
-        validWarrior = isValid;
+        validVirus = isValid;
     }
 
-    public bool isValidWarrior()
+    public bool isValidVirus()
     {
-        return validWarrior;
+        return validVirus;
     }
 
     public string GetPath()

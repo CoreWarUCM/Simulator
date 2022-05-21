@@ -36,14 +36,14 @@ public class MemoryGroup : MonoBehaviour
         bs.Subscribe(Simulator.MessageType.BlockModify,
             (BaseMessage bm) =>
             {
-                SetColor(((BlockModifyMessage) bm).modifiedLcoation, (bm.warrior == 1 ? ui.virus1Color : ui.virus2Color));
+                SetColor(((BlockModifyMessage) bm).modifiedLcoation, (bm.virus == 1 ? ui.virus1Color : ui.virus2Color));
             });
 
         bs.Subscribe(Simulator.MessageType.BlockExecuted,
             (BaseMessage bm) =>
             {
                 SetColor(((BlockExecutedMessage) bm).modifiedLcoation,
-                    (bm.warrior == 1 ? ui.virus1ExecuteColor : ui.virus2ExecuteColor));
+                    (bm.virus == 1 ? ui.virus1ExecuteColor : ui.virus2ExecuteColor));
             });
     }
 

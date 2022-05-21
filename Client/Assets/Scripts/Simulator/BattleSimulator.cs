@@ -11,13 +11,13 @@ namespace Simulator
 {
     public class BattleSimulator : MonoBehaviour, IBattleSimulator, ISimulator
     {
-        private WarriorManager _warriorManager;
+        private SimulatorVirusManager _simulatorVirusManager;
         private CommonMemoryManager _commonMemoryManager;
         private System.Random _random;
 
         public List<Action<BaseMessage>>[] _listeners;
-        List<string> _warrior1;
-        List<string> _warrior2;
+        List<string> _virus1;
+        List<string> _virus2;
         private bool _running = false;
         private double _nextStep = 0;
 
@@ -42,7 +42,7 @@ namespace Simulator
                 _listeners[i] = new List<Action<BaseMessage>>();
             
             _random = new System.Random();
-            _warriorManager = new WarriorManager(_random);
+            _simulatorVirusManager = new SimulatorVirusManager(_random);
             _commonMemoryManager = new CommonMemoryManager(this);
             nextSpeed.onClick.AddListener(NextStepSpeed);
             previousSpeed.onClick.AddListener(PreviousStepSpeed);
@@ -52,25 +52,25 @@ namespace Simulator
         {
             
             //Get current warrior location to load it into memory
-            _warriorManager.GetCurrent(out int location, out int warrior);
-            List<string> starting_warrior = warrior == 1 ? _warrior1 : _warrior2;
-            List<string> next_warrior = warrior != 1 ? _warrior1 : _warrior2;
+            _simulatorVirusManager.GetCurrent(out int location, out int virus);
+            List<string> starting_virus = virus == 1 ? _virus1 : _virus2;
+            List<string> next_virus = virus != 1 ? _virus1 : _virus2;
             
-            foreach (string b in starting_warrior)
+            foreach (string b in starting_virus)
             {
                 _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
             }
 
             //Next artificial turn to get next warrior and repeat
-            _warriorManager.Next();
-            _warriorManager.GetCurrent(out location, out warrior);
-            foreach (string b in next_warrior)
+            _simulatorVirusManager.Next();
+            _simulatorVirusManager.GetCurrent(out location, out virus);
+            foreach (string b in next_virus)
             {
                 _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
             }
 
             //Advance to turn to leave first as first
-            _warriorManager.Next();
+            _simulatorVirusManager.Next();
 
             //Subscribe end of simulation callback
             Subscribe(MessageType.Death, (BaseMessage message) => { _running = false; }); // this should actually call WM to handle death of thread, but not multithread yet
@@ -78,10 +78,10 @@ namespace Simulator
             _running = true;
         }
         
-        public void LoadWarriors(List<string> warrior1, List<string> warrior2)
+        public void LoadVirus(List<string> virus1, List<string> virus2)
         {
-            _warrior1 = warrior1;
-            _warrior2 = warrior2;
+            _virus1 = virus1;
+            _virus2 = virus2;
         }
 
         // Update is called once per frame
@@ -100,7 +100,7 @@ namespace Simulator
 
         public void Step()
         {
-            _warriorManager.GetCurrent(out int location, out int warrior);
+            _simulatorVirusManager.GetCurrent(out int location, out int virus);
             try
             {
                 _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
@@ -110,11 +110,11 @@ namespace Simulator
             catch (CodeBlock.UnsupportedModifierException e) { Debug.LogError(e.Message); }
 
 
-            _warriorManager.AdvanceCurrent();
-            _warriorManager.Next();   
+            _simulatorVirusManager.AdvanceCurrent();
+            _simulatorVirusManager.Next();   
         }
 
-        public void CreateProcess(int warrior, int position, int origin)
+        public void CreateProcess(int virus, int position, int origin)
         {
             throw new System.NotImplementedException();
         }
@@ -126,8 +126,8 @@ namespace Simulator
 
         public void SendMessage(BaseMessage message)
         {
-            _warriorManager.GetCurrent(out _, out int warrior);
-            message.warrior = warrior;
+            _simulatorVirusManager.GetCurrent(out _, out int virus);
+            message.virus = virus;
 
             foreach (var listener in _listeners[(int)message._type])
                 listener.Invoke(message);
@@ -135,10 +135,10 @@ namespace Simulator
 
         public void JumpTo(int destination)
         {
-            _warriorManager.CurrentWarriorOfCurrentProcessJumpsTo(destination);
+            _simulatorVirusManager.CurrentVirusOfCurrentProcessJumpsTo(destination);
         }
 
-        public void KillWarrior(){
+        public void KillVirus(){
             Debug.LogError("AAAAH WARRIOR DIES");
         }
         public int ResolveAddress(int relativeAddress, int originalPosition)
