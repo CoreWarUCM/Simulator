@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +137,7 @@
       <workItem from="1652905233876" duration="3399000" />
       <workItem from="1652978341125" duration="647000" />
       <workItem from="1652979167772" duration="742000" />
-      <workItem from="1653141465276" duration="1104000" />
+      <workItem from="1653141465276" duration="1610000" />
     </task>
     <servers />
   </component>
