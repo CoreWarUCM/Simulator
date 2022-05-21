@@ -11,9 +11,10 @@ public class VirusIO
 
     public void Init()
     {
-        FileBrowser.Filter filter = new FileBrowser.Filter("Redcode", ".redcode", ".red");
+        FileBrowser.Filter filterRed = new FileBrowser.Filter("Red", ".red");
+        FileBrowser.Filter filterRedcode = new FileBrowser.Filter("Redcode", ".redcode");
 
-        FileBrowser.SetFilters(true, filter);
+        FileBrowser.SetFilters(true, filterRed, filterRedcode);
 
         FileBrowser.SetDefaultFilter(".red");
     }
