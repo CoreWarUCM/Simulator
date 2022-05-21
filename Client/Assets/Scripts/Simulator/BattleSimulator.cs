@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 
 using Simulator.CodeBlocks;
+using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Simulator
 {
@@ -19,9 +21,20 @@ namespace Simulator
         private bool _running = false;
         private double _nextStep = 0;
 
-        [SerializeField] [Range(1, 500)] private uint stepPS = 200;
-        [SerializeField]
-        private bool caped = true;
+
+
+        [SerializeField] private Button nextSpeed, previousSpeed;
+        [SerializeField] private TMP_Text speedText;
+        private short _stepPSn = 2;
+        private uint[] _stepPS =
+        {
+            1,
+            10,
+            50,
+            100,
+            200,
+            0
+        };
 
         void Awake(){
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
@@ -31,7 +44,9 @@ namespace Simulator
             _random = new System.Random();
             _warriorManager = new WarriorManager(_random);
             _commonMemoryManager = new CommonMemoryManager(this);
-            
+            nextSpeed.onClick.AddListener(NextStepSpeed);
+            previousSpeed.onClick.AddListener(PreviousStepSpeed);
+            UpdateText();
         }
         public void StartBattle()
         {
@@ -76,7 +91,8 @@ namespace Simulator
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             if(_running && Time.time >= _nextStep)
             {
-                _nextStep = Time.time + (1.0 / stepPS) * Convert.ToUInt32(caped);
+                if(_stepPSn != _stepPS.Length - 1)
+                    _nextStep = Time.time + 1.0 / _stepPS[_stepPSn];
                 Step();
                 Step();
             }
@@ -139,5 +155,27 @@ namespace Simulator
             throw new System.NotImplementedException();
         }
 
+        public void NextStepSpeed()
+        {
+            _stepPSn++;
+            previousSpeed.interactable = true;
+            if (_stepPSn == _stepPS.Length - 1)
+                nextSpeed.interactable = false;
+            UpdateText();
+        }
+        
+        public void PreviousStepSpeed()
+        {
+            _stepPSn--;
+            nextSpeed.interactable = true;
+            if (_stepPSn == 0)
+                previousSpeed.interactable = false;
+            UpdateText();
+        }
+
+        public void UpdateText()
+        {
+            speedText.text = _stepPSn != _stepPS.Length - 1 ? _stepPS[_stepPSn].ToString() : "MAX";
+        }
     }
 }

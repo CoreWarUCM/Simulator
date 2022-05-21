@@ -6,29 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MenuImages/bars.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/dwarf.redcode" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/dwarf.redcode.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/imp.redcode" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/imp.redcode.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/impgate.redcode" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/impgate.redcode.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/inversedwarf.redcode" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/inversedwarf.redcode.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/prueba.redcode" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SampleWarriors/prueba.redcode.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/VirusManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Loader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/pMars.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/pMars.exe.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/pmars.mac" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/pmars.mac.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,10 +89,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20308">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="20308" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -160,6 +140,7 @@
       <workItem from="1652905233876" duration="3399000" />
       <workItem from="1652978341125" duration="647000" />
       <workItem from="1652979167772" duration="742000" />
+      <workItem from="1653141465276" duration="1104000" />
     </task>
     <servers />
   </component>
