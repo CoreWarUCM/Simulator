@@ -11,11 +11,11 @@ public class VirusIO
 
     public void Init()
     {
-        FileBrowser.Filter filter = new FileBrowser.Filter("Redcode", ".redcode");
+        FileBrowser.Filter filter = new FileBrowser.Filter("Redcode", ".redcode", ".red");
 
         FileBrowser.SetFilters(true, filter);
 
-        FileBrowser.SetDefaultFilter(".redcode");
+        FileBrowser.SetDefaultFilter(".red");
     }
 
     public IEnumerator LoadVirus(int player, VirusState state = null, Action<int, VirusState, Virus> callback = null,
