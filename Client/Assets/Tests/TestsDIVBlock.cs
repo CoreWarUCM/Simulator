@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Tests
 {
-    class TestsADDBlock
+    class TestsDIVBlock
     {
 
         private MockMemorySimulator sim;
@@ -20,9 +20,9 @@ namespace Tests
         }
 
         [Test]
-        public void AddI()
+        public void DivI()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.I $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.I $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
             
             sim.CreateBlock(datBlock, 1, 2);
@@ -30,14 +30,14 @@ namespace Tests
 
             block.Execute(sim, 0);
             
-            Assert.AreEqual(4,target._regA.Value());
-            Assert.AreEqual(6, target._regB.Value());
+            Assert.AreEqual(3 / 1,target._regA.Value());
+            Assert.AreEqual(5 / 1, target._regB.Value());
         }
 
         [Test]
-        public void AddF()
+        public void DivF()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.F $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.F $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -45,14 +45,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(7, target._regA.Value());
-            Assert.AreEqual(8, target._regB.Value());
+            Assert.AreEqual(3/4, target._regA.Value());
+            Assert.AreEqual(5/3, target._regB.Value());
         }
 
         [Test]
-        public void AddX()
+        public void DivX()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.X $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.X $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -60,14 +60,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(6, target._regA.Value());
-            Assert.AreEqual(9, target._regB.Value());
+            Assert.AreEqual(3/3, target._regA.Value());
+            Assert.AreEqual(5/4, target._regB.Value());
         }
 
         [Test]
-        public void AddA()
+        public void DivA()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.A $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.A $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -75,14 +75,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(7, target._regA.Value());
+            Assert.AreEqual(3/4, target._regA.Value());
             Assert.AreEqual(5, target._regB.Value());
         }
 
         [Test]
-        public void AddB()
+        public void DivB()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.B $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.B $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -91,13 +91,13 @@ namespace Tests
             block.Execute(sim, 0);
 
             Assert.AreEqual(3, target._regA.Value());
-            Assert.AreEqual(8, target._regB.Value());
+            Assert.AreEqual(5/3, target._regB.Value());
         }
 
         [Test]
-        public void AddAB()
+        public void DivAB()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.AB $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.AB $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -106,12 +106,12 @@ namespace Tests
             block.Execute(sim, 0);
 
             Assert.AreEqual(3, target._regA.Value());
-            Assert.AreEqual(9, target._regB.Value());
+            Assert.AreEqual(5/4, target._regB.Value());
         }
         [Test]
-        public void AddBA()
+        public void DivBA()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.BA $1, $2") as ADDBlock;
+            DIVBlock block = BlockFactory.CreateBlock("DIV.BA $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -119,7 +119,7 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(6, target._regA.Value());
+            Assert.AreEqual(3/3, target._regA.Value());
             Assert.AreEqual(5, target._regB.Value());
         }
     }

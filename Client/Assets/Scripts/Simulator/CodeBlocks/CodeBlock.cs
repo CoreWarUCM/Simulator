@@ -98,6 +98,18 @@ namespace Simulator
             {
                 _value = AssureBetween0AndMax(_value - v);
             }
+            public void Mul(int v)
+            {
+                _value = AssureBetween0AndMax(_value * v);
+            }
+            public void Div(int v)
+            {
+                _value = AssureBetween0AndMax(_value / v);
+            }
+            public void Mod(int v)
+            {
+                _value = AssureBetween0AndMax(_value % v);
+            }
         }
         public Register _regA;
         public Register _regB;
@@ -109,7 +121,7 @@ namespace Simulator
             _regB = regB;
         }
         
-        public void Execute(ISimulator simulator, int location)
+        public virtual void Execute(ISimulator simulator, int location)
         {
             switch (_mod)
             {

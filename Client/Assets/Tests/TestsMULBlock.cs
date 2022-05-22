@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Tests
 {
-    class TestsADDBlock
+    class TestsMULBlock
     {
 
         private MockMemorySimulator sim;
@@ -20,9 +20,9 @@ namespace Tests
         }
 
         [Test]
-        public void AddI()
+        public void MulI()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.I $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.I $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
             
             sim.CreateBlock(datBlock, 1, 2);
@@ -30,14 +30,14 @@ namespace Tests
 
             block.Execute(sim, 0);
             
-            Assert.AreEqual(4,target._regA.Value());
-            Assert.AreEqual(6, target._regB.Value());
+            Assert.AreEqual(3 * 1,target._regA.Value());
+            Assert.AreEqual(5 * 1, target._regB.Value());
         }
 
         [Test]
-        public void AddF()
+        public void MulF()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.F $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.F $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -45,14 +45,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(7, target._regA.Value());
-            Assert.AreEqual(8, target._regB.Value());
+            Assert.AreEqual(3*4, target._regA.Value());
+            Assert.AreEqual(5*3, target._regB.Value());
         }
 
         [Test]
-        public void AddX()
+        public void MulX()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.X $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.X $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -60,14 +60,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(6, target._regA.Value());
-            Assert.AreEqual(9, target._regB.Value());
+            Assert.AreEqual(3*3, target._regA.Value());
+            Assert.AreEqual(5*4, target._regB.Value());
         }
 
         [Test]
-        public void AddA()
+        public void MulA()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.A $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.A $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -75,14 +75,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(7, target._regA.Value());
+            Assert.AreEqual(3*4, target._regA.Value());
             Assert.AreEqual(5, target._regB.Value());
         }
 
         [Test]
-        public void AddB()
+        public void MulB()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.B $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.B $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -91,13 +91,13 @@ namespace Tests
             block.Execute(sim, 0);
 
             Assert.AreEqual(3, target._regA.Value());
-            Assert.AreEqual(8, target._regB.Value());
+            Assert.AreEqual(5*3, target._regB.Value());
         }
 
         [Test]
-        public void AddAB()
+        public void MulAB()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.AB $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.AB $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -106,12 +106,12 @@ namespace Tests
             block.Execute(sim, 0);
 
             Assert.AreEqual(3, target._regA.Value());
-            Assert.AreEqual(9, target._regB.Value());
+            Assert.AreEqual(5*4, target._regB.Value());
         }
         [Test]
-        public void AddBA()
+        public void MulBA()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.BA $1, $2") as ADDBlock;
+            MULBlock block = BlockFactory.CreateBlock("MUL.BA $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -119,7 +119,7 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(6, target._regA.Value());
+            Assert.AreEqual(3*3, target._regA.Value());
             Assert.AreEqual(5, target._regB.Value());
         }
     }

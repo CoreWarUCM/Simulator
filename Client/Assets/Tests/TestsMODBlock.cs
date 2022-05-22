@@ -1,11 +1,11 @@
-﻿using Simulator;
+using Simulator;
 using NUnit.Framework;
 using Simulator.CodeBlocks;
 using UnityEngine;
 
 namespace Tests
 {
-    class TestsADDBlock
+    class TestsMODBlock
     {
 
         private MockMemorySimulator sim;
@@ -20,24 +20,24 @@ namespace Tests
         }
 
         [Test]
-        public void AddI()
+        public void ModI()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.I $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.I $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
-            
+
             sim.CreateBlock(datBlock, 1, 2);
             sim.CreateBlock(block, 0, 0);
 
             block.Execute(sim, 0);
-            
-            Assert.AreEqual(4,target._regA.Value());
-            Assert.AreEqual(6, target._regB.Value());
+
+            Assert.AreEqual(3 % 1, target._regA.Value());
+            Assert.AreEqual(5 % 1, target._regB.Value());
         }
 
         [Test]
-        public void AddF()
+        public void ModF()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.F $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.F $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -45,14 +45,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(7, target._regA.Value());
-            Assert.AreEqual(8, target._regB.Value());
+            Assert.AreEqual(3 % 4, target._regA.Value());
+            Assert.AreEqual(5 % 3, target._regB.Value());
         }
 
         [Test]
-        public void AddX()
+        public void ModX()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.X $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.X $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -60,14 +60,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(6, target._regA.Value());
-            Assert.AreEqual(9, target._regB.Value());
+            Assert.AreEqual(3 % 3, target._regA.Value());
+            Assert.AreEqual(5 % 4, target._regB.Value());
         }
 
         [Test]
-        public void AddA()
+        public void ModA()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.A $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.A $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -75,14 +75,14 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(7, target._regA.Value());
+            Assert.AreEqual(3 % 4, target._regA.Value());
             Assert.AreEqual(5, target._regB.Value());
         }
 
         [Test]
-        public void AddB()
+        public void ModB()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.B $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.B $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -91,13 +91,13 @@ namespace Tests
             block.Execute(sim, 0);
 
             Assert.AreEqual(3, target._regA.Value());
-            Assert.AreEqual(8, target._regB.Value());
+            Assert.AreEqual(5 % 3, target._regB.Value());
         }
 
         [Test]
-        public void AddAB()
+        public void ModAB()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.AB $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.AB $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -106,12 +106,12 @@ namespace Tests
             block.Execute(sim, 0);
 
             Assert.AreEqual(3, target._regA.Value());
-            Assert.AreEqual(9, target._regB.Value());
+            Assert.AreEqual(5 % 4, target._regB.Value());
         }
         [Test]
-        public void AddBA()
+        public void ModBA()
         {
-            ADDBlock block = BlockFactory.CreateBlock("ADD.BA $1, $2") as ADDBlock;
+            MODBlock block = BlockFactory.CreateBlock("MOD.BA $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
             sim.CreateBlock(datBlock, 1, 2);
@@ -119,7 +119,7 @@ namespace Tests
 
             block.Execute(sim, 0);
 
-            Assert.AreEqual(6, target._regA.Value());
+            Assert.AreEqual(3 % 3, target._regA.Value());
             Assert.AreEqual(5, target._regB.Value());
         }
     }

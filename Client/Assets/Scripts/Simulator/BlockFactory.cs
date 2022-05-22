@@ -80,6 +80,12 @@ namespace Simulator
                     return new ADDBlock(regA, regB, mod);
                 case "SUB":
                     return new SUBBlock(regA, regB, mod);
+                case "MUL":
+                    return new MULBlock(regA, regB, mod);
+                case "DIV":
+                    return new DIVBlock(regA, regB, mod);
+                case "MOD":
+                    return new MODBlock(regA, regB, mod);
                 default:
                     throw new Exception("unsupported block type {"+opCode+"}, las quejas a Ricky");
             }

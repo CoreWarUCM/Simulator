@@ -20,7 +20,7 @@ namespace Tests
         }
 
         [Test]
-        public void SubISubsRegisterWise()
+        public void SubI()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.I $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
@@ -35,7 +35,7 @@ namespace Tests
         }
 
         [Test]
-        public void SubFSubsRegisterWise()
+        public void SubF()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.F $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
@@ -50,7 +50,7 @@ namespace Tests
         }
 
         [Test]
-        public void SubXSubsRegisterWise()
+        public void SubX()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.X $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
@@ -65,7 +65,7 @@ namespace Tests
         }
 
         [Test]
-        public void SubASubsRegisterWise()
+        public void SubA()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.A $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
@@ -80,7 +80,7 @@ namespace Tests
         }
 
         [Test]
-        public void SubBSubsRegisterWise()
+        public void SubB()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.B $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
@@ -95,7 +95,7 @@ namespace Tests
         }
 
         [Test]
-        public void SubABSubsRegisterWise()
+        public void SubAB()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.AB $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
@@ -109,7 +109,7 @@ namespace Tests
             Assert.AreEqual(1, target._regB.Value());
         }
         [Test]
-        public void SubBASubsRegisterWise()
+        public void SubBA()
         {
             SUBBlock block = BlockFactory.CreateBlock("SUB.BA $1, $2") as SUBBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
