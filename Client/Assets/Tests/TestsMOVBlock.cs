@@ -10,7 +10,7 @@ namespace Tests
         [SetUp]
         public void SetUpCommonMemory(){
             sim = new MockMemorySimulator();
-            sim.CreateBlock(new DATBlock(3,8,CodeBlock.Modifier.F),1,0);
+            sim.SetBlock(new DATBlock(3,8,CodeBlock.Modifier.F),1,0);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Tests
         [Test]
         public void MOVIMovesourceToDest(){
             CodeBlock block = new MOVBlock(0,20,CodeBlock.Modifier.I);
-            sim.CreateBlock(block,0,0);
+            sim.SetBlock(block,0,0);
             block.Execute(sim,0);
 
             Assert.AreEqual(sim.GetBlock(20,0)._regA.Value(), 0);

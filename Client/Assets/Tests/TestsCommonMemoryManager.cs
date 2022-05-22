@@ -37,7 +37,7 @@ namespace Tests
         [Test]
         public void CreateAndGetBlockAtUpperLimitPosition()
         {
-            _commonMemoryManager.CreateBlock(new DATBlock(0,42), 8000, 0);
+            _commonMemoryManager.SetBlock(new DATBlock(0,42), 8000, 0);
             DATBlock db = (DATBlock)_commonMemoryManager.GetBlock(0, 0);
             
             int loc = _commonMemoryManager.ResolveAddress(8000,0);
@@ -48,7 +48,7 @@ namespace Tests
         [Test]
         public void CreateAndGetBlockAtLowerLimitPosition()
         {
-            _commonMemoryManager.CreateBlock(new DATBlock(100, 2), -3, 0);
+            _commonMemoryManager.SetBlock(new DATBlock(100, 2), -3, 0);
             DATBlock db = (DATBlock)_commonMemoryManager.GetBlock(-3, 0);
 
             int loc = _commonMemoryManager.ResolveAddress(-3,0);

@@ -16,7 +16,7 @@ namespace Tests
         {
             sim = new MockMemorySimulator();
             target = new DATBlock(3, 5, CodeBlock.Modifier.F);
-            sim.CreateBlock(target, 2, 0);
+            sim.SetBlock(target, 2, 0);
         }
 
         [Test]
@@ -25,8 +25,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.I $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
             
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
             
@@ -40,8 +40,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.F $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -55,8 +55,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.X $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -70,8 +70,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.A $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -85,8 +85,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.B $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -100,8 +100,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.AB $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -114,8 +114,8 @@ namespace Tests
             MULBlock block = BlockFactory.CreateBlock("MUL.BA $1, $2") as MULBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 

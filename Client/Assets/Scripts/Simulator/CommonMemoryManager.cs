@@ -34,7 +34,7 @@ namespace Simulator
             return res % _memSize;
         }
 
-        public void CreateBlock(CodeBlock block, int position, int origin)
+        public void SetBlock(CodeBlock block, int position, int origin)
         {
             _memory[ResolveAddress(position, origin)] = block;
         }

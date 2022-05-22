@@ -37,8 +37,8 @@ namespace Tests
                );
             DATBlock other = new DATBlock(2,0);
 
-            sim.CreateBlock(source,0,0);
-            sim.CreateBlock(other,3,0);
+            sim.SetBlock(source,0,0);
+            sim.SetBlock(other,3,0);
             Assert.AreEqual(5,source._regA.rGet(sim,0));
             Assert.AreEqual(3,source._regA.Value());
         }
@@ -60,8 +60,8 @@ namespace Tests
                );
             DATBlock other = new DATBlock(2,1);
 
-            sim.CreateBlock(source,0,0);
-            sim.CreateBlock(other,3,0);
+            sim.SetBlock(source,0,0);
+            sim.SetBlock(other,3,0);
 
             Assert.AreEqual(4, source._regA.rGet(sim,0));
         }
@@ -74,8 +74,8 @@ namespace Tests
                );
             DATBlock other = new DATBlock(2,0);
 
-            sim.CreateBlock(source,0,0);
-            sim.CreateBlock(other,2,0);
+            sim.SetBlock(source,0,0);
+            sim.SetBlock(other,2,0);
             Assert.AreEqual(4,source._regA.rGet(sim,0));
             Assert.AreEqual(2,source._regA.Value());
         }
@@ -88,8 +88,8 @@ namespace Tests
                );
             DATBlock other = new DATBlock(2,0);
 
-            sim.CreateBlock(source,0,0);
-            sim.CreateBlock(other,1,0);
+            sim.SetBlock(source,0,0);
+            sim.SetBlock(other,1,0);
             Assert.AreEqual(1,source._regB.rGet(sim,0));
             Assert.AreEqual(1,source._regB.Value());
         }
@@ -101,8 +101,8 @@ namespace Tests
                );
             DATBlock other = new DATBlock(2,0);
 
-            sim.CreateBlock(source,0,0);
-            sim.CreateBlock(other,3,0);
+            sim.SetBlock(source,0,0);
+            sim.SetBlock(other,3,0);
             
             Assert.AreEqual(5,source._regA.rGet(sim,0));
             Assert.AreEqual(4,source._regA.Value());
@@ -116,8 +116,8 @@ namespace Tests
                );
             DATBlock other = new DATBlock(2,0);
 
-            sim.CreateBlock(source,0,0);
-            sim.CreateBlock(other,2,0);
+            sim.SetBlock(source,0,0);
+            sim.SetBlock(other,2,0);
             Assert.AreEqual(2,source._regB.rGet(sim,0));
             Assert.AreEqual(3,source._regB.Value());
         }

@@ -74,6 +74,15 @@ namespace Simulator
                     return new MOVBlock(regA, regB, mod);
                 case "JMP":
                     return new JMPBlock(regA, regB, mod);
+                case "JMZ":
+                    return new JMZBlock(regA, regB, mod);
+                case "JMN":
+                    return new JMNBlock(regA, regB, mod);
+                case "DJN":
+                    return new DJNBlock(regA, regB, mod);
+                case "CMP":
+                case "SEQ":
+                    return new CMPBlock(regA, regB, mod);
                 case "DAT":
                     return new DATBlock(regA, regB, mod);
                 case "ADD":
@@ -86,6 +95,8 @@ namespace Simulator
                     return new DIVBlock(regA, regB, mod);
                 case "MOD":
                     return new MODBlock(regA, regB, mod);
+                case "NOP":
+                    return new NOPBlock(regA, regB, mod);
                 default:
                     throw new Exception("unsupported block type {"+opCode+"}, las quejas a Ricky");
             }

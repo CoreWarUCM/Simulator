@@ -10,7 +10,7 @@ namespace Tests
 {
     public class MockBattleSimulator : ISimulator
     {
-        public void CreateBlock(CodeBlock block, int position, int origin)
+        public void SetBlock(CodeBlock block, int position, int origin)
         {
             new DATBlock(new CodeBlock.Register(), new CodeBlock.Register(), CodeBlock.Modifier.F);
         }

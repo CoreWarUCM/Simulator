@@ -24,7 +24,7 @@ namespace Tests
             for(int i  = 0; i<blocks.Capacity;i++)
                 blocks.Add(new DATBlock(0,0,CodeBlock.Modifier.F));
         }
-        public void CreateBlock(CodeBlock block, int position, int origin)
+        public void SetBlock(CodeBlock block, int position, int origin)
         {
             //this is a mock, we are not testing over 8000
             blocks[position] = block;

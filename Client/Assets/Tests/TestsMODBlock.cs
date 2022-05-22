@@ -16,7 +16,7 @@ namespace Tests
         {
             sim = new MockMemorySimulator();
             target = new DATBlock(3, 5, CodeBlock.Modifier.F);
-            sim.CreateBlock(target, 2, 0);
+            sim.SetBlock(target, 2, 0);
         }
 
         [Test]
@@ -25,8 +25,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.I $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -40,8 +40,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.F $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -55,8 +55,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.X $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -70,8 +70,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.A $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -85,8 +85,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.B $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -100,8 +100,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.AB $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -114,8 +114,8 @@ namespace Tests
             MODBlock block = BlockFactory.CreateBlock("MOD.BA $1, $2") as MODBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 

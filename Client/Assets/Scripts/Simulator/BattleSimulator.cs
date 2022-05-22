@@ -58,7 +58,7 @@ namespace Simulator
             
             foreach (string b in starting_virus)
             {
-                _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
+                _commonMemoryManager.SetBlock(BlockFactory.CreateBlock(b), location++, 0);
             }
 
             //Next artificial turn to get next warrior and repeat
@@ -66,7 +66,7 @@ namespace Simulator
             _simulatorVirusManager.GetCurrent(out location, out virus);
             foreach (string b in next_virus)
             {
-                _commonMemoryManager.CreateBlock(BlockFactory.CreateBlock(b), location++, 0);
+                _commonMemoryManager.SetBlock(BlockFactory.CreateBlock(b), location++, 0);
             }
 
             //Advance to turn to leave first as first
@@ -145,7 +145,7 @@ namespace Simulator
         {
             throw new System.NotImplementedException();
         }
-        public void CreateBlock(CodeBlock block, int position, int origin)
+        public void SetBlock(CodeBlock block, int position, int origin)
         {
             throw new System.NotImplementedException();
         }

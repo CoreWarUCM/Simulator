@@ -39,6 +39,9 @@ namespace Simulator
             public int Value(){
                 return _value;
             }
+            public AddressingMode Mode() { return _mode; }
+
+            //Returns absolute position ar witch register is pointing, evaluating with side effects such as preincrement.
             public int rGet(ISimulator sim, int location)
             {
 
@@ -46,7 +49,6 @@ namespace Simulator
                 switch (_mode)
                 {   
                     case AddressingMode.immediate:
-                        //throw new System.Exception("PANIC, NO SÉ CÓMO FUNCIONAN LAS CPUs");
                         return location;
                     case AddressingMode.AIndirect:
                     {

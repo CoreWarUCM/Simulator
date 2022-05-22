@@ -88,7 +88,7 @@ namespace Simulator.CodeBlocks
 
             CodeBlock origin = simulator.GetBlock(regA,0);
 
-            simulator.CreateBlock(origin, regB,0);
+            simulator.SetBlock(origin, regB,0);
             simulator.SendMessage(new BlockModifyMessage(regB));
             simulator.SendMessage(new BlockModifyMessage(regA));
 

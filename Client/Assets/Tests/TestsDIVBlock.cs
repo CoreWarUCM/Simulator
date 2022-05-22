@@ -16,7 +16,7 @@ namespace Tests
         {
             sim = new MockMemorySimulator();
             target = new DATBlock(3, 5, CodeBlock.Modifier.F);
-            sim.CreateBlock(target, 2, 0);
+            sim.SetBlock(target, 2, 0);
         }
 
         [Test]
@@ -25,8 +25,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.I $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F #1, @1") as DATBlock;
             
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
             
@@ -40,8 +40,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.F $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -55,8 +55,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.X $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -70,8 +70,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.A $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -85,8 +85,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.B $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -100,8 +100,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.AB $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
@@ -114,8 +114,8 @@ namespace Tests
             DIVBlock block = BlockFactory.CreateBlock("DIV.BA $1, $2") as DIVBlock;
             DATBlock datBlock = BlockFactory.CreateBlock("DAT.F <4, #3") as DATBlock;
 
-            sim.CreateBlock(datBlock, 1, 2);
-            sim.CreateBlock(block, 0, 0);
+            sim.SetBlock(datBlock, 1, 2);
+            sim.SetBlock(block, 0, 0);
 
             block.Execute(sim, 0);
 
