@@ -7,8 +7,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class EditorIntellisense : MonoBehaviour
+/// <summary>
+/// Unfinished class, "Intellisense" for the in game editor
+/// Works with a callback that passes the text as parameter and modifies it
+/// </summary>
+public class EditorIntellisense
 {
+    /// <summary>
+    /// Enum to support array access
+    /// USE CAREFULLY
+    /// MUST MATCH THE ARRAY INITIALIZED IN EDITOR
+    /// </summary>
     enum Styles
     {
         Normal,
@@ -20,9 +29,17 @@ public class EditorIntellisense : MonoBehaviour
         Error
     }
 
-    [FormerlySerializedAs("_styles")] [SerializeField]
+    // List of styles names, initialized in editor
+    [SerializeField]
     private string[] styles;
 
+    /// <summary>
+    /// Receives the text by reference and the before it was modified
+    /// Because redcode works line by line we divide the text in lines
+    /// And check one by one. The lastText is used to skip unchanged lines.
+    /// </summary>
+    /// <param name="text">New text to modify</param>
+    /// <param name="lastText">Old text to use as check</param>
     public void CheckStyles(ref string text, string lastText)
     {
         List<string> lines = text.Split('\n').ToList();
@@ -38,6 +55,11 @@ public class EditorIntellisense : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Unfinished, calls all the types check and return the final line
+    /// </summary>
+    /// <param name="line">original line</param>
+    /// <returns> modified line</returns>
     private string CheckLine(string line)
     {
         line = Regex.Replace(line, "<.*?>", string.Empty);
@@ -49,6 +71,10 @@ public class EditorIntellisense : MonoBehaviour
         return line;
     }
 
+    /// <summary>
+    /// Checks if it can find a ';' and converts the rest to comment
+    /// </summary>
+    /// <param name="line">original line</param>
     private void CommentCheck(ref string line)
     {
         int index = line.IndexOf(';');
@@ -65,6 +91,10 @@ public class EditorIntellisense : MonoBehaviour
         line = preComment + postComment;
     }
     
+    /// <summary>
+    /// Unfinished
+    /// </summary>
+    /// <param name="line">reference to the line</param>
     private void InstructionCheck(ref string line)
     {
         int index = line.IndexOf("name", StringComparison.Ordinal);
@@ -81,21 +111,39 @@ public class EditorIntellisense : MonoBehaviour
         line = preInstruction + instruction + postInstruction;
     }
     
+    /// <summary>
+    /// Unfinished
+    /// </summary>
+    /// <param name="line">reference to the line</param>
     private void ImmediateCheck(ref string line)
     {
         
     }
     
+    /// <summary>
+    /// Unfinished
+    /// </summary>
+    /// <param name="line">reference to the line</param>
     private void DirectCheck(ref string line)
     {
         
     }
     
+    /// <summary>
+    /// Unfinished
+    /// </summary>
+    /// <param name="line">reference to the line</param>
     private void ErrorCheck(ref string line)
     {
         
     }
 
+    /// <summary>
+    /// Assist method to insert a tag in the substring
+    /// </summary>
+    /// <param name="substring">substring to insert the tag</param>
+    /// <param name="style">tag to inster</param>
+    /// <returns></returns>
     private string InsertStyle(string substring, string style)
     {
         return "<style=" + style + ">" + substring + "</style>";

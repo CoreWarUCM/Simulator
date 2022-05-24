@@ -36,14 +36,8 @@ void UpdateCells(uint3 id : SV_DispatchThreadID)
 
     int pos = x + y*numColls;
 
-    if(pos >= numCells)
-    {
-        Texture[id.xy] = 1;
-        return;   
-    }
+    bool offMemory = !(pos >= numCells);
+    bool gridCheck = !((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid);
     
-    if((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid)
-        Texture[id.xy] = 0;
-    else
-        Texture[id.xy] = cells[pos];
+    Texture[id.xy] = (cells[pos] * gridCheck ) * offMemory + 1 * !offMemory ;
 }

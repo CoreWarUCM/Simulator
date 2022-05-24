@@ -8,14 +8,16 @@ public class VirusIO
 {
     public bool dialogOpen { get; private set; }
 
+    private static readonly FileBrowser.Filter filtersLoad = new FileBrowser.Filter("Redcode", ".redcode", ".red");
 
-    public void Init()
+    private static readonly FileBrowser.Filter[] filtersSave = new[]
     {
-        FileBrowser.Filter filterRed = new FileBrowser.Filter("Red", ".red");
-        FileBrowser.Filter filterRedcode = new FileBrowser.Filter("Redcode", ".redcode");
+        new FileBrowser.Filter("Red", ".red"),
+        new FileBrowser.Filter("Redcode", ".redcode")
+    };
 
-        FileBrowser.SetFilters(true, filterRed, filterRedcode);
-
+    public VirusIO()
+    {
         FileBrowser.SetDefaultFilter(".red");
     }
 
@@ -24,6 +26,7 @@ public class VirusIO
     {
         if (!dialogOpen)
         {
+            FileBrowser.SetFilters(false, filtersLoad);
             dialogOpen = true;
             yield return
                 FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, UserConfig.LastLoadPath(),
@@ -57,7 +60,7 @@ public class VirusIO
                 }
 
                 Virus v = new Virus(path, name, author, rawData);
-                if (callback != null)
+                if (callback != null && state)
                     callback(player, state, v);
                 if (virusCallBack != null && v.isValidVirus())
                     virusCallBack(v);
@@ -68,18 +71,22 @@ public class VirusIO
 
     public IEnumerator SaveVirus(string rawData)
     {
-        dialogOpen = true;
-        yield return
-            FileBrowser.WaitForSaveDialog(FileBrowser.PickMode.Files, false, UserConfig.LastSavePath(),
-                title: "Save Virus",
-                saveButtonText: "Save");
-        dialogOpen = false;
-
-        if (FileBrowser.Success)
+        if (!dialogOpen)
         {
-            string path = FileBrowser.Result[0];
-            UserConfig.SetLastSavePath(path);
-            File.WriteAllText(path, rawData);
+            dialogOpen = true;
+            FileBrowser.SetFilters(false, filtersSave);
+            yield return
+                FileBrowser.WaitForSaveDialog(FileBrowser.PickMode.Files, false, UserConfig.LastSavePath(),
+                    title: "Save Virus",
+                    saveButtonText: "Save");
+            dialogOpen = false;
+
+            if (FileBrowser.Success)
+            {
+                string path = FileBrowser.Result[0];
+                UserConfig.SetLastSavePath(path);
+                File.WriteAllText(path, rawData);
+            }
         }
     }
 }

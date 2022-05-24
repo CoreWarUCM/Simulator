@@ -1,13 +1,17 @@
 using System.IO;
 using UnityEngine;
 
+/// <summary>
+/// Static class initialized at the beginning of the program.
+/// Stores the last path used for loading or saving a file for
+/// quicker use.
+/// </summary>
 public static class UserConfig
 {
     private static bool init = false;
 
     /// <summary>
-    /// Aquello que se quiera añadir de configuración se pondrá
-    /// dentro del struct y se configurará en el Json
+    /// Struct with the 2 paths used when managing files
     /// </summary>
     struct Config
     {
@@ -17,6 +21,11 @@ public static class UserConfig
 
     private static Config _config;
     
+    /// <summary>
+    /// Loads the paths used in the last session.
+    /// If not found creates a default path in the
+    /// streaming assets folder
+    /// </summary>
     public static void Init()
     {
         if(init)
@@ -36,6 +45,9 @@ public static class UserConfig
         }
     }
 
+    /// <summary>
+    /// Save the current configuration for the next session
+    /// </summary>
     public static void Close()
     {
         string json = JsonUtility.ToJson(_config);

@@ -9,7 +9,7 @@ public class MemoryGroupShader : MonoBehaviour
 {
     [SerializeField] private ComputeShader computeShader;
     
-    [SerializeField] private bool grid = false;
+    [SerializeField] private bool grid = true;
 
     [SerializeField] private Canvas canvas;
 
