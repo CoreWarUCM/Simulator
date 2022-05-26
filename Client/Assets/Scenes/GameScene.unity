@@ -6318,7 +6318,7 @@ MonoBehaviour:
   grid: 1
   canvas: {fileID: 1745295300}
   image: {fileID: 1793479803}
-  numColls: 80
+  numCols: 80
 --- !u!1 &1799577041
 GameObject:
   m_ObjectHideFlags: 0
@@ -6349,7 +6349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd39e4b4c6df8349ae9c08f2d3702cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groupShader: {fileID: 1793479805}
+  groupShader: {fileID: 1793479805}
   cellAmountSet: 8000
 --- !u!4 &1799577043
 Transform:

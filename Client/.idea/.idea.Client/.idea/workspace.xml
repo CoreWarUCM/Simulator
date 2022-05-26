@@ -6,26 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d316f431-9fef-46c8-b03b-eaf9a11e8819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MainMenu/Editor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MainMenu/Editor.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/EditorManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/EditorManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/BattleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/BattleManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroupShader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryGroupShader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/Parser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/BattleSimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/CodeBlocks/DATBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/CodeBlocks/DATBlock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/CommonMemoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/CommonMemoryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/ISimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/ISimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/Messages/BaseMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/Messages/BaseMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/WarriorManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/SimulatorVirusManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Simulator/WarriorManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Simulator/SimulatorVirusManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Load.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Load.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MemoryVisualization/MemoryShader.compute" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Save.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/Save.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/VirusIO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Virus/VirusIO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Virus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Virus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/MockBattleSimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/MockBattleSimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/MockMemorySimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/MockMemorySimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/TestsDATBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/TestsDATBlock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +32,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d962c48d73ca455889390bf9d50d28ad6600/54/a22495a9/Canvas.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/BattleManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Simulator/SimulatorVirusManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/GameScene/BackToMenu.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,20 +58,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "rider.run.widget.enabled.cache": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$USER_HOME$/Desktop/AAAAAA\Client.exe" />
@@ -166,6 +154,7 @@
       <workItem from="1653145752414" duration="650000" />
       <workItem from="1653158474361" duration="1538000" />
       <workItem from="1653166917161" duration="813000" />
+      <workItem from="1653575569428" duration="3597000" />
     </task>
     <servers />
   </component>
