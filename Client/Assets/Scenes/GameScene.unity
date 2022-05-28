@@ -5169,7 +5169,7 @@ MonoBehaviour:
     virusAvatar: {fileID: 1319892835}
     resize: {fileID: 1319892837}
   chooseWinner: {fileID: 802400081}
-  virusInterface: {fileID: 738581377}
+  mainUI: {fileID: 1841280519}
   virus1Color: {r: 0.8773585, g: 0.193681, b: 0.193681, a: 1}
   author1Color: {r: 1, g: 0, b: 0, a: 1}
   virus1ExecuteColor: {r: 1, g: 0, b: 0, a: 1}

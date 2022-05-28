@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private VirusUI virusA;
     [SerializeField] private VirusUI virusB;
     [SerializeField] private GameObject chooseWinner;
-    [SerializeField] private GameObject virusInterface;
+    [SerializeField] private GameObject mainUI;
     
     public Color virus1Color;
     public Color author1Color;
@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     public void ShowResults(int winner)
     {
         results.go.SetActive(true);
-        virusInterface.SetActive(false);
+        mainUI.SetActive(false);
         chooseWinner.SetActive(false);
         
         switch (winner)
