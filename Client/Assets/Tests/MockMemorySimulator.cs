@@ -14,6 +14,8 @@ namespace Tests
 {
     public class MockMemorySimulator : ISimulator
     {
+        int[] pspace = new int[8000 / 16];
+
         public int CountKills {get; private set;}
 
         private List<CodeBlock> blocks = new List<CodeBlock>(8000);
@@ -56,5 +58,15 @@ namespace Tests
             return dest+origin;
         }
         public void SendMessage(BaseMessage message) { }
+
+        public void SetPrivateSpace(int location, int value)
+        {
+            pspace[location] = value;
+        }
+
+        public int GetPrivateSpace(int location)
+        {
+            return pspace[location];
+        }
     }
 }

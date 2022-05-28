@@ -49,7 +49,20 @@ namespace Simulator
                 List<int> processes = First() ? _firstVirusProcesses : _secondVirusProcesses;
                 int index = First() ? _firstVirusIndex : _secondVirusIndex;
 
+                
+                //Advance program counter of current process
                 processes[index] = (processes[index] + 1) % 8000;
+
+                //Advance to next process in task queue
+                if (First())
+                {
+                    _firstVirusIndex++;
+                    _firstVirusIndex = _firstVirusIndex % processes.Count;
+                }
+                else {
+                    _secondVirusIndex++;
+                    _secondVirusIndex = _secondVirusIndex % processes.Count;
+                }
             }
             //otherwise mark jumped false and continue
             else _jumped[_currentExecutingVirus-1] = false;

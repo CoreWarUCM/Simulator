@@ -13,6 +13,8 @@ namespace Simulator
     {
         private SimulatorVirusManager _simulatorVirusManager;
         private CommonMemoryManager _commonMemoryManager;
+        private PrivateMemoryManager _privateMemoryManager;
+
         private System.Random _random;
 
         public List<Action<BaseMessage>>[] _listeners;
@@ -21,7 +23,7 @@ namespace Simulator
         private bool _running = false;
         private double _nextStep = 0;
 
-
+        
 
         [SerializeField] private Button nextSpeed, previousSpeed;
         [SerializeField] private TMP_Text speedText;
@@ -37,6 +39,7 @@ namespace Simulator
         };
 
         void Awake(){
+            _privateMemoryManager = new PrivateMemoryManager();
             _listeners = new List<Action<BaseMessage>>[Enum.GetValues(typeof(MessageType)).Length];
             for (int i = 0; i < _listeners.Length;i++)
                 _listeners[i] = new List<Action<BaseMessage>>();
@@ -176,6 +179,18 @@ namespace Simulator
         public void UpdateText()
         {
             speedText.text = _stepPSn != _stepPS.Length - 1 ? _stepPS[_stepPSn].ToString() : "MAX";
+        }
+
+        public void SetPrivateSpace(int location, int value)
+        {
+            _simulatorVirusManager.GetCurrent(out int _, out int virus);
+            _privateMemoryManager.setPSpace(location, virus, value);
+        }
+
+        public int GetPrivateSpace(int location)
+        {
+            _simulatorVirusManager.GetCurrent(out int _, out int virus);
+            return _privateMemoryManager.getPSpace(location, virus);
         }
     }
 }

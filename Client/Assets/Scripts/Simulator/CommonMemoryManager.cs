@@ -55,5 +55,15 @@ namespace Simulator
         public void JumpTo(int destination){_simulator.JumpTo(destination);}
         public void KillVirus(){_simulator.KillVirus(); }
         public void SendMessage(BaseMessage message) { _simulator.SendMessage(message); }
+
+        public void SetPrivateSpace(int location, int value)
+        {
+            _simulator.SetPrivateSpace(location,value);
+        }
+
+        public int GetPrivateSpace(int location)
+        {
+            return _simulator.GetPrivateSpace(location);
+        }
     }
 }

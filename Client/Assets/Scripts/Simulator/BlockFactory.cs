@@ -97,6 +97,10 @@ namespace Simulator
                     return new MODBlock(regA, regB, mod);
                 case "NOP":
                     return new NOPBlock(regA, regB, mod);
+                case "STP":
+                    return new STPBlock(regA, regB, mod);
+                case "LDP":
+                    return new LDPBlock(regA, regB, mod);
                 default:
                     throw new Exception("unsupported block type {"+opCode+"}, las quejas a Ricky");
             }

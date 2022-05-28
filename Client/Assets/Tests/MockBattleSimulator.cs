@@ -10,6 +10,8 @@ namespace Tests
 {
     public class MockBattleSimulator : ISimulator
     {
+        int[] pspace = new int[8000/16];
+
         public void SetBlock(CodeBlock block, int position, int origin)
         {
             new DATBlock(new CodeBlock.Register(), new CodeBlock.Register(), CodeBlock.Modifier.F);
@@ -37,5 +39,15 @@ namespace Tests
             return -1;
         }
         public void SendMessage(BaseMessage message) { }
+
+        public void SetPrivateSpace(int location, int value)
+        {
+            pspace[location] = value;
+        }
+
+        public int GetPrivateSpace(int location)
+        {
+            return pspace[location];
+        }
     }
 }

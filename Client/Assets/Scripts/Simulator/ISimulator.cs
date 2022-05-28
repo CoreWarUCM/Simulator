@@ -10,5 +10,7 @@ namespace Simulator
         public void KillVirus();
         public int ResolveAddress(int relativeAddress, int originalPosition);
         public void SendMessage(BaseMessage message);
+        public void SetPrivateSpace(int location, int value);
+        public int GetPrivateSpace(int location);
     }
 }
