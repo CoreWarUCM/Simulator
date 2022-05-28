@@ -25,9 +25,6 @@ public class Parser
         //Process cumbersome initialization
         Process pmarsDebugger = new Process();
         pmarsDebugger.StartInfo.FileName = SystemInfo.operatingSystem.ToLower().Contains("windows") ? PATH + "/pMars.exe" : "pmars";
-        Debug.Log("EH: " +virus1Path);
-        Debug.Log("EH: " +virus2Path);
-        Debug.Log("EH: " +pmarsDebugger.StartInfo.FileName);
         string copyPath1 = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";
         System.IO.File.Copy(virus1Path,copyPath1);
         string copyPath2 = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".txt";

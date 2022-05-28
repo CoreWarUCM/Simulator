@@ -20,7 +20,10 @@ namespace Simulator.CodeBlocks
                         CodeBlock.Register regB,
                         CodeBlock.Modifier mod = CodeBlock.Modifier.I) 
                         : base(mod, regA, regB) { }
-
+        public override CodeBlock Copy()
+        {
+            return new MOVBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
         protected override void A(ISimulator simulator, int location)
         {
             int regB = _regB.rGet(simulator, location);
@@ -87,10 +90,11 @@ namespace Simulator.CodeBlocks
 
 
             CodeBlock origin = simulator.GetBlock(regA,0);
+            
 
-            simulator.SetBlock(origin, regB,0);
+
+            simulator.SetBlock(origin.Copy(), regB,0);
             simulator.SendMessage(new BlockModifyMessage(regB));
-            simulator.SendMessage(new BlockModifyMessage(regA));
 
         }
 
@@ -104,7 +108,6 @@ namespace Simulator.CodeBlocks
             dest._regB.Set(origin._regA.Value());
 
             simulator.SendMessage(new BlockModifyMessage(regB));
-            simulator.SendMessage(new BlockModifyMessage(regA));
         }
     }
 }

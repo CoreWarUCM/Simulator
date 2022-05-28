@@ -2,28 +2,28 @@
 
 namespace Simulator.CodeBlocks
 {
-    public class MODBlock : CodeBlock
+    public class SLTBlock : CodeBlock
     {
-        public MODBlock(CodeBlock.Register regA,
+        public SLTBlock(int a, int b, CodeBlock.Modifier mod)
+      : base(mod,
+            new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, a),
+            new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, b))
+        {
+        }
+        public SLTBlock(CodeBlock.Register regA,
                 CodeBlock.Register regB,
                 CodeBlock.Modifier mod = CodeBlock.Modifier.I)
                 : base(mod, regA, regB) { }
         public override CodeBlock Copy()
         {
-            return new MODBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+            return new SLTBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
         }
-        public override void Execute(ISimulator simulator, int location)
+
+        private void Jump(ISimulator simulator, int location)
         {
-            try
-            {
-                base.Execute(simulator, location);
-            }
-            catch (System.DivideByZeroException)
-            {
-                simulator.KillVirus();
-                simulator.SendMessage(new DeathMessage(location));
-                Debug.Log("OJO QUE MODIDIMOS ENTRE 0");
-            }
+            int absolute = simulator.ResolveAddress(2, location);
+            simulator.JumpTo(absolute);
+            simulator.SendMessage(new JumpMessage(absolute));
         }
 
         protected override void A(ISimulator simulator, int location)
@@ -33,9 +33,8 @@ namespace Simulator.CodeBlocks
             CodeBlock source = simulator.GetBlock(_regA.rGet(simulator, location), 0);
             CodeBlock dest = simulator.GetBlock(regB, 0);
 
-            dest._regA.Mod(source._regA.Value());
-
-            simulator.SendMessage(new BlockModifyMessage(regB));
+            if (source._regA.Value() < dest._regA.Value())
+                Jump(simulator, location);
         }
 
         protected override void AB(ISimulator simulator, int location)
@@ -45,10 +44,8 @@ namespace Simulator.CodeBlocks
             CodeBlock source = simulator.GetBlock(_regA.rGet(simulator, location), 0);
             CodeBlock dest = simulator.GetBlock(regB, 0);
 
-            int v = source._regA.Value();
-            dest._regB.Mod(v);
-
-            simulator.SendMessage(new BlockModifyMessage(simulator.ResolveAddress(regB, 0)));
+            if (source._regA.Value() < dest._regB.Value())
+                Jump(simulator, location);
         }
 
         protected override void B(ISimulator simulator, int location)
@@ -58,9 +55,8 @@ namespace Simulator.CodeBlocks
             CodeBlock source = simulator.GetBlock(_regA.rGet(simulator, location), 0);
             CodeBlock dest = simulator.GetBlock(regB, 0);
 
-            dest._regB.Mod(source._regB.Value());
-
-            simulator.SendMessage(new BlockModifyMessage(regB));
+            if (source._regB.Value() < dest._regB.Value())
+                Jump(simulator, location);
         }
 
         protected override void BA(ISimulator simulator, int location)
@@ -70,27 +66,24 @@ namespace Simulator.CodeBlocks
             CodeBlock source = simulator.GetBlock(_regA.rGet(simulator, location), 0);
             CodeBlock dest = simulator.GetBlock(regB, 0);
 
-            dest._regA.Mod(source._regB.Value());
-
-            simulator.SendMessage(new BlockModifyMessage(regB));
+            if (source._regB.Value() < dest._regA.Value())
+                Jump(simulator, location);
         }
 
         protected override void F(ISimulator simulator, int location)
-        {
-            this.I(simulator, location);
-        }
-
-        protected override void I(ISimulator simulator, int location)
         {
             int regB = _regB.rGet(simulator, location);
 
             CodeBlock source = simulator.GetBlock(_regA.rGet(simulator, location), 0);
             CodeBlock dest = simulator.GetBlock(regB, 0);
 
-            dest._regA.Mod(source._regA.Value());
-            dest._regB.Mod(source._regB.Value());
+            if (source._regA.Value() < dest._regA.Value() && source._regB.Value() < dest._regB.Value())
+                Jump(simulator, location);
+        }
 
-            simulator.SendMessage(new BlockModifyMessage(regB));
+        protected override void I(ISimulator simulator, int location)
+        {
+            F(simulator, location);
         }
 
         protected override void X(ISimulator simulator, int location)
@@ -100,10 +93,8 @@ namespace Simulator.CodeBlocks
             CodeBlock source = simulator.GetBlock(_regA.rGet(simulator, location), 0);
             CodeBlock dest = simulator.GetBlock(regB, 0);
 
-            dest._regA.Mod(source._regB.Value());
-            dest._regB.Mod(source._regA.Value());
-
-            simulator.SendMessage(new BlockModifyMessage(regB));
+            if (source._regA.Value() < dest._regB.Value() && source._regB.Value() < dest._regA.Value())
+                Jump(simulator, location);
         }
     }
 }

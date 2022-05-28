@@ -39,11 +39,6 @@ namespace Simulator
             _memory[ResolveAddress(position, origin)] = block;
         }
 
-        public void CreateProcess(int virus, int position, int origin)
-        {
-            //Call delegated to actual simulator
-            _simulator.CreateProcess(virus, position, origin);
-        }
 
         public CodeBlock GetBlock(int position, int origin)
         {
@@ -65,5 +60,8 @@ namespace Simulator
         {
             return _simulator.GetPrivateSpace(location);
         }
+
+        public bool CanCreateProcess() { return _simulator.CanCreateProcess(); }
+        public void CreateProcess(int pos, int org) { _simulator.CreateProcess(pos, org); }
     }
 }

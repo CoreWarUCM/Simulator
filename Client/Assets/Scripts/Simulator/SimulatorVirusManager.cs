@@ -12,7 +12,8 @@ namespace Simulator
 
         private int _currentExecutingVirus;
         private bool[] _jumped = { false, false };
-        
+        private bool _diedThisRound = false;
+
         public SimulatorVirusManager(System.Random randomizer)
         {
             _firstVirusProcesses = new List<int>();
@@ -28,7 +29,7 @@ namespace Simulator
             {
                 secondLocation = randomizer.Next(0,8000);
             } while (secondLocation < firstLocation + 100 && secondLocation > firstLocation - 100);
-            
+
             _secondVirusProcesses.Add(secondLocation);
             _secondVirusIndex = 0;
 
@@ -38,34 +39,53 @@ namespace Simulator
 
         public void GetCurrent(out int programLocation, out int virus)
         {
-            programLocation = First() ? _firstVirusProcesses[_firstVirusIndex] : _secondVirusProcesses[_secondVirusIndex];
+            if(First())
+            {
+                programLocation = _firstVirusProcesses[_firstVirusIndex];
+            }
+            else
+            {
+                programLocation = _secondVirusProcesses[_secondVirusIndex];
+            }
             virus = _currentExecutingVirus;
         }
         public void AdvanceCurrent()
         {
+            List<int> processes = First() ? _firstVirusProcesses : _secondVirusProcesses;
+            
             //Advance regulary if you did not jump this turn
-            if(!_jumped[_currentExecutingVirus-1])
+            if (!_jumped[_currentExecutingVirus-1] && !_diedThisRound)
             {
-                List<int> processes = First() ? _firstVirusProcesses : _secondVirusProcesses;
                 int index = First() ? _firstVirusIndex : _secondVirusIndex;
 
                 
                 //Advance program counter of current process
                 processes[index] = (processes[index] + 1) % 8000;
+            }
+            //otherwise mark jumped false and continue
+            else _jumped[_currentExecutingVirus-1] = false;
 
+            if (_diedThisRound)
+            {
+                _diedThisRound = false;
+
+                //ensure we still on range if last was deleted
+                if(_firstVirusProcesses.Count > 0) _firstVirusIndex = _firstVirusIndex % _firstVirusProcesses.Count;
+                if(_secondVirusProcesses.Count > 0) _secondVirusIndex = _secondVirusIndex % _secondVirusProcesses.Count;
+            }
+            else {
                 //Advance to next process in task queue
                 if (First())
                 {
                     _firstVirusIndex++;
                     _firstVirusIndex = _firstVirusIndex % processes.Count;
                 }
-                else {
+                else
+                {
                     _secondVirusIndex++;
                     _secondVirusIndex = _secondVirusIndex % processes.Count;
                 }
             }
-            //otherwise mark jumped false and continue
-            else _jumped[_currentExecutingVirus-1] = false;
         }
         public int Next()
         {
@@ -84,6 +104,28 @@ namespace Simulator
                 _secondVirusProcesses[index] = location; 
 
             _jumped[_currentExecutingVirus-1] = true;
+        }
+
+        public bool CanCreateProcess() { return First() ? _firstVirusProcesses.Count < 8000 : _secondVirusProcesses.Count < 8000; }
+
+        public void CreateProcess(int where)
+        {
+            var queue = First() ? _firstVirusProcesses: _secondVirusProcesses;
+            queue.Add(where);
+        }
+        public bool KillCurrentProcess()
+        {
+            _diedThisRound = true;
+            if (First())
+            {
+                _firstVirusProcesses.RemoveAt(_firstVirusIndex);
+                return _firstVirusProcesses.Count > 0;
+            }
+            else
+            {
+                _secondVirusProcesses.RemoveAt(_secondVirusIndex);
+                return _secondVirusProcesses.Count > 0;
+            }
         }
     }
 }

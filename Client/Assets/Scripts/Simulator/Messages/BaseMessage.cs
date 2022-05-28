@@ -10,6 +10,8 @@ namespace Simulator
         BlockModify,
         Death,
         BlockExecuted,
+        ProcessCreated,
+        VirusLost,
         Jump
     }
     public class BaseMessage
