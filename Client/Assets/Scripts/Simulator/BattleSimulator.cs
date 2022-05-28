@@ -23,7 +23,10 @@ namespace Simulator
         private bool _running = false;
         private double _nextStep = 0;
 
-        
+
+        private int _currentVirus;
+        private int _currentVirusLocation;
+
 
         [SerializeField] private Button nextSpeed, previousSpeed;
         [SerializeField] private TMP_Text speedText;
@@ -76,7 +79,15 @@ namespace Simulator
             _simulatorVirusManager.Next();
 
             //Subscribe end of simulation callback
-            Subscribe(MessageType.Death, (BaseMessage message) => { _running = false; }); // this should actually call WM to handle death of thread, but not multithread yet
+            Subscribe(MessageType.Death, (BaseMessage message) => 
+            { 
+                _running = _simulatorVirusManager.KillCurrentProcess();
+                if (!_running)
+                {
+                    DeathMessage deathMessage = message as DeathMessage;
+                    SendMessage(new VirusLostMessage(deathMessage.deathlocation, deathMessage.divideByZero));
+                }
+            }); 
 
             _running = true;
         }
@@ -103,11 +114,11 @@ namespace Simulator
 
         public void Step()
         {
-            _simulatorVirusManager.GetCurrent(out int location, out int virus);
+            _simulatorVirusManager.GetCurrent(out _currentVirusLocation, out _currentVirus);
             try
             {
-                _commonMemoryManager.GetBlock(location, 0).Execute(_commonMemoryManager, location);
-                SendMessage(new BlockExecutedMessage(location));
+                _commonMemoryManager.GetBlock(_currentVirusLocation, 0).Execute(_commonMemoryManager, _currentVirusLocation);
+                SendMessage(new BlockExecutedMessage(_currentVirusLocation));
             }
             //catch (System.Exception e){ Debug.LogError(e.Message); }
             catch (CodeBlock.UnsupportedModifierException e) { Debug.LogError(e.Message); }
@@ -117,9 +128,13 @@ namespace Simulator
             _simulatorVirusManager.Next();   
         }
 
-        public void CreateProcess(int virus, int position, int origin)
+        public void CreateProcess(int position, int origin)
         {
-            throw new System.NotImplementedException();
+            _simulatorVirusManager.CreateProcess(_commonMemoryManager.ResolveAddress(position, origin));
+        }
+        public bool CanCreateProcess()
+        {
+            return _simulatorVirusManager.CanCreateProcess(); 
         }
 
         public void Subscribe(MessageType type,Action<BaseMessage>action)
@@ -129,8 +144,7 @@ namespace Simulator
 
         public void SendMessage(BaseMessage message)
         {
-            _simulatorVirusManager.GetCurrent(out _, out int virus);
-            message.virus = virus;
+            message.virus = _currentVirus;
 
             foreach (var listener in _listeners[(int)message._type])
                 listener.Invoke(message);
@@ -142,7 +156,6 @@ namespace Simulator
         }
 
         public void KillVirus(){
-            Debug.Log("AAAAH WARRIOR DIES");
         }
         public int ResolveAddress(int relativeAddress, int originalPosition)
         {
@@ -183,14 +196,12 @@ namespace Simulator
 
         public void SetPrivateSpace(int location, int value)
         {
-            _simulatorVirusManager.GetCurrent(out int _, out int virus);
-            _privateMemoryManager.setPSpace(location, virus, value);
+            _privateMemoryManager.setPSpace(location, _currentVirus, value);
         }
 
         public int GetPrivateSpace(int location)
         {
-            _simulatorVirusManager.GetCurrent(out int _, out int virus);
-            return _privateMemoryManager.getPSpace(location, virus);
+            return _privateMemoryManager.getPSpace(location, _currentVirus);
         }
     }
 }

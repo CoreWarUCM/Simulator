@@ -11,16 +11,21 @@ namespace Tests
     public class MockBattleSimulator : ISimulator
     {
         int[] pspace = new int[8000/16];
-
+        List<int> pqueue = new List<int>();
         public void SetBlock(CodeBlock block, int position, int origin)
         {
             new DATBlock(new CodeBlock.Register(), new CodeBlock.Register(), CodeBlock.Modifier.F);
         }
 
-        public void CreateProcess(int virus, int position, int origin)
+        public void CreateProcess(int position, int origin)
         {
-            
+            pqueue.Add((origin+position)%8000);
         }
+        public bool CanCreateProcess()
+        {
+            return pqueue.Count < 2;
+        }
+        public int GetLastProcess() { return pqueue.Last(); }
 
         public CodeBlock GetBlock(int position, int origin)
         {

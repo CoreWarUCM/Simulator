@@ -15,6 +15,7 @@ namespace Tests
     public class MockMemorySimulator : ISimulator
     {
         int[] pspace = new int[8000 / 16];
+        List<int> pqueue = new List<int>();
 
         public int CountKills {get; private set;}
 
@@ -32,10 +33,15 @@ namespace Tests
             blocks[position] = block;
         }
 
-        public void CreateProcess(int virus, int position, int origin)
+        public void CreateProcess(int position, int origin)
         {
-            
+            pqueue.Add((origin + position) % 8000);
         }
+        public bool CanCreateProcess()
+        {
+            return pqueue.Count < 2;
+        }
+        public int GetLastProcess() { return pqueue.Last(); }
 
         public CodeBlock GetBlock(int position, int origin)
         {

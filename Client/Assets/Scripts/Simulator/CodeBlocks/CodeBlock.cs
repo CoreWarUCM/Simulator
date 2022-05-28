@@ -3,7 +3,7 @@ namespace Simulator
 {
     public abstract class CodeBlock : ICodeBlock
     {
-        private Modifier _mod;
+        protected Modifier _mod;
         public enum Modifier
         {
             A,B,AB,BA,
@@ -64,9 +64,10 @@ namespace Simulator
                         return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value,location)));        
                     }
                     case AddressingMode.BPredecrement:{
-                        _value--;
-                        target = sim.GetBlock(_value,location);
-                        return sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value,location)));        
+                        target._regB.Add(-1);
+                        int pos = sim.ResolveAddress(target._regB.Value(), (sim.ResolveAddress(_value, location)));
+                        sim.SendMessage(new BlockModifyMessage((sim.ResolveAddress(_value, location))));
+                        return pos;        
                     }
                     case AddressingMode.APostincrement:{
                         return sim.ResolveAddress(target._regA.Value(), (sim.ResolveAddress(_value++,location)));        
@@ -152,6 +153,9 @@ namespace Simulator
                     throw new System.Exception("Unreachable case");
             }
         }
+
+
+        public abstract CodeBlock Copy();
 
         protected abstract void A(ISimulator simulator, int location);
         protected abstract void B(ISimulator simulator, int location);

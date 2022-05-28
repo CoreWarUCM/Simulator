@@ -28,6 +28,11 @@ namespace Simulator.CodeBlocks
                         CodeBlock.Modifier mod = CodeBlock.Modifier.B) 
                         : base(mod, regA, regB) { }
 
+        public override CodeBlock Copy()
+        {
+            return new DJNBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
+
         protected override void A(ISimulator simulator, int location)
         {
             int value = _regA.rGet(simulator, location);

@@ -14,7 +14,10 @@ namespace Simulator.CodeBlocks
                 CodeBlock.Register regB,
                 CodeBlock.Modifier mod = CodeBlock.Modifier.I)
                 : base(mod, regA, regB) { }
-
+        public override CodeBlock Copy()
+        {
+            return new SNEBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
 
         private void Jump(ISimulator simulator, int location)
         {

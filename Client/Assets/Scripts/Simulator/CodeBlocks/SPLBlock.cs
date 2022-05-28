@@ -8,39 +8,28 @@ using UnityEngine;
 
 namespace Simulator.CodeBlocks
 {
-    public class JMZBlock : CodeBlock
+    public class SPLBlock : CodeBlock
     {
-        public JMZBlock(int a, int b = 0, CodeBlock.Modifier mod = CodeBlock.Modifier.B)
+        public SPLBlock(int a, int b = 0, CodeBlock.Modifier mod = CodeBlock.Modifier.B)
             : base(mod,
             new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, a),
             new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, b))
         {
         }
-        public JMZBlock(CodeBlock.Register regA,
+
+        public SPLBlock(CodeBlock.Register regA,
                         CodeBlock.Register regB = null,
                         CodeBlock.Modifier mod = CodeBlock.Modifier.B) 
                         : base(mod, regA, regB) { }
 
         public override CodeBlock Copy()
         {
-            return new JMZBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+            return new SPLBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
         }
-
-
-        private void Jump(ISimulator simulator, int addr)
-        {
-            simulator.JumpTo(addr);
-            simulator.SendMessage(new JumpMessage(addr));
-        }
-
 
         protected override void A(ISimulator simulator, int location)
         {
-            int value = _regA.rGet(simulator, location);
-            int target = _regB.rGet(simulator, location);
-
-            if (simulator.GetBlock(target, 0)._regA.Value() == 0)
-                Jump(simulator, value);
+            B(simulator, location);
         }
 
         protected override void AB(ISimulator simulator, int location)
@@ -50,35 +39,36 @@ namespace Simulator.CodeBlocks
 
         protected override void B(ISimulator simulator, int location)
         {
-            int value = _regA.rGet(simulator, location);
-            int target = _regB.rGet(simulator, location);
+            int addr = _regA.rGet(simulator, location);
 
-            if (simulator.GetBlock(target,0)._regB.Value() == 0)
-                Jump(simulator,value);
+            _regB.rGet(simulator, location);
+
+            if (simulator.CanCreateProcess())
+            {
+                simulator.CreateProcess(1, location);
+                simulator.JumpTo(addr);
+                simulator.SendMessage(new JumpMessage(addr));
+            }
         }
 
         protected override void BA(ISimulator simulator, int location)
         {
-            A(simulator, location);
+            B(simulator, location);
         }
 
         protected override void F(ISimulator simulator, int location)
         {
-            int value = _regA.rGet(simulator, location);
-            int target = _regB.rGet(simulator, location);
-
-            if (simulator.GetBlock(target, 0)._regA.Value() == 0 && simulator.GetBlock(target, 0)._regB.Value() == 0)
-                Jump(simulator, value);
+            B(simulator, location);
         }
 
         protected override void I(ISimulator simulator, int location)
         {
-            F(simulator , location);
+            B(simulator, location);
         }
 
         protected override void X(ISimulator simulator, int location)
         {
-            F(simulator, location);
+            B(simulator, location);
         }
     }
 }

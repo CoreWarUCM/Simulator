@@ -15,7 +15,10 @@ namespace Simulator.CodeBlocks
                 CodeBlock.Modifier mod = CodeBlock.Modifier.I)
                 : base(mod, regA, regB) { }
 
-
+        public override CodeBlock Copy()
+        {
+            return new CMPBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
         private void Jump(ISimulator simulator, int location)
         {
             int absolute = simulator.ResolveAddress(2, location);

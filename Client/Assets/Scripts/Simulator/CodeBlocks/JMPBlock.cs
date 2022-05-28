@@ -21,42 +21,48 @@ namespace Simulator.CodeBlocks
                         CodeBlock.Register regB = null,
                         CodeBlock.Modifier mod = CodeBlock.Modifier.B) 
                         : base(mod, regA, regB) { }
-
+        public override CodeBlock Copy()
+        {
+            return new JMPBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
         protected override void A(ISimulator simulator, int location)
         {
-            throw new CodeBlock.UnsupportedModifierException("A");
+            B(simulator, location);
         }
 
         protected override void AB(ISimulator simulator, int location)
         {
-            throw new CodeBlock.UnsupportedModifierException("AB");
+            B(simulator, location);
         }
 
         protected override void B(ISimulator simulator, int location)
         {
             int addr = _regA.rGet(simulator, location);
+            _regB.rGet(simulator, location);
             simulator.JumpTo(addr);
             simulator.SendMessage(new JumpMessage(addr));
+            if(addr<location)
+                Debug.Log("JUMP TO " + addr);
         }
 
         protected override void BA(ISimulator simulator, int location)
         {
-            throw new CodeBlock.UnsupportedModifierException("BA");
+            B(simulator, location);
         }
 
         protected override void F(ISimulator simulator, int location)
         {
-            throw new CodeBlock.UnsupportedModifierException("F");
+            B(simulator, location);
         }
 
         protected override void I(ISimulator simulator, int location)
         {
-            throw new CodeBlock.UnsupportedModifierException("I");
+            B(simulator, location);
         }
 
         protected override void X(ISimulator simulator, int location)
         {
-            throw new CodeBlock.UnsupportedModifierException("X");
+            B(simulator, location);
         }
     }
 }

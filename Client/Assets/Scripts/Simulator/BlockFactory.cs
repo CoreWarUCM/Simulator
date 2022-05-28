@@ -103,6 +103,8 @@ namespace Simulator
                     return new LDPBlock(regA, regB, mod);
                 case "SLT":
                     return new SLTBlock(regA, regB, mod);
+                case "SPL":
+                    return new SPLBlock(regA, regB, mod);
                 default:
                     throw new Exception("unsupported block type {"+opCode+"}, las quejas a Ricky");
             }

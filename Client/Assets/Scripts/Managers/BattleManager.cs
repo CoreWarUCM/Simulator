@@ -44,7 +44,7 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        battleSimulator.Subscribe(MessageType.Death, message =>
+        battleSimulator.Subscribe(MessageType.VirusLost, message =>
         {
             VirusWinner((message.virus - 2) * -1);
         } );

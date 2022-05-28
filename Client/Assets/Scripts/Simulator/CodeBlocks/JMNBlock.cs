@@ -16,7 +16,10 @@ namespace Simulator.CodeBlocks
             new CodeBlock.Register(CodeBlock.Register.AddressingMode.direct, b))
         {
         }
-
+        public override CodeBlock Copy()
+        {
+            return new JMNBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
         private void Jump(ISimulator simulator, int addr)
         {
             simulator.JumpTo(addr);

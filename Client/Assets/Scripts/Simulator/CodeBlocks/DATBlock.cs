@@ -20,7 +20,10 @@ namespace Simulator.CodeBlocks
                         CodeBlock.Register regB,
                         CodeBlock.Modifier mod = CodeBlock.Modifier.F) 
                         : base(mod, regA, regB) { }
-
+        public override CodeBlock Copy()
+        {
+            return new DATBlock(new Register(_regA.Mode(), _regA.Value()), new Register(_regB.Mode(), _regB.Value()), _mod);
+        }
         protected override void A(ISimulator simulator, int location)
         {
             throw new CodeBlock.UnsupportedModifierException("A");
