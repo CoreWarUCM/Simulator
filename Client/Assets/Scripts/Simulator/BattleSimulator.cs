@@ -142,7 +142,7 @@ namespace Simulator
         }
 
         public void KillVirus(){
-            Debug.LogError("AAAAH WARRIOR DIES");
+            Debug.Log("AAAAH WARRIOR DIES");
         }
         public int ResolveAddress(int relativeAddress, int originalPosition)
         {

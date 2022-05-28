@@ -3,14 +3,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manager storing all the loaded virus for easy access and manage.
+/// Separates the virus from the 1v1 and the tournament and have a pointer
+/// to the current fight to prevent crossing data.
+/// The tournamnet part is UNFINISHED and only loads the virus but do not advance or manage the tournament draft
+/// </summary>
 public class VirusManager
 {
+    // Tournament virus 
     private Dictionary<int, Virus> _tournament;
 
+    // 1V1 Virus
     private VirusPair _versus;
 
+    // Check for mode (true : tournament - false : 1V1)
     private bool tournamentMode = false;
-
+    
     public VirusManager()
     {
         _tournament = new Dictionary<int, Virus>();
@@ -19,7 +28,6 @@ public class VirusManager
 
     public void SetVersusVirus(bool first, Virus v)
     {
-        Debug.Log("PRINT");
         if (first)
             _versus.A = v;
         else
@@ -46,9 +54,10 @@ public class VirusManager
         return tournamentMode ? GetNextBattle() : _versus;
     }
 
+    // NOT WORKING AT THE MOMENT, ALWAYS RETURN THE FIRST 2 VIRUS
     public VirusPair GetNextBattle()
     {
-        return new VirusPair();
+        return new VirusPair(_tournament[0], _tournament[1]);
     }
 
     public Virus GetTournamentVirus(int pos)

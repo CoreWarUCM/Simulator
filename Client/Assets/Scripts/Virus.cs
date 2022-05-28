@@ -1,4 +1,8 @@
 ﻿
+/// <summary>
+/// Virus class, mainly used to store the data from the virus.
+/// Made a class instead of struct so it can be compare with null ( I hate you C#)
+/// </summary>
 public class Virus
 {
     private string _path;
@@ -42,6 +46,10 @@ public class Virus
     }
 }
 
+/// <summary>
+/// Simple structure to store a pair of virus
+/// Used for battles
+/// </summary>
 public struct VirusPair
 {
     public Virus A;
@@ -53,6 +61,10 @@ public struct VirusPair
         B = b;
     }
 
+    /// <summary>
+    /// Returns if both of the virus are valid and initialized
+    /// </summary>
+    /// <returns></returns>
     public bool IsValidPair()
     {
         return A != null && B != null;

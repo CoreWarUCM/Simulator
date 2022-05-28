@@ -1,24 +1,50 @@
+using System;
 using System.Collections;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Manages the whole functionality of the
+/// in game editor, is connected with the editor.
+/// Now is mainly unused because the intellisense is
+/// deactivated right now.
+/// It also manages the load and save functionalities.
+/// </summary>
 public class EditorManager : MonoBehaviour
 {
+    // Reference to input field in scene
     [SerializeField] private TMP_InputField _editorField;
 
-    [SerializeField] private EditorIntellisense _intellisense;
+    // Support class for intellisense UNUSED
+    private EditorIntellisense _intellisense;
 
+    // UNUSED Edit time cycle UNUSED
     [SerializeField] private float editTime = 0.5f;
+    
+    // UNUSED Last edit time UNUSED
+    private float _lastEdit = 0;
 
-    [SerializeField] private bool _checkedEdit = false, intellisense = false;
-    [SerializeField] private float _lastEdit = 0;
-
+    // UNUSED Boolean to check if text has already been checked, prevents extra calls UNUSED
+    private bool _checkedEdit = false;
+    
+    // UNUSED Last text store after last edit check UNUSED
     private string _lastText = "";
+    
+    // Boolean to activate intellisense DO NOT USE 
+    [SerializeField] private bool intellisense = false;
 
+    private void Awake()
+    {
+        _intellisense = new EditorIntellisense();
+    }
+
+    /// <summary>
+    /// Checks if is initialized correctly 
+    /// </summary>
     void Start()
     {
-        if (!_editorField || !_intellisense)
+        if (!_editorField || _intellisense == null)
         {
             Debug.LogWarning("EditorManager no initialized");
             Destroy(this);
@@ -33,12 +59,19 @@ public class EditorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Callback from editor when text changes
+    /// </summary>
     public void OnTextEdited()
     {
         _lastEdit = Time.time;
         _checkedEdit = false;
     }
 
+    /// <summary>
+    /// Coroutine that constantly checks for next changes
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CheckChanges()
     {
         while (true)
@@ -49,6 +82,12 @@ public class EditorManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// UNUSED
+    /// Calls support class to modify
+    /// the text to use tags and check for errors
+    /// UNUSED
+    /// </summary>
     void FullTextCheck()
     {
         _checkedEdit = true;
@@ -63,6 +102,9 @@ public class EditorManager : MonoBehaviour
         _editorField.text = text;
     }
 
+    /// <summary>
+    /// Cleans the text of tags and calls IO class to save the virus
+    /// </summary>
     public void SaveVirus()
     {
         string outText = _editorField.text;
@@ -72,12 +114,19 @@ public class EditorManager : MonoBehaviour
         GameManager.Instance.SaveVirus(outText);
     }
 
+    /// <summary>
+    /// Callback when loading a virus from file so it can be modified from editor
+    /// </summary>
+    /// <param name="v">Virus with data to load in the text</param>
     private void LoadCallback(Virus v)
     {
         _editorField.verticalScrollbar.value = 0;
         _editorField.text = string.Join("\n", v.GetRawData());
     }
 
+    /// <summary>
+    /// Calls the coroutine to load virus from file to the editor
+    /// </summary>
     public void LoadToEdit()
     {
         StartCoroutine(GameManager.Instance.GetVirusIO().LoadVirus(-1,null,null,LoadCallback));

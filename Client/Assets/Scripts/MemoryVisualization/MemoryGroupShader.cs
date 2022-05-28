@@ -5,18 +5,26 @@ using ComputeShaderUtility;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class that manages the creation and communication with the shader that draws the memory
+/// </summary>
 public class MemoryGroupShader : MonoBehaviour
 {
+    // Shadeer
     [SerializeField] private ComputeShader computeShader;
     
-    [SerializeField] private bool grid = false;
+    // This boolean set the shader drawing mode (better to keep it on)
+    [SerializeField] private bool grid = true;
 
+    // Reference to canvas in scene to check size in screen
     [SerializeField] private Canvas canvas;
 
+    // Component in scene that the shader will draw in 
     [SerializeField] private RawImage image;
 
-    [SerializeField] private uint numColls = 80;
-
+    // Number of target columns to draw
+    [SerializeField] private uint numCols = 80;
+    
     private uint numRows;
    
     private RectTransform _transform;
@@ -30,6 +38,12 @@ public class MemoryGroupShader : MonoBehaviour
 
     private Color[] _cells;
     
+    /// <summary>
+    /// Initialization of the class and shader.
+    /// Calls auxiliary method to get proportions, then checks them.
+    /// Initializes the shader and the cell buffer.
+    /// </summary>
+    /// <param name="numCells"></param>
     public void Init(uint numCells)
     {
         Vector4 proportions = GetPixelProportion(numCells);
@@ -37,11 +51,11 @@ public class MemoryGroupShader : MonoBehaviour
         _width = (int)proportions.x;
         _height = (int)proportions.y;
 
-        if (proportions.z * numColls != _width)
-            Debug.LogError("Error ancho. Operation: " + proportions.z + " * " + numColls + ". Expected: " + _width + " --- Got: " + proportions.z * numColls);
+        if (proportions.z * numCols != _width)
+            Debug.LogError("Error width. Operation: " + proportions.z + " * " + numCols + ". Expected: " + _width + " --- Got: " + proportions.z * numCols);
 
         if (proportions.w * numRows != _height)
-            Debug.LogError("Error alto. Operation: " + proportions.w + " * " + numRows + ". Expected: " + _height + " --- Got: " + proportions.w * numRows);
+            Debug.LogError("Error height. Operation: " + proportions.w + " * " + numRows + ". Expected: " + _height + " --- Got: " + proportions.w * numRows);
 
         ComputeHelper.CreateRenderTexture(ref _texture, _width, _height);
         
@@ -57,7 +71,7 @@ public class MemoryGroupShader : MonoBehaviour
         }
         
         ComputeHelper.CreateAndSetBuffer<Color>(ref _cellsBuffer, _cells, computeShader, "cells");
-        computeShader.SetInt("numColls",(int)numColls);
+        computeShader.SetInt("numColls",(int)numCols);
         computeShader.SetInt("numRows",(int)numRows);
         computeShader.SetInt("numCells",(int)numCells);
         computeShader.SetInt("width",_width);
@@ -93,22 +107,30 @@ public class MemoryGroupShader : MonoBehaviour
 
         Vector2 textureSize = new Vector2(anchor.x * screen.x, anchor.y * screen.y) * 5;
 
-        numRows =(numCells - 1) / numColls + 1;
+        numRows =(numCells - 1) / numCols + 1;
 
-        uint cellWidth = (uint)(textureSize.x  / numColls);
+        uint cellWidth = (uint)(textureSize.x  / numCols);
         uint cellHeight = (uint)(textureSize.y / numRows);
 
-        textureSize = new Vector2(cellWidth * numColls, cellHeight * numRows);
+        textureSize = new Vector2(cellWidth * numCols, cellHeight * numRows);
 
         return new Vector4(textureSize.x, textureSize.y, cellWidth, cellHeight);
     }
     
+    /// <summary>
+    /// Calls the compute shader
+    /// </summary>
     public void Update()
     {
         ComputeHelper.Dispatch(computeShader, _width, _height);
     }
 
 
+    /// <summary>
+    /// Update a cell color and sends it to the buffer
+    /// </summary>
+    /// <param name="index">cell index</param>
+    /// <param name="color">new color</param>
     public void SetColor(int index, Color color)
     {
         _cells[index] = color;

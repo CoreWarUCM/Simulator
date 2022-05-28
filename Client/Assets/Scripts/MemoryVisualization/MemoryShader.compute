@@ -1,9 +1,6 @@
 // Each #kernel tells which function to compile; you can have many kernels
 #pragma kernel UpdateCells
 
-// Create a RenderTexture with enableRandomWrite flag and set it
-// with cs.SetTexture
-
 RWTexture2D<float4> Texture;
 
 uint width;
@@ -17,33 +14,28 @@ bool grid;
 
 RWStructuredBuffer<float4> cells;
 
-uint hash(uint state)
-{
-    state ^= 2747636419u;
-    state *= 2654435769u;
-    state ^= state >> 16;
-    state *= 2654435769u;
-    state ^= state >> 16;
-    state *= 2654435769u;
-    return state;
-}
-
+/**
+ * \brief Transforms the position of the texel to the cell in the array
+ * \param id Texel(x,y)
+ */
 [numthreads(8,8,1)]
 void UpdateCells(uint3 id : SV_DispatchThreadID)
 {
-    int x = floor(id.x/cellWidth);
-    int y = numRows - 1 - floor(id.y/cellHeight);
+    // Column
+    const uint x = floor(id.x/cellWidth);
+    // Row
+    const uint y = numRows - 1 - floor(id.y/cellHeight);
 
-    int pos = x + y*numColls;
+    // Position in array
+    const uint pos = x + y*numColls;
 
-    if(pos >= numCells)
-    {
-        Texture[id.xy] = 1;
-        return;   
-    }
-    
-    if((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid)
-        Texture[id.xy] = 0;
-    else
-        Texture[id.xy] = cells[pos];
+    // Check if position is out of the array
+    const bool offMemory = !(pos >= numCells);
+    // Check if is close to the border of the cell
+    const bool gridCheck = !((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid);
+
+    // Paint color of cell in that position
+    // If close to the border of cell paint it black
+    // If out of memory paints it white
+    Texture[id.xy] = (cells[pos] * gridCheck ) * offMemory + 1 * !offMemory ;
 }

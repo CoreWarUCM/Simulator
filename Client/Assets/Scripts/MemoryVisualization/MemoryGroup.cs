@@ -1,22 +1,23 @@
 using UnityEngine;
 using Simulator;
 
+/// <summary>
+/// Class that makes the setup of the memory
+/// </summary>
 public class MemoryGroup : MonoBehaviour
 {
-    [SerializeField] private MemoryGroupShader _groupShader;
-    
-    private Renderer _groupShaderR;
-
-    public static int cellAmount;
+    // MemoryGroupShader in scene, manages the communication with the shader
+    [SerializeField] private MemoryGroupShader groupShader;
     
     [SerializeField]
     private uint cellAmountSet = 8000;
 
-    private void Awake()
-    {
-        _groupShaderR = _groupShader.GetComponent<Renderer>();
-    }
-
+    /// <summary>
+    /// Setup of the memory
+    /// Checks if is correctly initialized.
+    /// Setups the MemoryGroupShader and calls the UIManager and BattleSimulator to pass
+    /// the information of the memory 
+    /// </summary>
     public void Start()
     {
         if (cellAmountSet < 100)
@@ -25,10 +26,8 @@ public class MemoryGroup : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        MemoryGroup.cellAmount = (int)cellAmountSet;
-
-        _groupShader.Init(cellAmountSet);
+        
+        groupShader.Init(cellAmountSet);
 
         UIManager ui = GameManager.Instance.GetUIManager();
 
@@ -49,6 +48,6 @@ public class MemoryGroup : MonoBehaviour
 
     public void SetColor(int index, Color color)
     {
-        _groupShader.SetColor(index, color);
+        groupShader.SetColor(index, color);
     }
 }
