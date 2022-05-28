@@ -34,7 +34,7 @@ namespace Simulator
                 _value = 0;
                 _mode = AddressingMode.immediate;
             }
-            public Register(AddressingMode mode, int value) {_value = value; _mode= mode;}
+            public Register(AddressingMode mode, int value) {_value = AssureBetween0AndMax(value); _mode= mode;}
             
             public int Value(){
                 return _value;
@@ -84,7 +84,7 @@ namespace Simulator
             }
             public void Set(int v)
             {
-                _value = v;
+                _value = AssureBetween0AndMax(v);
             }
 
             private int AssureBetween0AndMax(int v)

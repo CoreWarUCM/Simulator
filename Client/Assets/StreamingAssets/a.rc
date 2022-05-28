@@ -1,7 +1,0 @@
-JMP 4
-DAT.I $0, $1
-DAT.I $2, $3
-DAT.I $4, $5
-STP.AB #4, #5
-STP.AB #123, #4
-LDP.A $-2, $1 
