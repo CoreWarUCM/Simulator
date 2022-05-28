@@ -22,17 +22,17 @@ RWStructuredBuffer<float4> cells;
 void UpdateCells(uint3 id : SV_DispatchThreadID)
 {
     // Column
-    int x = floor(id.x/cellWidth);
+    const uint x = floor(id.x/cellWidth);
     // Row
-    int y = numRows - 1 - floor(id.y/cellHeight);
+    const uint y = numRows - 1 - floor(id.y/cellHeight);
 
     // Position in array
-    int pos = x + y*numColls;
+    const uint pos = x + y*numColls;
 
     // Check if position is out of the array
-    bool offMemory = !(pos >= numCells);
+    const bool offMemory = !(pos >= numCells);
     // Check if is close to the border of the cell
-    bool gridCheck = !((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid);
+    const bool gridCheck = !((id.x % cellWidth < 10 || id.y % cellHeight < 10) && grid);
 
     // Paint color of cell in that position
     // If close to the border of cell paint it black

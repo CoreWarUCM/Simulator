@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Simulator;
@@ -17,6 +18,8 @@ public class BattleManager : MonoBehaviour
 
     // Reference to the BattleSimulator in the scene.
     [SerializeField] private UIManager UIManager;
+
+    private bool activeBattle;
 
     /// <summary>
     /// Called from the GameManager. It passes the necesary information
@@ -39,12 +42,35 @@ public class BattleManager : MonoBehaviour
         UIManager.SetVirusB(B.GetName(), B.GetAuthor());
     }
 
+    private void Start()
+    {
+        battleSimulator.Subscribe(MessageType.Death, message =>
+        {
+            VirusWinner((message.virus - 2) * -1);
+        } );
+
+    }
+
 
     /// <summary>
     /// Just, you know, starts the battle
     /// </summary>
     public void StartBattle()
     {
+        activeBattle = true;
         battleSimulator.StartBattle();
+    }
+
+    public void VirusWinner(int virus)
+    {
+        if(!activeBattle)
+            return;
+        NewWinner(virus);
+    }
+
+    public void NewWinner(int virus)
+    {
+        activeBattle = false;
+        UIManager.ShowResults(virus);
     }
 }
