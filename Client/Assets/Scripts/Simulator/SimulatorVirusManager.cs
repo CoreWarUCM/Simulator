@@ -5,10 +5,8 @@ namespace Simulator
 {
     public class SimulatorVirusManager
     {
-        private List<int> _firstVirusProcesses;
-        private int _firstVirusIndex;
-        private List<int> _secondVirusProcesses;
-        private int _secondVirusIndex;
+        private List<int> _firstVirusQueue;
+        private List<int> _secondVirusQueue;
 
         private int _currentExecutingVirus;
         private bool[] _jumped = { false, false };
@@ -16,13 +14,12 @@ namespace Simulator
 
         public SimulatorVirusManager(System.Random randomizer)
         {
-            _firstVirusProcesses = new List<int>();
-            _secondVirusProcesses = new List<int>();
+            _firstVirusQueue = new List<int>();
+            _secondVirusQueue = new List<int>();
 
             int firstLocation = randomizer.Next(0, 8000); ;
-            _firstVirusProcesses.Add(firstLocation);
-            _firstVirusIndex = 0;
-
+            _firstVirusQueue.Add(firstLocation);
+            
             //Generate a random number at least 100 away form first location
             int secondLocation = 0;
             do
@@ -30,68 +27,55 @@ namespace Simulator
                 secondLocation = randomizer.Next(0,8000);
             } while (secondLocation < firstLocation + 100 && secondLocation > firstLocation - 100);
 
-            _secondVirusProcesses.Add(secondLocation);
-            _secondVirusIndex = 0;
+            _secondVirusQueue.Add(secondLocation);
 
             _currentExecutingVirus = 1;// randomizer.NextDouble() > 0.5 ? 2 : 1;
         }
         public void SetStartPostion(int pos, int player) {
             if (player == 0) 
-                _firstVirusProcesses[0] = pos; 
+                _firstVirusQueue[0] = pos; 
             else 
-                _secondVirusProcesses[0] = pos; 
+                _secondVirusQueue[0] = pos; 
         }
         private bool First() { return _currentExecutingVirus == 1; }
 
         public void GetCurrent(out int programLocation, out int virus)
         {
-            if(First())
+            virus = _currentExecutingVirus;
+            if (First())
             {
-                programLocation = _firstVirusProcesses[_firstVirusIndex];
+                if (_firstVirusQueue.Count == 0)
+                {
+                    programLocation = -1;
+                    return;
+                }
+                programLocation = _firstVirusQueue[0];
             }
             else
             {
-                programLocation = _secondVirusProcesses[_secondVirusIndex];
+                if(_secondVirusQueue.Count == 0)
+                {
+                    programLocation = -1;
+                    return;
+                }
+                programLocation = _secondVirusQueue[0];
             }
-            virus = _currentExecutingVirus;
         }
         public void AdvanceCurrent()
         {
-            List<int> processes = First() ? _firstVirusProcesses : _secondVirusProcesses;
-            
+            List<int> queue = First() ? _firstVirusQueue : _secondVirusQueue;
+            int index = First() ? _firstVirusQueue[0]: _secondVirusQueue[0];
+
+            queue.RemoveAt(0);
+
             //Advance regulary if you did not jump this turn
             if (!_jumped[_currentExecutingVirus-1] && !_diedThisRound)
             {
-                int index = First() ? _firstVirusIndex : _secondVirusIndex;
-
-                
-                //Advance program counter of current process
-                processes[index] = (processes[index] + 1) % 8000;
+                //Advance program counter
+                queue.Add((index + 1) % 8000);
             }
             //otherwise mark jumped false and continue
             else _jumped[_currentExecutingVirus-1] = false;
-
-            if (_diedThisRound)
-            {
-                _diedThisRound = false;
-
-                //ensure we still on range if last was deleted
-                if(_firstVirusProcesses.Count > 0) _firstVirusIndex = _firstVirusIndex % _firstVirusProcesses.Count;
-                if(_secondVirusProcesses.Count > 0) _secondVirusIndex = _secondVirusIndex % _secondVirusProcesses.Count;
-            }
-            else {
-                //Advance to next process in task queue
-                if (First())
-                {
-                    _firstVirusIndex++;
-                    _firstVirusIndex = _firstVirusIndex % processes.Count;
-                }
-                else
-                {
-                    _secondVirusIndex++;
-                    _secondVirusIndex = _secondVirusIndex % processes.Count;
-                }
-            }
         }
         public int Next()
         {
@@ -101,38 +85,25 @@ namespace Simulator
 
         public void CurrentVirusOfCurrentProcessJumpsTo(int location)
         {
-            
-            int index = First() ? _firstVirusIndex : _secondVirusIndex;
-
-            if (First())
-                _firstVirusProcesses[index] = location;
-            else
-                _secondVirusProcesses[index] = location; 
-
+            List<int> queue = First() ? _firstVirusQueue : _secondVirusQueue;
+            queue.Add(location);
             _jumped[_currentExecutingVirus-1] = true;
         }
 
-        public bool CanCreateProcess() { return First() ? _firstVirusProcesses.Count < 8000 : _secondVirusProcesses.Count < 8000; }
+        public bool CanCreateProcess() { return First() ? _firstVirusQueue.Count < 8000 : _secondVirusQueue.Count < 8000; }
 
         public void CreateProcess(int where)
         {
-            var queue = First() ? _firstVirusProcesses: _secondVirusProcesses;
-            int index = First() ? _firstVirusIndex : _secondVirusIndex;
+            var queue = First() ? _firstVirusQueue: _secondVirusQueue;
             queue.Add(where);
         }
         public bool KillCurrentProcess()
         {
-            _diedThisRound = true;
-            if (First())
-            {
-                _firstVirusProcesses.RemoveAt(_firstVirusIndex);
-                return _firstVirusProcesses.Count > 0;
-            }
-            else
-            {
-                _secondVirusProcesses.RemoveAt(_secondVirusIndex);
-                return _secondVirusProcesses.Count > 0;
-            }
+            //Marking it as jump will prevent it to advance PC
+            _jumped[_currentExecutingVirus - 1] = true;
+
+            //Return true if must continue, false if virus completly died
+            return First() ? _firstVirusQueue.Count > 0 :_secondVirusQueue.Count > 0;
         }
     }
 }

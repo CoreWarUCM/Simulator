@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Simulator
 {
-    public class BattleSimulator : MonoBehaviour, IBattleSimulator, ISimulator
+    public class BattleSimulator : MonoBehaviour, ISimulator
     {
         private SimulatorVirusManager _simulatorVirusManager;
         private CommonMemoryManager _commonMemoryManager;
@@ -59,13 +59,13 @@ namespace Simulator
             
             //Get current warrior location to load it into memory
             _simulatorVirusManager.GetCurrent(out int location, out int virus);
+
             List<string> starting_virus = virus == 1 ? _virus1 : _virus2;
             List<string> next_virus = virus != 1 ? _virus1 : _virus2;
             
             foreach (string b in starting_virus)
             {
                 _commonMemoryManager.SetBlock(BlockFactory.CreateBlock(b), location++, 0);
-                Debug.Log(b);
                 if (b.Contains("START"))
                     _simulatorVirusManager.SetStartPostion(location - 1, 0);
             }
@@ -76,7 +76,6 @@ namespace Simulator
             foreach (string b in next_virus)
             {
                 _commonMemoryManager.SetBlock(BlockFactory.CreateBlock(b), location++, 0);
-                Debug.Log(b);
                 if (b.Contains("START"))
                     _simulatorVirusManager.SetStartPostion(location - 1, 1);
             }
@@ -113,14 +112,20 @@ namespace Simulator
             {
                 if(_stepPSn != _stepPS.Length - 1)
                     _nextStep = Time.time + 1.0 / _stepPS[_stepPSn];
-                Step();
-                Step();
+                if (Step()) //Virus A
+                    Step(); //Virus B
             }
         }
 
-        public void Step()
+        public bool Step()
         {
             _simulatorVirusManager.GetCurrent(out _currentVirusLocation, out _currentVirus);
+
+            if (_currentVirusLocation == -1)
+            {
+                SendMessage(new VirusLostMessage(_currentVirusLocation));
+                return false;
+            }
             try
             {
                 _commonMemoryManager.GetBlock(_currentVirusLocation, 0).Execute(_commonMemoryManager, _currentVirusLocation);
@@ -131,7 +136,8 @@ namespace Simulator
 
 
             _simulatorVirusManager.AdvanceCurrent();
-            _simulatorVirusManager.Next();   
+            _simulatorVirusManager.Next();
+            return true; 
         }
 
         public void CreateProcess(int position, int origin)

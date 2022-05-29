@@ -45,8 +45,8 @@ namespace Simulator.CodeBlocks
 
             if (simulator.CanCreateProcess())
             {
-                simulator.CreateProcess(1, location);
                 simulator.JumpTo(addr);
+                simulator.CreateProcess(1, location);
                 simulator.SendMessage(new JumpMessage(addr));
             }
         }

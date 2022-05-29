@@ -95,7 +95,6 @@ namespace Simulator.CodeBlocks
 
             simulator.SetBlock(origin.Copy(), regB,0);
             simulator.SendMessage(new BlockModifyMessage(regB));
-
         }
 
         protected override void X(ISimulator simulator, int location)
