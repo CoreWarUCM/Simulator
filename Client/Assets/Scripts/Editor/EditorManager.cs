@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manages the whole functionality of the
@@ -15,6 +16,7 @@ public class EditorManager : MonoBehaviour
 {
     // Reference to input field in scene
     [SerializeField] private TMP_InputField _editorField;
+    [SerializeField] private RawImage image;
 
     // Support class for intellisense UNUSED
     private EditorIntellisense _intellisense;
@@ -33,6 +35,8 @@ public class EditorManager : MonoBehaviour
     
     // Boolean to activate intellisense DO NOT USE 
     [SerializeField] private bool intellisense = false;
+
+    private byte[] _sprite = null;
 
     private void Awake()
     {
@@ -111,7 +115,7 @@ public class EditorManager : MonoBehaviour
         if (intellisense)
              outText = Regex.Replace(outText, "<.*?>", string.Empty);
         
-        GameManager.Instance.SaveVirus(outText);
+        GameManager.Instance.SaveVirus(outText, _sprite);
     }
 
     /// <summary>
@@ -122,6 +126,22 @@ public class EditorManager : MonoBehaviour
     {
         _editorField.verticalScrollbar.value = 0;
         _editorField.text = string.Join("\n", v.GetRawData());
+
+        if (v.GetImageData() != null)
+            LoadImageCallBack(v.GetImageData());        
+
+    }
+
+    private void LoadImageCallBack(byte[] sprite)
+    {
+        _sprite = sprite;
+        Texture2D text2D = new Texture2D(2, 2);
+        if (text2D.LoadImage(sprite))
+        {
+            Sprite spr = Sprite.Create(text2D, new Rect(0, 0, text2D.width, text2D.height),new Vector2(0,0), 100);
+
+            image.texture = spr.texture;
+        }
     }
 
     /// <summary>
@@ -130,5 +150,10 @@ public class EditorManager : MonoBehaviour
     public void LoadToEdit()
     {
         StartCoroutine(GameManager.Instance.GetVirusIO().LoadVirus(-1,null,null,LoadCallback));
+    }
+
+    public void LoadImage()
+    {
+        StartCoroutine(GameManager.Instance.GetVirusIO().LoadVirusImage(LoadImageCallBack));
     }
 }

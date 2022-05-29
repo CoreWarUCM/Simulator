@@ -78,15 +78,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetVirusA(string name, string author)
+    public void SetVirusA(string name, string author, Sprite sprite)
     {
         virusA.authorName.text = author;
         virusA.virusName.text = name;
+        if (sprite != null)
+        {
+            virusA.virusAvatar.color = Color.white;
+            virusA.virusAvatar.sprite = sprite;
+        }
     }
     
-    public void SetVirusB(string name, string author)
+    public void SetVirusB(string name, string author, Sprite sprite)
     {
         virusB.authorName.text = author;
         virusB.virusName.text = name;
+        if (sprite != null)
+        {
+            virusB.virusAvatar.color = Color.white;
+            virusB.virusAvatar.sprite = sprite;
+
+        }
     }
 }

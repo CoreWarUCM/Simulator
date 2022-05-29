@@ -59,8 +59,8 @@ public class GameManager : MonoBehaviour
             {
                 string PATH = Application.streamingAssetsPath + "/SampleWarriors/";
                 Debug.Log("EPA QUE VOY: " + PATH);
-                _virusManager.SetVersusVirus(true, new Virus(PATH + "imp.redcode", "Debug", "Dev", null, true));
-                _virusManager.SetVersusVirus(false, new Virus(PATH + "inversedwarf.redcode", "Debug2", "Dev2", null, true));
+                _virusManager.SetVersusVirus(true, new Virus(PATH + "imp.red", "Debug", "Dev", null));
+                _virusManager.SetVersusVirus(false, new Virus(PATH + "inversedwarf.red", "Debug2", "Dev2", null));
                 _virusManager.SetMode(false);
                 SetupBattle();
             }
@@ -95,11 +95,11 @@ public class GameManager : MonoBehaviour
     /// Because VirusIO does not extend MonoBehaviour it can't call Coroutines so the GameManager does it
     /// </summary>
     /// <param name="rawData">data to store in file</param>
-    public void SaveVirus(string rawData)
+    public void SaveVirus(string rawData, byte[] sprite)
     {
         if (_virusIO.dialogOpen)
             return;
-        StartCoroutine(_virusIO.SaveVirus(rawData));
+        StartCoroutine(_virusIO.SaveVirus(rawData, sprite));
     }
 
     /// <summary>

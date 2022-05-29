@@ -1,8 +1,13 @@
 using System;
 using System.Collections;
 using System.IO;
-using UnityEngine;
+using System.IO.Compression;
+using System.Security.Cryptography;
+using System.Text;
 using SimpleFileBrowser;
+using UnityEngine;
+using Directory = UnityEngine.Windows.Directory;
+using Time = UnityEngine.Time;
 
 /// <summary>
 /// Class that manages the files IO.
@@ -22,7 +27,11 @@ public class VirusIO
         new FileBrowser.Filter("Red", ".red"),
         new FileBrowser.Filter("Redcode", ".redcode")
     };
-
+    
+    // Filters when loading images
+    
+    private static readonly FileBrowser.Filter filtersImage = new FileBrowser.Filter("PNG", ".png");
+    
     public VirusIO()
     {
         FileBrowser.SetDefaultFilter(".red");
@@ -59,8 +68,27 @@ public class VirusIO
 
                 UserConfig.SetLastLoadPath(path);
 
-                Debug.Log(path);
-                string[] rawData = File.ReadAllLines(path);
+
+                string dataPath = path;
+                byte[] image = null;
+                if (path.Contains(".redcode"))
+                {
+                    string auxFolder = Directory.temporaryFolder + "/auxLoad";
+                    
+                    if(Directory.Exists(auxFolder))
+                        Directory.Delete(auxFolder);
+                    Directory.CreateDirectory(auxFolder);
+                    
+                    ZipFile.ExtractToDirectory(path, auxFolder);
+
+                    dataPath = auxFolder + "/data.red";
+                    string imagePath = auxFolder + "/image.png";
+                    if (File.Exists(imagePath))
+                        image = File.ReadAllBytes(imagePath);
+                }
+                
+                
+                string[] rawData = File.ReadAllLines(dataPath);
                 string name = "No Name";
                 string author = "No Author";
                 foreach (string s in rawData)
@@ -77,12 +105,34 @@ public class VirusIO
                         name = s.Substring(fP, s.Length - fP);
                     }
                 }
-
-                Virus v = new Virus(path, name, author, rawData);
+                
+                Virus v = new Virus(dataPath, name, author, rawData, image);
                 if (callback != null && state)
                     callback(player, state, v);
-                if (virusCallBack != null && v.isValidVirus())
+                if (virusCallBack != null && v.IsValidVirus())
                     virusCallBack(v);
+            }
+        }
+    }
+    
+    
+    public IEnumerator LoadVirusImage(Action<byte[]> callback)
+    {
+        if (!dialogOpen)
+        {
+            FileBrowser.SetFilters(false, filtersImage);
+            dialogOpen = true;
+            yield return
+                FileBrowser.WaitForLoadDialog(FileBrowser.PickMode.Files, false, UserConfig.LastLoadPath(),
+                    title: "Select Image",
+                    loadButtonText: "Select");
+            dialogOpen = false;
+
+            if (FileBrowser.Success)
+            {
+                string path = FileBrowser.Result[0];
+
+                callback(File.ReadAllBytes(path));
             }
         }
     }
@@ -95,8 +145,8 @@ public class VirusIO
     /// </summary>
     /// <param name="rawData">Virus data</param>
     /// <returns></returns>
-    public IEnumerator SaveVirus(string rawData)
-    {
+    public IEnumerator SaveVirus(string rawData,byte[] sprite)
+    { 
         if (!dialogOpen)
         {
             dialogOpen = true;
@@ -111,7 +161,26 @@ public class VirusIO
             {
                 string path = FileBrowser.Result[0];
                 UserConfig.SetLastSavePath(path);
-                File.WriteAllText(path, rawData);
+
+                if (path.Contains(".redcode"))
+                {
+                    string auxFolder = Directory.temporaryFolder + "/auxSave";
+                    
+                    if(Directory.Exists(auxFolder))
+                        Directory.Delete(auxFolder);
+                    Directory.CreateDirectory(auxFolder);
+
+                    File.WriteAllText(auxFolder + "/data.red", rawData);
+                    if(sprite != null)
+                        File.WriteAllBytes(auxFolder + "/image.png", sprite);
+                    
+                    if(File.Exists(path))
+                        File.Delete(path);
+                    
+                    ZipFile.CreateFromDirectory(auxFolder, path);
+                }
+                else
+                    File.WriteAllText(path, rawData);
             }
         }
     }

@@ -38,8 +38,8 @@ public class BattleManager : MonoBehaviour
 
         battleSimulator.LoadVirus(virusAData, virusBData);
 
-        UIManager.SetVirusA(A.GetName(), A.GetAuthor());
-        UIManager.SetVirusB(B.GetName(), B.GetAuthor());
+        UIManager.SetVirusA(A.GetName(), A.GetAuthor(), A.GetSprite());
+        UIManager.SetVirusB(B.GetName(), B.GetAuthor(), B.GetSprite());
     }
 
     private void Start()
