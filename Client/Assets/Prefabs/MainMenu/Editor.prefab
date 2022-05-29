@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _editorField: {fileID: 6822285979375150995}
   image: {fileID: 1081001818893032172}
+  defaultImage: {fileID: 2800000, guid: b7770fde82f32da4f878e625fd21a697, type: 3}
   editTime: 0.1
   intellisense: 0
 --- !u!1001 &1691452643351817776

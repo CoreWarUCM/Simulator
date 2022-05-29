@@ -17,6 +17,7 @@ public class EditorManager : MonoBehaviour
     // Reference to input field in scene
     [SerializeField] private TMP_InputField _editorField;
     [SerializeField] private RawImage image;
+    [SerializeField] private Texture defaultImage;
 
     // Support class for intellisense UNUSED
     private EditorIntellisense _intellisense;
@@ -128,7 +129,12 @@ public class EditorManager : MonoBehaviour
         _editorField.text = string.Join("\n", v.GetRawData());
 
         if (v.GetImageData() != null)
-            LoadImageCallBack(v.GetImageData());        
+            LoadImageCallBack(v.GetImageData());
+        else
+        {
+            _sprite = null;
+            image.texture = defaultImage;
+        }
 
     }
 
