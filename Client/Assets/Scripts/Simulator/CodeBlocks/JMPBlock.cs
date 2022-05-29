@@ -41,8 +41,6 @@ namespace Simulator.CodeBlocks
             _regB.rGet(simulator, location);
             simulator.JumpTo(addr);
             simulator.SendMessage(new JumpMessage(addr));
-            if(addr<location)
-                Debug.Log("JUMP TO " + addr);
         }
 
         protected override void BA(ISimulator simulator, int location)

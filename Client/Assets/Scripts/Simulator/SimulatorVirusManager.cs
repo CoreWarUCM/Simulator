@@ -35,6 +35,12 @@ namespace Simulator
 
             _currentExecutingVirus = 1;// randomizer.NextDouble() > 0.5 ? 2 : 1;
         }
+        public void SetStartPostion(int pos, int player) {
+            if (player == 0) 
+                _firstVirusProcesses[0] = pos; 
+            else 
+                _secondVirusProcesses[0] = pos; 
+        }
         private bool First() { return _currentExecutingVirus == 1; }
 
         public void GetCurrent(out int programLocation, out int virus)
@@ -111,6 +117,7 @@ namespace Simulator
         public void CreateProcess(int where)
         {
             var queue = First() ? _firstVirusProcesses: _secondVirusProcesses;
+            int index = First() ? _firstVirusIndex : _secondVirusIndex;
             queue.Add(where);
         }
         public bool KillCurrentProcess()
