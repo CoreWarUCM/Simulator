@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7526574664886255165}
-  - component: {fileID: 7526574664886255164}
   - component: {fileID: 7526574664886255166}
   m_Layer: 0
   m_Name: EditorManager
@@ -32,26 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7526574664886255164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7526574664886255163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 398d04a57b4651e4aa247b31cfac750e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  styles:
-  - Normal
-  - Comment
-  - Code
-  - Intruction
-  - Immediate
-  - Direct
-  - Error
 --- !u!114 &7526574664886255166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _editorField: {fileID: 0}
-  _intellisense: {fileID: 7526574664886255164}
+  image: {fileID: 0}
+  defaultImage: {fileID: 0}
   editTime: 0.1
-  _checkedEdit: 0
-  _lastEdit: 0
+  intellisense: 0
