@@ -9,3 +9,5 @@ El objetivo principal es plantear una alternativa para el simulador [**ARES**](h
 |Ricardo Sulbarán Socas| rsulbara@ucm.es|
 |Carlos Romero García| carome06@ucm.es|
 |Stiven Arias Giraldo| starias@ucm.es|
+
+Se puede obtener más información en 
