@@ -10,4 +10,4 @@ El objetivo principal es plantear una alternativa para el simulador [**ARES**](h
 |Carlos Romero García| carome06@ucm.es|
 |Stiven Arias Giraldo| starias@ucm.es|
 
-Se puede obtener más información en 
+Se puede obtener más información en [Memoria Final](https://github.com/CoreWarUCM/Simulator/blob/main/Memoria.pdf). En esta memoria se ofrece al detalle todo el proceso de desarrollo de la aplacación y, además, se incluye en el capítulo **Anexos** un **Manual de usuario** para aprender a usar **CoreWarUCM**.
